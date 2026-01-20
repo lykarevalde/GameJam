@@ -1,2 +1,5 @@
-# GameJam
-This is the respoitory for our game
+# Game Title
+
+## Game Description
+## Build Instructions
+## Credits
