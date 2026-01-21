@@ -1,6 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://4tn6y5e6hthb"]
+[gd_scene load_steps=10 format=3 uid="uid://cgmu3x48sx0fo"]
 
-[ext_resource type="Script" uid="uid://o3qdyd2hr02a" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://bjc3u1kofa5x0" path="res://assets/player_placeholder.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://cxrqodvh8nk8x" path="res://scenes/player.gd" id="1_g2els"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_3vyb7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vyb7"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlg0r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vyb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tuyoq"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 9.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 5
+script = ExtResource("1_g2els")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.5762787e-07, -9)
+scale = Vector2(0.44921875, 0.3984375)
+sprite_frames = SubResource("SpriteFrames_qlg0r")
+autoplay = "default"
+frame_progress = 0.3838129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_tuyoq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_g2els")
