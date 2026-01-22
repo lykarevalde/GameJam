@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=8 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_onqr8"]
 [ext_resource type="PackedScene" uid="uid://cgmu3x48sx0fo" path="res://scenes/player.tscn" id="1_w5aja"]
 [ext_resource type="PackedScene" uid="uid://dbgp384qn2s4x" path="res://scenes/plant.tscn" id="3_ycayy"]
 [ext_resource type="PackedScene" uid="uid://cv0hye7m1iv11" path="res://scenes/shelf.tscn" id="4_bw6k5"]
+[ext_resource type="PackedScene" uid="uid://dsr4nt81mbrbd" path="res://scenes/furniture.tscn" id="5_y3j0m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
 texture = ExtResource("1_onqr8")
@@ -225,3 +226,6 @@ position = Vector2(-69, 96)
 
 [node name="shelf" parent="." instance=ExtResource("4_bw6k5")]
 position = Vector2(-20, 110)
+
+[node name="Furniture" parent="." instance=ExtResource("5_y3j0m")]
+position = Vector2(76, 112)

@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cv0hye7m1iv11"]
 
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_eyi4x"]
-[ext_resource type="Script" uid="uid://do3jm47f4s3ax" path="res://scenes/possessed.gd" id="1_xj574"]
+[ext_resource type="Script" uid="uid://do3jm47f4s3ax" path="res://scripts/possessed.gd" id="1_xj574"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj574"]
 size = Vector2(32, 29)
