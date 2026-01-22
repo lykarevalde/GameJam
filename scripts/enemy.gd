@@ -1,25 +1,28 @@
 extends CharacterBody2D
 
+@export var speed := 50.0
+@export var min_walk_time := 1.0
+@export var max_walk_time := 3.0
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+var direction := 0   # -1 = left, 1 = right, 0 = idle
 
+@onready var timer: Timer = $Timer
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+func _ready():
+	randomize()
+	choose_new_direction()
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+func _physics_process(delta):
+	velocity.x = direction * speed
 	move_and_slide()
+
+func choose_new_direction():
+	# Randomly choose left, right, or stop
+	direction = [-1, 0, 1].pick_random()
+
+	# Random time before changing direction again
+	timer.wait_time = randf_range(min_walk_time, max_walk_time)
+	timer.start()
+
+func _on_Timer_timeout():
+	choose_new_direction()
