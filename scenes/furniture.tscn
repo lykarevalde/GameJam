@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://dsr4nt81mbrbd"]
+
+[ext_resource type="Texture2D" uid="uid://dvpynuaplocpe" path="res://assets/Furniture/Toilet/toilet MOVE.png" id="1_uouto"]
+[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture.gdshader" id="1_yxmve"]
+[ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/furniture.gd" id="2_uj4jp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxmve"]
+shader = ExtResource("1_yxmve")
+shader_parameter/outline_color = Vector4(1, 1, 0, 1)
+shader_parameter/thickness = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxmve"]
+atlas = ExtResource("1_uouto")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmgrm"]
+atlas = ExtResource("1_uouto")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0xlv"]
+atlas = ExtResource("1_uouto")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh8sm"]
+atlas = ExtResource("1_uouto")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upk6m"]
+atlas = ExtResource("1_uouto")
+region = Rect2(32, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sugg3"]
+atlas = ExtResource("1_uouto")
+region = Rect2(64, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_161hf"]
+atlas = ExtResource("1_uouto")
+region = Rect2(96, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa2mr"]
+atlas = ExtResource("1_uouto")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bew5f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxmve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmgrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0xlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh8sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upk6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sugg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_161hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa2mr")
+}],
+"loop": true,
+"name": &"move",
+"speed": 12.0
+}]
+
+[node name="Furniture" type="AnimatedSprite2D"]
+material = SubResource("ShaderMaterial_yxmve")
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_bew5f")
+animation = &"move"
+frame_progress = 0.6196499
+script = ExtResource("2_uj4jp")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-7, 31, 7, 31, 5, 28, 12, 16, 8, 16, 11, 1, -11, 1, -8, 16, -12, 16, -5, 28)
+
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
