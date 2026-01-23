@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=13 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_onqr8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cv0hye7m1iv11" path="res://scenes/shelf.tscn" id="4_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://dsr4nt81mbrbd" path="res://scenes/furniture.tscn" id="5_y3j0m"]
 [ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="6_rurhu"]
+[ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="8_b5spy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
 texture = ExtResource("1_onqr8")
@@ -217,6 +218,18 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_onqr8")
 
+[sub_resource type="Curve2D" id="Curve2D_kk2rg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2, 73, 0, 0, 0, 0, 402, 75, 0, 0, 0, 0, -39, 74, 0, 0, 0, 0, 2, 73)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_utbpp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -27, 203, 0, 0, 0, 0, 401, 204, 0, 0, 0, 0, -38, 203, 0, 0, 0, 0, -27, 203)
+}
+point_count = 4
+
 [node name="game scene" type="Node2D"]
 script = ExtResource("1_kk2rg")
 npc_scene = ExtResource("6_rurhu")
@@ -248,19 +261,14 @@ position = Vector2(-20, 110)
 [node name="Furniture" parent="." instance=ExtResource("5_y3j0m")]
 position = Vector2(76, 112)
 
-[node name="kids" parent="." instance=ExtResource("6_rurhu")]
-position = Vector2(2, 75)
-collision_layer = 2
-collision_mask = 4
+[node name="Floor1Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kk2rg")
 
-[node name="Floor1spawn1" type="Marker2D" parent="kids"]
-position = Vector2(0, -11.666664)
+[node name="Floor2Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_utbpp")
 
-[node name="Floor1spawn2" type="Marker2D" parent="kids"]
-position = Vector2(535, -6.666666)
-
-[node name="Floor2spawn1" type="Marker2D" parent="kids"]
-position = Vector2(48.333332, 196.66664)
-
-[node name="Floor2spawn2" type="Marker2D" parent="kids"]
-position = Vector2(560, 191.66666)
+[node name="kidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("floor1_path", "floor2_path")]
+script = ExtResource("8_b5spy")
+npc_scene = ExtResource("6_rurhu")
+floor1_path = NodePath("../Floor1Path")
+floor2_path = NodePath("../Floor2Path")
