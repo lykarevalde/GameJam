@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=15 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_onqr8"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dbgp384qn2s4x" path="res://scenes/plant.tscn" id="3_ycayy"]
 [ext_resource type="PackedScene" uid="uid://cv0hye7m1iv11" path="res://scenes/shelf.tscn" id="4_bw6k5"]
 [ext_resource type="PackedScene" uid="uid://dsr4nt81mbrbd" path="res://scenes/furniture.tscn" id="5_y3j0m"]
+[ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="8_b5spy"]
+[ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="10_tcjrq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
 texture = ExtResource("1_onqr8")
@@ -230,9 +232,11 @@ _data = {
 }
 point_count = 4
 
-[node name="game scene" type="Node2D"]
+[node name="game scene" type="Node2D" node_paths=PackedStringArray("floor1_path", "floor2_path")]
 script = ExtResource("1_kk2rg")
 npc_scene = ExtResource("6_rurhu")
+floor1_path = NodePath("Floor1Path")
+floor2_path = NodePath("Floor2Path")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-5, 22)
@@ -252,14 +256,23 @@ position = Vector2(-1, -1)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="AnimatableBody2D" parent="." instance=ExtResource("3_ycayy")]
-position = Vector2(-69, 96)
-
 [node name="shelf" parent="." instance=ExtResource("4_bw6k5")]
-position = Vector2(-20, 110)
+position = Vector2(55, 71)
 
-[node name="Furniture" parent="." instance=ExtResource("5_y3j0m")]
-position = Vector2(76, 112)
+[node name="AnimatableBody2D" parent="." instance=ExtResource("3_ycayy")]
+position = Vector2(-21, 67)
+
+[node name="Furniture" type="Node2D" parent="."]
+script = ExtResource("6_mw25s")
+
+[node name="Toilet" parent="Furniture" instance=ExtResource("5_y3j0m")]
+position = Vector2(74, 183)
+
+[node name="Toilet2" parent="Furniture" instance=ExtResource("5_y3j0m")]
+position = Vector2(216, 184)
+
+[node name="Toilet3" parent="Furniture" instance=ExtResource("5_y3j0m")]
+position = Vector2(362, 183)
 
 [node name="Floor1Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_kk2rg")
@@ -268,7 +281,21 @@ curve = SubResource("Curve2D_kk2rg")
 curve = SubResource("Curve2D_utbpp")
 
 [node name="kidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("floor1_path", "floor2_path")]
+position = Vector2(3, 9)
 script = ExtResource("8_b5spy")
 npc_scene = ExtResource("6_rurhu")
 floor1_path = NodePath("../Floor1Path")
 floor2_path = NodePath("../Floor2Path")
+
+[node name="MotherFatherGhosts" type="Node2D" parent="."]
+position = Vector2(30, -4)
+
+[node name="mother" parent="MotherFatherGhosts" node_paths=PackedStringArray("human_npcs_root", "furniture_root") instance=ExtResource("10_tcjrq")]
+position = Vector2(79, 0)
+human_npcs_root = NodePath("../../kidSpawner")
+furniture_root = NodePath("../../Furniture")
+
+[node name="father" parent="MotherFatherGhosts" node_paths=PackedStringArray("human_npcs_root", "furniture_root") instance=ExtResource("10_tcjrq")]
+position = Vector2(246, 10)
+human_npcs_root = NodePath("../../kidSpawner")
+furniture_root = NodePath("../../Furniture")

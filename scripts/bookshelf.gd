@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+extends Sprite2D
 
 @export var move_distance := 50      # How far furniture moves left/right when possessed
 @export var move_speed := 50         # Pixels/sec movement speed

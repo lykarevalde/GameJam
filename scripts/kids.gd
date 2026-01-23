@@ -44,3 +44,9 @@ func _on_Timer_timeout():
 		direction *= -1
 
 	start_turn_timer()
+	
+func on_scared():
+	# Stop moving or run away
+	direction = 0
+	anim.play("scared")  # you can create a scared animation
+	# Optional: add a timer to resume normal behavior
