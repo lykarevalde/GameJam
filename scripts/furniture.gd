@@ -6,6 +6,7 @@ extends AnimatedSprite2D
 
 
 var possessed := false
+var is_being_possessed := false  # tracks if a ghost is using it
 var direction := 1                   # 1 = right, -1 = left
 var original_pos := Vector2.ZERO
 var possession_timer := 0.0
@@ -55,7 +56,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 # Called by Ghost when possessing
 func on_possessed():
+	if is_being_possessed:
+		return  # already being possessed by another ghost
+		
 	possessed = true
+	is_being_possessed = true  # mark as being possessed
 	possession_timer = possession_time
 	direction = [-1, 1].pick_random()  # randomize initial move direction
 	play("shake")                        # optional shake animation
@@ -65,6 +70,7 @@ func on_possessed():
 # Called automatically when possession ends
 func on_possession_end():
 	possessed = false
+	is_being_possessed = false  # free it for another ghost
 	global_position = original_pos       # snap back to original place
 	play("idle")                         # return to idle animation
 	print(name, " possession ended")

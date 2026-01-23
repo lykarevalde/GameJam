@@ -274,6 +274,15 @@ position = Vector2(216, 184)
 [node name="Toilet3" parent="Furniture" instance=ExtResource("5_y3j0m")]
 position = Vector2(362, 183)
 
+[node name="Toilet4" parent="Furniture" instance=ExtResource("5_y3j0m")]
+position = Vector2(21, 57)
+
+[node name="Toilet5" parent="Furniture" instance=ExtResource("5_y3j0m")]
+position = Vector2(163, 58)
+
+[node name="Toilet6" parent="Furniture" instance=ExtResource("5_y3j0m")]
+position = Vector2(309, 57)
+
 [node name="Floor1Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_kk2rg")
 
@@ -292,10 +301,14 @@ position = Vector2(30, -4)
 
 [node name="mother" parent="MotherFatherGhosts" node_paths=PackedStringArray("human_npcs_root", "furniture_root") instance=ExtResource("10_tcjrq")]
 position = Vector2(79, 0)
+collision_layer = 0
+collision_mask = 0
 human_npcs_root = NodePath("../../kidSpawner")
 furniture_root = NodePath("../../Furniture")
 
 [node name="father" parent="MotherFatherGhosts" node_paths=PackedStringArray("human_npcs_root", "furniture_root") instance=ExtResource("10_tcjrq")]
 position = Vector2(246, 10)
+collision_layer = 0
+collision_mask = 0
 human_npcs_root = NodePath("../../kidSpawner")
 furniture_root = NodePath("../../Furniture")
