@@ -2,7 +2,7 @@ extends AnimatedSprite2D
 
 @export var move_distance := 50      # How far furniture moves left/right when possessed
 @export var move_speed := 50         # Pixels/sec movement speed
-@export var possession_time := 2.0   # Time furniture stays possessed
+@export var possession_time := 1.0   # Time furniture stays possessed
 
 
 var possessed := false
