@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://dsr4nt81mbrbd"]
+[gd_scene load_steps=14 format=3 uid="uid://dsr4nt81mbrbd"]
 
 [ext_resource type="Texture2D" uid="uid://dvpynuaplocpe" path="res://assets/Furniture/Toilet/toilet MOVE.png" id="1_uouto"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture.gdshader" id="1_yxmve"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/furniture.gd" id="2_uj4jp"]
-[ext_resource type="Texture2D" uid="uid://cquskrrtn7jeh" path="res://assets/Furniture/Toilet/toilet SPOOK.png" id="3_qmgrm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yxmve"]
 shader = ExtResource("1_yxmve")
@@ -42,62 +41,6 @@ region = Rect2(96, 64, 32, 64)
 atlas = ExtResource("1_uouto")
 region = Rect2(0, 128, 32, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ngo83"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(0, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bew5f"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kghvc"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cl4yy"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lgncd"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(128, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_axdrx"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(0, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_adld2"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(32, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvwb8"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(64, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_86qb4"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(96, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2854e"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(128, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vehp"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(0, 128, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbjfm"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(32, 128, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4eyut"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(64, 128, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_68vwh"]
-atlas = ExtResource("3_qmgrm")
-region = Rect2(96, 128, 32, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_bew5f"]
 animations = [{
 "frames": [{
@@ -128,61 +71,14 @@ animations = [{
 "loop": true,
 "name": &"move",
 "speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ngo83")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bew5f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kghvc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cl4yy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lgncd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_axdrx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_adld2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lvwb8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_86qb4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2854e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1vehp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbjfm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4eyut")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_68vwh")
-}],
-"loop": true,
-"name": &"spook",
-"speed": 5.0
 }]
 
 [node name="Furniture" type="AnimatedSprite2D"]
 material = SubResource("ShaderMaterial_yxmve")
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_bew5f")
-animation = &"spook"
-frame_progress = 0.91006017
+animation = &"move"
+frame_progress = 0.6196499
 script = ExtResource("2_uj4jp")
 
 [node name="Node2D" type="Node2D" parent="."]
