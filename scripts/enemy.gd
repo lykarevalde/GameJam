@@ -27,8 +27,10 @@ func move_to_target(delta):
 	velocity = dir * speed
 	move_and_slide()
 
-	anim.flip_h = velocity.x < 0
-	anim.play("walk")
+	if velocity.x < 0:
+		anim.play("left")
+	elif velocity.x > 0:
+		anim.play("right")
 
 	if global_position.distance_to(target_furniture.global_position) <= reach_distance:
 		try_possess()
@@ -58,6 +60,8 @@ func _on_furniture_finished(furniture):
 	if furniture != target_furniture:
 		return
 
+	global_position = furniture.global_position
+	
 	last_furniture = furniture
 	target_furniture = null
 	anim.visible = true
