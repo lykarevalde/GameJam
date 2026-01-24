@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmh6smfmktvd3"]
+[gd_scene load_steps=23 format=3 uid="uid://c72t5aeqmoxx1"]
 
 [ext_resource type="Texture2D" uid="uid://bwkbqvmsy1m12" path="res://assets/Furniture/Toilet/toilet AMUSE.png" id="2_f6u1u"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture.gdshader" id="2_vvwlq"]
-[ext_resource type="Script" uid="uid://b065htnqegopw" path="res://scenes/dolphin.gd" id="2_x5hi6"]
-[ext_resource type="Script" uid="uid://df8s31qe0esgw" path="res://scenes/area_2d.gd" id="3_f6u1u"]
+[ext_resource type="Script" path="res://scenes/dolphin.gd" id="2_x5hi6"]
+[ext_resource type="Script" path="res://scenes/area_2d.gd" id="3_f6u1u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icp1y"]
 atlas = ExtResource("2_f6u1u")
