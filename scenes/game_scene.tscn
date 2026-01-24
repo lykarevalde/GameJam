@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://cgmu3x48sx0fo" path="res://scenes/player.tscn" id="1_w5aja"]
 [ext_resource type="PackedScene" uid="uid://dbgp384qn2s4x" path="res://scenes/plant.tscn" id="3_ycayy"]
 [ext_resource type="PackedScene" uid="uid://cv0hye7m1iv11" path="res://scenes/shelf.tscn" id="4_bw6k5"]
-[ext_resource type="PackedScene" uid="uid://dsr4nt81mbrbd" path="res://scenes/furniture.tscn" id="5_y3j0m"]
 [ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="8_b5spy"]
+[ext_resource type="PackedScene" uid="uid://cfg7i0camoaef" path="res://scenes/toilet.tscn" id="8_mw25s"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="10_tcjrq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
@@ -265,23 +265,23 @@ position = Vector2(-21, 67)
 [node name="Furniture" type="Node2D" parent="."]
 script = ExtResource("6_mw25s")
 
-[node name="Toilet" parent="Furniture" instance=ExtResource("5_y3j0m")]
-position = Vector2(74, 183)
+[node name="Toilet" parent="Furniture" instance=ExtResource("8_mw25s")]
+position = Vector2(69, 189)
 
-[node name="Toilet2" parent="Furniture" instance=ExtResource("5_y3j0m")]
-position = Vector2(216, 184)
+[node name="Toilet2" parent="Furniture" instance=ExtResource("8_mw25s")]
+position = Vector2(172, 189)
 
-[node name="Toilet3" parent="Furniture" instance=ExtResource("5_y3j0m")]
-position = Vector2(362, 183)
+[node name="Toilet3" parent="Furniture" instance=ExtResource("8_mw25s")]
+position = Vector2(59, 60)
 
-[node name="Toilet4" parent="Furniture" instance=ExtResource("5_y3j0m")]
-position = Vector2(21, 57)
+[node name="Toilet4" parent="Furniture" instance=ExtResource("8_mw25s")]
+position = Vector2(162, 60)
 
-[node name="Toilet5" parent="Furniture" instance=ExtResource("5_y3j0m")]
-position = Vector2(163, 58)
+[node name="Toilet5" parent="Furniture" instance=ExtResource("8_mw25s")]
+position = Vector2(326, 61)
 
-[node name="Toilet6" parent="Furniture" instance=ExtResource("5_y3j0m")]
-position = Vector2(309, 57)
+[node name="Toilet6" parent="Furniture" instance=ExtResource("8_mw25s")]
+position = Vector2(340, 188)
 
 [node name="Floor1Path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_kk2rg")
