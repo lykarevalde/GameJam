@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgmu3x48sx0fo"]
+[gd_scene load_steps=10 format=3 uid="uid://c8nbl5xu58hqo"]
 
 [ext_resource type="Texture2D" uid="uid://bjc3u1kofa5x0" path="res://assets/player_placeholder.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cxrqodvh8nk8x" path="res://scripts/krystaplayer.gd" id="1_g2els"]
-
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vyb7"]
 atlas = ExtResource("1_4flbx")
@@ -43,8 +42,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_tuyoq"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
-radius = 9.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6fml"]
+radius = 6.0
+height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -58,11 +58,16 @@ autoplay = "default"
 frame_progress = 0.3838129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 3
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_tuyoq")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -9)
-shape = SubResource("CircleShape2D_g2els")
+shape = SubResource("CapsuleShape2D_v6fml")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
