@@ -9,11 +9,11 @@ radius = 8.0
 [node name="Toilet" type="CharacterBody2D"]
 script = ExtResource("1_yyxms")
 
-[node name="Toilet" parent="." instance=ExtResource("2_5rkpo")]
-position = Vector2(-1, -6)
-frame = 10
-frame_progress = 0.93261635
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 9)
 shape = SubResource("CapsuleShape2D_tcjrq")
+
+[node name="Toilet" parent="." instance=ExtResource("2_5rkpo")]
+position = Vector2(-1, -6)
+frame = 7
+frame_progress = 0.6740139
