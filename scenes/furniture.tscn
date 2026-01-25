@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/furniture.gd" id="2_uj4jp"]
 [ext_resource type="Texture2D" uid="uid://cquskrrtn7jeh" path="res://assets/Furniture/cr/toilet SPOOK.png" id="3_qmgrm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yxmve"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmgrm"]
 shader = ExtResource("1_yxmve")
 shader_parameter/outline_color = Vector4(1, 1, 0, 1)
 shader_parameter/thickness = 1.0
@@ -178,7 +178,7 @@ animations = [{
 }]
 
 [node name="Furniture" type="AnimatedSprite2D"]
-material = SubResource("ShaderMaterial_yxmve")
+material = SubResource("ShaderMaterial_qmgrm")
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_bew5f")
 animation = &"spook"

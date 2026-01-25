@@ -1,80 +1,73 @@
 extends CharacterBody2D
 
 @export var move_speed = 100.0
-@export var possession_time = 2
 
-var nearby_furniture: Node = null
 var is_possessed = false
-var possession_timer = 0.0
-var nearby_ghost = null
-var dolphin_jumped = false
+var nearby_furniture: Node = null
 
-@onready var sprite = $idle
-@onready var dolphin_sprite = $dolphin  
+@onready var sprite = $idle  # Toilet sprite
+@onready var dolphin_sprite = $dolphin # Dolphin sprite
 
-func possess():
-	is_possessed = true
-	possession_timer = possession_time
-	dolphin_jumped = false
-	dolphin_sprite.play("dolphin")
-	print("Toilet possessed – dolphin jumps!")
-	
-func unpossess():
-	is_possessed = false
-	dolphin_jumped = false
-	sprite.play("idle")
+func _ready():
 	velocity = Vector2.ZERO
+	sprite.play("idle")
+	sprite.material.set_shader_parameter("thickness", 0.0)
 	if dolphin_sprite:
 		dolphin_sprite.visible = false
-		dolphin_sprite.stop()
-	print("Possession ended!")
-	
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if is_possessed:
 		# Movement during possession
 		var dir = Input.get_axis("ui_left", "ui_right")
 		velocity.x = dir * move_speed
-		move_and_slide()
 
-		# Countdown possession
-		possession_timer -= delta
-		if possession_timer <= 0:
-			unpossess()
 
-		# Check for DOWN key to trigger dolphin jump
-		if Input.is_action_just_pressed("ui_down") and not dolphin_jumped:
+		# Check for DOWN key to trigger dolphin jump (repeatable after cooldown)
+		if Input.is_action_just_pressed("animate"):
 			trigger_dolphin_jump()
 
-func _ready():
-	sprite.play("idle")  # Start with idle animation
-	self.material = material
+func possess():
+	is_possessed = true
+	sprite.play("dolphin")
+	print("Furniture possessed!")
 
-func _process(delta):
-	if is_possessed:
-		possession_timer -= delta
-		if possession_timer <= 0:
-			unpossess()
+func unpossess():
+	is_possessed = false
+	velocity = Vector2.ZERO
+	sprite.play("idle")
+	if dolphin_sprite:
+		dolphin_sprite.visible = false
+		dolphin_sprite.stop()
+	print("Possession ended!")
 
 func trigger_dolphin_jump():
-	dolphin_jumped = true  # Prevent repeat
 	if dolphin_sprite:
+		sprite.hide()
+		
+		dolphin_sprite.stop()
+		dolphin_sprite.frame = 0
+		
 		dolphin_sprite.visible = true
-		dolphin_sprite.play("jump")  # Dolphin jump animation
+		dolphin_sprite.play("dolphin")  # Dolphin jump animation
 		print("Dolphin jumps!")
 
-func _on_area_2d_body_entered(body: Node) -> void:
-	if body.is_in_group("furniture"):
-		nearby_furniture = body
-		print("Ghost is near:", body.name)
+func _on_area_2d_body_entered(body):
+	if body.name == "Player":
+		print(body.name, " entered")
+		sprite.material.set_shader_parameter("thickness", 1.0)
+	#pass # Replace with function body.
 
-func _on_area_2d_body_exited(body: Node) -> void:
-	if body == nearby_furniture:
-		print("Ghost walked away from:", body.name)
-		nearby_furniture = null
-
-func highlight(on: bool):
-	if on:
-		sprite.material.set_shader_parameter("thickness", 1.0)  # Glow
-	else:
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		print(body.name, " exited")
 		sprite.material.set_shader_parameter("thickness", 0.0)
+
+func _on_dolphin_animation_finished() -> void:
+	if dolphin_sprite:
+		dolphin_sprite.visible = false
+		dolphin_sprite.stop()
+		dolphin_sprite.frame = 0
+		dolphin_sprite.play("dolphin")
+		sprite.visible = true 
+		sprite.play("idle")
