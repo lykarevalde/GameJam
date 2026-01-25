@@ -1,14 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=14 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kk2rg"]
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_onqr8"]
-[ext_resource type="PackedScene" uid="uid://cgmu3x48sx0fo" path="res://scenes/Player.tscn" id="1_w5aja"]
-[ext_resource type="PackedScene" uid="uid://dbgp384qn2s4x" path="res://scenes/plant.tscn" id="3_ycayy"]
-[ext_resource type="PackedScene" uid="uid://cv0hye7m1iv11" path="res://scenes/shelf.tscn" id="4_bw6k5"]
 [ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="6_mw25s"]
 [ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="6_rurhu"]
 [ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="8_b5spy"]
-[ext_resource type="PackedScene" uid="uid://cfg7i0camoaef" path="res://scenes/toilet.tscn" id="8_mw25s"]
+[ext_resource type="PackedScene" uid="uid://cef30dmd4as47" path="res://scenes/toilet.tscn" id="8_mw25s"]
+[ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/krysta_player.tscn" id="9_utbpp"]
 [ext_resource type="PackedScene" uid="uid://c72t5aeqmoxx1" path="res://scenes/dolphin.tscn" id="10_mw25s"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="10_tcjrq"]
 
@@ -248,23 +246,8 @@ layer_0/tile_data = PackedInt32Array(-131075, 196609, 0, -65539, 196609, 0, 1966
 layer_1/name = "Things"
 layer_1/tile_data = PackedInt32Array(262140, 196609, 0, 262141, 196609, 0, 262142, 196609, 0, 262143, 196609, 0, -4, 196609, 0, -3, 196609, 0, -2, 196609, 0, -1, 196609, 0, 196608, 393217, 1, 262144, 393217, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_w5aja")]
-position = Vector2(23, 92)
-collision_mask = 0
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-1, -1)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-
-[node name="shelf" parent="." instance=ExtResource("4_bw6k5")]
-position = Vector2(-45, 70)
-
-[node name="AnimatableBody2D" parent="." instance=ExtResource("3_ycayy")]
-position = Vector2(-21, 67)
-
 [node name="CharacterBody2D" parent="." instance=ExtResource("10_mw25s")]
-position = Vector2(-46, 168)
+position = Vector2(-49, 181)
 
 [node name="Furniture" type="Node2D" parent="."]
 script = ExtResource("6_mw25s")
@@ -288,6 +271,7 @@ position = Vector2(326, 61)
 position = Vector2(340, 188)
 
 [node name="Floor1Path" type="Path2D" parent="."]
+position = Vector2(1, -26)
 curve = SubResource("Curve2D_kk2rg")
 
 [node name="Floor2Path" type="Path2D" parent="."]
@@ -316,3 +300,10 @@ collision_layer = 0
 collision_mask = 0
 human_npcs_root = NodePath("../../kidSpawner")
 furniture_root = NodePath("../../Furniture")
+
+[node name="Player" parent="." instance=ExtResource("9_utbpp")]
+position = Vector2(-33, 84)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -15)
+zoom = Vector2(4, 4)

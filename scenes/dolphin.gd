@@ -23,7 +23,7 @@ func _physics_process(delta):
 		velocity.x = dir * move_speed
 
 
-		# Check for DOWN key to trigger dolphin jump (repeatable after cooldown)
+		# Check for DOWN key to trigger dolphin jump 
 		if Input.is_action_just_pressed("animate"):
 			trigger_dolphin_jump()
 

@@ -13,7 +13,7 @@ shader_parameter/thickness = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icp1y"]
 atlas = ExtResource("2_bcd0l")
-region = Rect2(0, 0, 32, 63)
+region = Rect2(0, 0, 32, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2wkb0"]
 animations = [{

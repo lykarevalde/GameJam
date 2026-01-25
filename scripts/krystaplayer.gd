@@ -6,68 +6,67 @@ extends CharacterBody2D
 
 var nearby_furniture: Node = null
 var possessed_furniture: Node = null
+var last_direction := 1  # 1 = right, -1 = left
 
-@onready var sprite = $idle
+@onready var sprite: AnimatedSprite2D = $face
 
 
 func _physics_process(delta: float) -> void:
 	# If possessing furniture, ghost does NOT move
 	if possessed_furniture:
 		velocity = Vector2.ZERO
+		sprite.play("face")
 		move_and_slide()
 		return
 
-	var input_dir := Vector2.ZERO
+	var input_vector := Vector2.ZERO
 
-	if Input.is_action_pressed("ui_left"):
-		input_dir.x -= 1
 	if Input.is_action_pressed("ui_right"):
-		input_dir.x += 1
-	if Input.is_action_pressed("ui_up"):
-		input_dir.y -= 1
+		input_vector.x += 1
+	if Input.is_action_pressed("ui_left"):
+		input_vector.x -= 1
 	if Input.is_action_pressed("ui_down"):
-		input_dir.y += 1
+		input_vector.y += 1
+	if Input.is_action_pressed("ui_up"):
+		input_vector.y -= 1
 
-	input_dir = input_dir.normalized()
+	input_vector = input_vector.normalized()  # Keep diagonal speed consistent
 
-	if input_dir != Vector2.ZERO:
-		velocity = velocity.move_toward(
-			input_dir * MAX_SPEED,
-			ACCELERATION * delta
-		)
+	# Smooth movement with acceleration
+	velocity.x = move_toward(velocity.x, input_vector.x * MAX_SPEED, ACCELERATION * delta)
+	velocity.y = move_toward(velocity.y, input_vector.y * MAX_SPEED, ACCELERATION * delta)
+
+	# Animations (horizontal only)
+	if input_vector.x > 0:
+		last_direction = 1
+		sprite.play("right")
+	elif input_vector.x < 0:
+		last_direction = -1
+		sprite.play("left")
 	else:
-		velocity = velocity.move_toward(
-			Vector2.ZERO,
-			FRICTION * delta
-		)
+		sprite.play("face")  # could be "up" or "down" if you add those
 
 	move_and_slide()
+	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("furniture"):
+		nearby_furniture = body
+		print("Can possess:", body.name)
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == nearby_furniture:
+		nearby_furniture = null
+		print("Left furniture:", body.name)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):  # SPACE
+	if event.is_action_pressed("ui_accept"): # SPACE / E
 		if possessed_furniture:
-		   # Release furniture
-			possessed_furniture = null            
+			possessed_furniture.unpossess()
+			possessed_furniture = null
 			show()
 			$CollisionShape2D.disabled = false
 		elif nearby_furniture:
-			# Possess
 			possessed_furniture = nearby_furniture
 			possessed_furniture.possess()
 			hide()
 			$CollisionShape2D.disabled = true
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("furniture"): 
-		nearby_furniture = body
-		print("Ghost is near:", body.name)
-
-
-func _on_area_2d_body_exited(body: Node2D) -> void:
-	# Check if the body leaving the Area2D is furniture
-	if body.is_in_group("furniture"):
-		# Only clear nearby_furniture if it was this one
-		if nearby_furniture == body:
-			nearby_furniture = null
-			print("Ghost walked away from:", body.name)
