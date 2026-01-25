@@ -2,7 +2,7 @@ extends Area2D
 
 var nearby_ghost = null
 @onready var sprite = $idle
-
+	
 func _on_body_entered(body):
 	if body.is_in_group("ghost"):  # Assuming ghost is in "ghost" group
 		nearby_ghost = body
