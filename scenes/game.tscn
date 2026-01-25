@@ -1,15 +1,18 @@
-[gd_scene load_steps=32 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=36 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="2_dinhu"]
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="3_kvuet"]
+[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture/furniture.gdshader" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="4_trtic"]
 [ext_resource type="PackedScene" uid="uid://cef30dmd4as47" path="res://scenes/furniture/toilet.tscn" id="5_ir15t"]
+[ext_resource type="PackedScene" uid="uid://bu1j44de7yybr" path="res://scenes/furniture/bear.tscn" id="5_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://c2sq216uoqc1h" path="res://scenes/furniture/globe.tscn" id="6_kvuet"]
 [ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="7_rysoc"]
 [ext_resource type="Texture2D" uid="uid://6inlp2xufx0k" path="res://assets/pader_ghost/pader_floatleft_spritesheet.png" id="9_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://dcx2ow62runle" path="res://assets/pader_ghost/pader_floatright_spritesheet.png" id="10_264po"]
-[ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/player.tscn" id="11_1kice"]
+[ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/krysta_player.tscn" id="11_1kice"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
 texture = ExtResource("3_kvuet")
@@ -220,6 +223,11 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_onqr8")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvuet"]
+shader = ExtResource("4_dinhu")
+shader_parameter/outline_color = Vector4(1, 1, 0, 1)
+shader_parameter/thickness = 0.0
+
 [sub_resource type="Curve2D" id="Curve2D_kk2rg"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 2, 73, 0, 0, 0, 0, 402, 75, 0, 0, 0, 0, -39, 74, 0, 0, 0, 0, 2, 73)
@@ -373,25 +381,17 @@ layer_1/name = "Things"
 layer_1/tile_data = PackedInt32Array(262140, 196609, 0, 262141, 196609, 0, 262142, 196609, 0, 262143, 196609, 0, -4, 196609, 0, -3, 196609, 0, -2, 196609, 0, -1, 196609, 0, 196608, 393217, 1, 262144, 393217, 1)
 
 [node name="Furniture" type="Node2D" parent="."]
+material = SubResource("ShaderMaterial_kvuet")
 script = ExtResource("4_trtic")
 
+[node name="Globe" parent="Furniture" groups=["furniture"] instance=ExtResource("6_kvuet")]
+position = Vector2(63, 171)
+
+[node name="Bear" parent="Furniture" groups=["furniture"] instance=ExtResource("5_kvpfn")]
+position = Vector2(-49, 163)
+
 [node name="Toilet" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(69, 189)
-
-[node name="Toilet2" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(172, 189)
-
-[node name="Toilet3" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(73, 60)
-
-[node name="Toilet4" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(162, 60)
-
-[node name="Toilet5" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(326, 61)
-
-[node name="Toilet6" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(340, 188)
+position = Vector2(173, 185)
 
 [node name="Floor1Path" type="Path2D" parent="."]
 position = Vector2(1, -26)
@@ -401,7 +401,7 @@ curve = SubResource("Curve2D_kk2rg")
 curve = SubResource("Curve2D_utbpp")
 
 [node name="kidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("floor1_path", "floor2_path")]
-position = Vector2(3, 9)
+position = Vector2(7, 27)
 script = ExtResource("7_rysoc")
 npc_scene = ExtResource("2_dinhu")
 floor1_path = NodePath("../Floor1Path")
@@ -426,6 +426,7 @@ furniture_root = NodePath("../../Furniture")
 
 [node name="AnimatedSprite2D" parent="MotherFatherGhosts/father" index="0"]
 sprite_frames = SubResource("SpriteFrames_6irsn")
+animation = &"left"
 
 [node name="Player" parent="." instance=ExtResource("11_1kice")]
 position = Vector2(-33, 84)

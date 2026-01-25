@@ -30,8 +30,10 @@ var player_possessed := false
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
+	anim.material = anim.material.duplicate()
 	if anim:
 		anim.connect("animation_finished", Callable(self, "_on_anim_finished"))
+	
 
 func _on_anim_finished():
 	# Only switch back to idle if the current animation is "amuse"
@@ -48,6 +50,8 @@ func _physics_process(delta):
 		npc_control(delta)
 	else:
 		velocity = Vector2.ZERO
+		
+
 
 # --------------------
 # PLAYER CONTROL

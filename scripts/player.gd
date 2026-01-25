@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	if Input.is_action_just_pressed("ui_accept"):  # SPACE
 		if possessed_furniture:
+			global_position = possessed_furniture.global_position
 			# Unpossess
 			possessed_furniture.unpossess_by_player()
 			possessed_furniture = null
