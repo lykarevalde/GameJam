@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cquskrrtn7jeh"
-path="res://.godot/imported/toilet SPOOK.png-66032203b21db3c81d9bbbf87fb086c7.ctex"
+uid="uid://bc3imfjnpxntp"
+path="res://.godot/imported/globe AMUSE.png-7737e01305d86f0d6f99475fb1a3d9f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Furniture/Toilet/toilet SPOOK.png"
-dest_files=["res://.godot/imported/toilet SPOOK.png-66032203b21db3c81d9bbbf87fb086c7.ctex"]
+source_file="res://assets/Furniture/library/globe AMUSE.png"
+dest_files=["res://.godot/imported/globe AMUSE.png-7737e01305d86f0d6f99475fb1a3d9f9.ctex"]
 
 [params]
 

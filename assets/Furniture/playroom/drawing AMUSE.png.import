@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvpynuaplocpe"
-path="res://.godot/imported/toilet MOVE.png-b412914b465d0a5be945bf4be992fbc3.ctex"
+uid="uid://bmgkk0wqe8y2h"
+path="res://.godot/imported/drawing AMUSE.png-6023f9439df65826eacd8729494ac816.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Furniture/Toilet/toilet MOVE.png"
-dest_files=["res://.godot/imported/toilet MOVE.png-b412914b465d0a5be945bf4be992fbc3.ctex"]
+source_file="res://assets/Furniture/playroom/drawing AMUSE.png"
+dest_files=["res://.godot/imported/drawing AMUSE.png-6023f9439df65826eacd8729494ac816.ctex"]
 
 [params]
 
