@@ -1,11 +1,11 @@
 [gd_scene load_steps=60 format=3 uid="uid://c2sq216uoqc1h"]
 
 [ext_resource type="Texture2D" uid="uid://bc3imfjnpxntp" path="res://assets/Furniture/library/globe AMUSE.png" id="1_38vsv"]
-[ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/frniture.gd" id="1_fr0q2"]
+[ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_fr0q2"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture/furniture.gdshader" id="2_ahub4"]
 [ext_resource type="Texture2D" uid="uid://88k08w1xelpq" path="res://assets/Furniture/library/globe MOVE.png" id="2_bgc4m"]
 [ext_resource type="Texture2D" uid="uid://jyabw37cm5dg" path="res://assets/Furniture/library/globe SPOOK.png" id="3_fr0q2"]
-[ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/furniture.gd" id="5_ahub4"]
+[ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_ahub4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ibcir"]
 radius = 13.0
@@ -276,7 +276,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"amuse",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -313,7 +313,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -378,7 +378,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"spook",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y7hnh"]
@@ -395,8 +395,10 @@ shape = SubResource("CircleShape2D_ibcir")
 material = SubResource("ShaderMaterial_ibcir")
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_07u77")
-animation = &"spook"
+animation = &"amuse"
 autoplay = "idle"
+frame = 19
+frame_progress = 1.0
 script = ExtResource("5_ahub4")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]

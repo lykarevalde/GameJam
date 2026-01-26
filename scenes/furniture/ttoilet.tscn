@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwkbqvmsy1m12" path="res://assets/Furniture/cr/toilet AMUSE.png" id="2_6vqsi"]
 [ext_resource type="Texture2D" uid="uid://dvpynuaplocpe" path="res://assets/Furniture/cr/toilet MOVE.png" id="3_rhl3j"]
 [ext_resource type="Texture2D" uid="uid://cquskrrtn7jeh" path="res://assets/Furniture/cr/toilet SPOOK.png" id="4_2wvnm"]
-[ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/furniture.gd" id="5_1nrxf"]
+[ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_1nrxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qmgrm"]
 shader = ExtResource("1_i6hsj")
@@ -297,9 +297,8 @@ animations = [{
 material = SubResource("ShaderMaterial_qmgrm")
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_bew5f")
-animation = &"amuse"
-frame = 13
-frame_progress = 1.0
+animation = &"idle"
+autoplay = "idle"
 script = ExtResource("5_1nrxf")
 
 [node name="Node2D" type="Node2D" parent="."]

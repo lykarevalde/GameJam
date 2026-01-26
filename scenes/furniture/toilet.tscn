@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cef30dmd4as47"]
 
-[ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/frniture.gd" id="1_yyxms"]
+[ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_yyxms"]
 [ext_resource type="PackedScene" uid="uid://dsr4nt81mbrbd" path="res://scenes/furniture/ttoilet.tscn" id="2_5rkpo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tcjrq"]
