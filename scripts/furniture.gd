@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 signal possession_finished(furniture)
 
+#ADDED SIGNALS (NPC reaction system)
+signal spooked(position: Vector2)
+signal amused(position: Vector2)
+
 enum PossessorType { NONE, PLAYER, NPC }
 var possessor := PossessorType.NONE
 
@@ -93,6 +97,7 @@ func amuse():
 
 	# Play the amuse animation
 	anim.play("amuse")
+	emit_signal("amused", global_position)   # ADDED
 
 
 
@@ -172,6 +177,7 @@ func spook_possession():
 	if not anim_started:
 		anim.play("spook")
 		anim_started = true
+		emit_signal("spooked", global_position)   # ADDED (fires once)
 
 func end_npc_possession():
 	npc_possessed = false

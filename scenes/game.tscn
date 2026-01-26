@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=39 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="1_uwrxv"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://6inlp2xufx0k" path="res://assets/pader_ghost/pader_floatleft_spritesheet.png" id="9_ssvqc"]
 [ext_resource type="Texture2D" uid="uid://dcx2ow62runle" path="res://assets/pader_ghost/pader_floatright_spritesheet.png" id="10_264po"]
 [ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/krysta_player.tscn" id="11_1kice"]
+[ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="16_ca42v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
 texture = ExtResource("3_kvuet")
@@ -414,6 +415,7 @@ position = Vector2(1, -26)
 curve = SubResource("Curve2D_kk2rg")
 
 [node name="Floor2Path" type="Path2D" parent="."]
+position = Vector2(3, 1)
 curve = SubResource("Curve2D_utbpp")
 
 [node name="kidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("floor1_path", "floor2_path")]
@@ -446,5 +448,11 @@ position = Vector2(-33, 84)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -15)
 zoom = Vector2(4, 4)
+
+[node name="NPC" parent="." instance=ExtResource("16_ca42v")]
+position = Vector2(-5, 88)
+ground_y = 214.0
+upstairs_y = 87.0
+stairs_x = -102.0
 
 [editable path="MotherFatherGhosts/father"]
