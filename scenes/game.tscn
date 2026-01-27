@@ -446,11 +446,11 @@ animation = &"left"
 position = Vector2(-33, 84)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -15)
+position = Vector2(0, -16)
 zoom = Vector2(4, 4)
 
 [node name="NPC" parent="." instance=ExtResource("16_ca42v")]
-position = Vector2(-5, 88)
+position = Vector2(-7, 87)
 ground_y = 214.0
 upstairs_y = 87.0
 stairs_x = -102.0

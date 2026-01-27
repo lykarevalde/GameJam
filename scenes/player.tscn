@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://4tn6y5e6hthb"]
+[gd_scene load_steps=34 format=3 uid="uid://4tn6y5e6hthb"]
 
 [ext_resource type="Script" uid="uid://cxrqodvh8nk8x" path="res://scripts/player.gd" id="1_crxnp"]
 [ext_resource type="Texture2D" uid="uid://brl8n0w2fr0jy" path="res://assets/ghost player/ghost_player_spritesheet.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dvdlxhrldwhuy" path="res://assets/ghost player/left_sprite_sheet.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://5ktg1lhhd6w2" path="res://assets/ghost player/right_sprite_sheet.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://pjukf6cd6bv8" path="res://assets/energy sprites/full.png" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_dqkch")
@@ -228,6 +229,12 @@ collision_mask = 3
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_v6fml")
+
+[node name="Energy" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Energy"]
+position = Vector2(49, -13)
+texture = ExtResource("5_qlg0r")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
