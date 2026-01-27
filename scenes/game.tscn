@@ -455,4 +455,8 @@ ground_y = 214.0
 upstairs_y = 87.0
 stairs_x = -102.0
 
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EnergySprite" type="Sprite2D" parent="UI"]
+
 [editable path="MotherFatherGhosts/father"]
