@@ -1,20 +1,35 @@
-[gd_scene load_steps=39 format=3 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=54 format=3 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="2_dinhu"]
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="3_kvuet"]
-[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture/furniture.gdshader" id="4_dinhu"]
+[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="4_trtic"]
 [ext_resource type="PackedScene" uid="uid://cef30dmd4as47" path="res://scenes/furniture/toilet.tscn" id="5_ir15t"]
 [ext_resource type="PackedScene" uid="uid://bu1j44de7yybr" path="res://scenes/furniture/bear.tscn" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://c2sq216uoqc1h" path="res://scenes/furniture/globe.tscn" id="6_kvuet"]
 [ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="7_rysoc"]
 [ext_resource type="PackedScene" uid="uid://duohd8irgp0dq" path="res://scenes/furniture/computer.tscn" id="8_trtic"]
+[ext_resource type="PackedScene" uid="uid://bjgmck6k5rqur" path="res://scenes/furniture/drawing.tscn" id="9_1kice"]
 [ext_resource type="PackedScene" uid="uid://d0o8lmhmxg65u" path="res://scenes/furniture/horse.tscn" id="9_ir15t"]
 [ext_resource type="Texture2D" uid="uid://6inlp2xufx0k" path="res://assets/pader_ghost/pader_floatleft_spritesheet.png" id="9_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://d7or8op74skd" path="res://scenes/furniture/bookshelf.tscn" id="10_1kice"]
+[ext_resource type="PackedScene" uid="uid://ynw3uj7npby" path="res://scenes/furniture/curtain.tscn" id="10_37s47"]
 [ext_resource type="Texture2D" uid="uid://dcx2ow62runle" path="res://assets/pader_ghost/pader_floatright_spritesheet.png" id="10_264po"]
+[ext_resource type="PackedScene" uid="uid://dw1oywrcxswhu" path="res://scenes/furniture/mirror.tscn" id="10_rysoc"]
+[ext_resource type="PackedScene" uid="uid://mdtuh3u53lmx" path="res://scenes/furniture/faucet.tscn" id="10_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/krysta_player.tscn" id="11_1kice"]
+[ext_resource type="PackedScene" uid="uid://namqqasx2xt5" path="res://scenes/furniture/ball.tscn" id="11_5newe"]
+[ext_resource type="PackedScene" uid="uid://3jxm41qcllrk" path="res://scenes/furniture/boots.tscn" id="12_qnb83"]
+[ext_resource type="PackedScene" uid="uid://bi2e3m6n1uc70" path="res://scenes/furniture/portrait.tscn" id="12_qouja"]
+[ext_resource type="PackedScene" uid="uid://ejxl40ivwp2d" path="res://scenes/furniture/light.tscn" id="12_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://bbf72yt626ef0" path="res://scenes/furniture/locker.tscn" id="12_sww3w"]
+[ext_resource type="PackedScene" uid="uid://3ufjxkeuqhhu" path="res://scenes/furniture/board.tscn" id="13_e1j6l"]
+[ext_resource type="PackedScene" uid="uid://b1guq66kuu3xo" path="res://scenes/furniture/chair.tscn" id="13_pl11u"]
+[ext_resource type="PackedScene" uid="uid://bcrnlhm20sg7c" path="res://scenes/furniture/mop.tscn" id="13_suyxu"]
+[ext_resource type="PackedScene" uid="uid://bp5mp6odg3mb" path="res://scenes/furniture/desk.tscn" id="14_bhx41"]
+[ext_resource type="PackedScene" uid="uid://chpdaiv4hlcci" path="res://scenes/furniture/mascot.tscn" id="14_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="16_ca42v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
@@ -387,26 +402,71 @@ layer_1/tile_data = PackedInt32Array(262140, 196609, 0, 262141, 196609, 0, 26214
 material = SubResource("ShaderMaterial_kvuet")
 script = ExtResource("4_trtic")
 
-[node name="Globe" parent="Furniture" groups=["furniture"] instance=ExtResource("6_kvuet")]
-position = Vector2(170, 176)
-collision_layer = 2
-collision_mask = 8
-
 [node name="Bear" parent="Furniture" groups=["furniture"] instance=ExtResource("5_kvpfn")]
 position = Vector2(382, 56)
 collision_layer = 2
 collision_mask = 8
 
 [node name="Computer" parent="Furniture" groups=["furniture"] instance=ExtResource("8_trtic")]
-position = Vector2(233, 199)
+position = Vector2(235, 72)
 collision_layer = 2
 collision_mask = 8
 
 [node name="Horse" parent="Furniture" groups=["furniture"] instance=ExtResource("9_ir15t")]
-position = Vector2(328, 53)
+position = Vector2(328, 50)
+
+[node name="Drawing" parent="Furniture" groups=["furniture"] instance=ExtResource("9_1kice")]
+position = Vector2(353, 12)
+
+[node name="Curtain" parent="Furniture" groups=["furniture"] instance=ExtResource("10_37s47")]
+position = Vector2(181, 125)
+
+[node name="Faucet" parent="Furniture" groups=["furniture"] instance=ExtResource("10_ssvqc")]
+position = Vector2(94, 165)
+
+[node name="Portrait" parent="Furniture" groups=["furniture"] instance=ExtResource("12_qouja")]
+position = Vector2(-88, 128)
+
+[node name="Light" parent="Furniture" groups=["furniture"] instance=ExtResource("12_sgl2t")]
+position = Vector2(-124, 27)
+
+[node name="Locker" parent="Furniture" groups=["furniture"] instance=ExtResource("12_sww3w")]
+position = Vector2(50, 56)
+
+[node name="Mop" parent="Furniture" groups=["furniture"] instance=ExtResource("13_suyxu")]
+position = Vector2(-7, 56)
+
+[node name="Boots" parent="Furniture" groups=["furniture"] instance=ExtResource("12_qnb83")]
+position = Vector2(17, 71)
+
+[node name="Ball" parent="Furniture" groups=["furniture"] instance=ExtResource("11_5newe")]
+position = Vector2(158, 184)
+
+[node name="Chair" parent="Furniture" groups=["furniture"] instance=ExtResource("13_pl11u")]
+position = Vector2(324, 184)
+
+[node name="Desk" parent="Furniture" groups=["furniture"] instance=ExtResource("14_bhx41")]
+position = Vector2(355, 183)
+
+[node name="Board" parent="Furniture" groups=["furniture"] instance=ExtResource("13_e1j6l")]
+position = Vector2(381, 136)
+
+[node name="Bookshelf" parent="Furniture" groups=["furniture"] instance=ExtResource("10_1kice")]
+position = Vector2(164, 40)
+
+[node name="Mascot" parent="Furniture" groups=["furniture"] instance=ExtResource("14_bt5mj")]
+position = Vector2(237, 168)
+
+[node name="Globe" parent="Furniture" groups=["furniture"] instance=ExtResource("6_kvuet")]
+position = Vector2(176, -28)
+collision_layer = 2
+collision_mask = 8
+
+[node name="Mirror" parent="Furniture" groups=["furniture"] instance=ExtResource("10_rysoc")]
+position = Vector2(68, 140)
 
 [node name="Toilet" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
-position = Vector2(8, 189)
+position = Vector2(2, 188)
 collision_layer = 2
 collision_mask = 8
 
