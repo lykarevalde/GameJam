@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://btf4w0qn217h6"]
+[gd_scene load_steps=56 format=3 uid="uid://btf4w0qn217h6"]
 
 [ext_resource type="Script" uid="uid://dtt0q7qyhnrrs" path="res://scripts/npc.gd" id="1_4wlns"]
 [ext_resource type="Texture2D" uid="uid://coni23lkvd530" path="res://assets/npc sprites/amused/girl_amuse_1.png" id="1_7n8xq"]
@@ -126,38 +126,6 @@ region = Rect2(64, 0, 32, 48)
 atlas = ExtResource("4_hwkja")
 region = Rect2(96, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hufj7"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(0, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ssc2"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(32, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hka15"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(64, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l1atu"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(96, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j4p1k"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(128, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8xkwn"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(160, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eeh65"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(192, 48, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s38of"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(224, 48, 32, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_4wlns"]
 atlas = ExtResource("1_7n8xq")
 region = Rect2(0, 0, 32, 48)
@@ -197,38 +165,6 @@ region = Rect2(128, 96, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8ld7"]
 atlas = ExtResource("4_hwkja")
 region = Rect2(160, 96, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhvrx"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(0, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4j1ia"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(32, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1b3tn"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(64, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3j75q"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(96, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8841r"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(128, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bkjnm"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(160, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_onk8p"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(192, 144, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i0fji"]
-atlas = ExtResource("4_hwkja")
-region = Rect2(224, 144, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jwdfw"]
 atlas = ExtResource("3_tl2vt")
@@ -386,35 +322,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hufj7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ssc2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hka15")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l1atu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j4p1k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8xkwn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eeh65")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s38of")
-}],
-"loop": true,
-"name": &"scared walk",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_4wlns")
 }, {
 "duration": 1.0,
@@ -452,35 +359,6 @@ animations = [{
 "loop": true,
 "name": &"spooked",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lhvrx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4j1ia")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1b3tn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3j75q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8841r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bkjnm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_onk8p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i0fji")
-}],
-"loop": true,
-"name": &"spooked run",
-"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -522,8 +400,7 @@ script = ExtResource("1_4wlns")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jw2dm")
-animation = &"spooked run"
-frame_progress = 0.77212393
+animation = &"befriended walk"
 offset = Vector2(0, -22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
