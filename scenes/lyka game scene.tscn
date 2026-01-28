@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfuejy3kyaonp"]
+
+[ext_resource type="Texture2D" uid="uid://pjukf6cd6bv8" path="res://assets/energy sprites/full.png" id="1_4hlgt"]
+
+[node name="EnergySystem" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EnergySprite" type="Sprite2D" parent="UI"]
+position = Vector2(1082.5, 614)
+scale = Vector2(2.203126, 2.1249995)
+texture = ExtResource("1_4hlgt")

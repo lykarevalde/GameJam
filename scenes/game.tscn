@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bp5mp6odg3mb" path="res://scenes/furniture/desk.tscn" id="14_bhx41"]
 [ext_resource type="PackedScene" uid="uid://chpdaiv4hlcci" path="res://scenes/furniture/mascot.tscn" id="14_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="16_ca42v"]
-[ext_resource type="Texture2D" uid="uid://pjukf6cd6bv8" path="res://assets/energy sprites/full.png" id="32_wljb1"]
+[ext_resource type="PackedScene" uid="uid://bfuejy3kyaonp" path="res://scenes/lyka game scene.tscn" id="26_wljb1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
 texture = ExtResource("3_kvuet")
@@ -505,7 +505,7 @@ animation = &"left"
 
 [node name="Player" parent="." node_paths=PackedStringArray("energy_sprite") instance=ExtResource("11_1kice")]
 position = Vector2(-33, 84)
-energy_sprite = NodePath("../UI/EnergySprite")
+energy_sprite = NodePath("")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -15)
@@ -517,11 +517,6 @@ ground_y = 214.0
 upstairs_y = 87.0
 stairs_x = -102.0
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="EnergySprite" type="Sprite2D" parent="UI"]
-position = Vector2(1082.5, 614)
-scale = Vector2(2.203126, 2.1249995)
-texture = ExtResource("32_wljb1")
+[node name="EnergySystem" parent="." instance=ExtResource("26_wljb1")]
 
 [editable path="MotherFatherGhosts/father"]
