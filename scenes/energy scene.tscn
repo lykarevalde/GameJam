@@ -6,7 +6,17 @@
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="EnergySprite" type="Sprite2D" parent="UI"]
-position = Vector2(1082.5, 614)
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="EnergySprite" type="Sprite2D" parent="UI/Control"]
+position = Vector2(-72, -32)
 scale = Vector2(2.203126, 2.1249995)
 texture = ExtResource("1_4hlgt")
