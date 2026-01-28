@@ -1,10 +1,11 @@
-[gd_scene load_steps=42 format=3 uid="uid://bbf72yt626ef0"]
+[gd_scene load_steps=43 format=3 uid="uid://bbf72yt626ef0"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_otsr1"]
 [ext_resource type="Texture2D" uid="uid://b3a35he3q8dsp" path="res://assets/Furniture/janitor/locker AMUSE.png" id="2_eti26"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_y1lbf"]
 [ext_resource type="Texture2D" uid="uid://36bm05a2sggm" path="res://assets/Furniture/janitor/locker SPOOK.png" id="3_y1lbf"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="4_4fk3f"]
+[ext_resource type="AudioStream" uid="uid://c35b0rga1pd7v" path="res://assets/sounds/locker.wav" id="6_y1lbf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4fk3f"]
 shader = ExtResource("2_y1lbf")
@@ -282,6 +283,10 @@ shape = SubResource("RectangleShape2D_oqkra")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_oqkra")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_y1lbf")
+volume_db = -10.0
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]
