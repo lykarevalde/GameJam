@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://6ioljxwyvxol"]
+[gd_scene load_steps=8 format=3 uid="uid://6ioljxwyvxol"]
 
-[ext_resource type="Script" uid="uid://qxfad2budqlc" path="res://scripts/kids.gd" id="1_5078q"]
 [ext_resource type="Texture2D" uid="uid://bmgaahbc1kjp7" path="res://assets/enemy_placeholder.png" id="1_mr8v6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm0dp"]
@@ -44,7 +43,6 @@ animations = [{
 
 [node name="kids" type="CharacterBody2D"]
 scale = Vector2(0.6, 0.6)
-script = ExtResource("1_5078q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -9)
