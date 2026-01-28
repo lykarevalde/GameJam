@@ -9,9 +9,9 @@ extends CharacterBody2D
 
 var scared := false
 
-func _ready():
-	for furniture in get_tree().get_nodes_in_group("furniture"):
-		furniture.possession_started.connect(on_furniture_possessed)
+#func _ready():
+	#for furniture in get_tree().get_nodes_in_group("furniture"):
+		#furniture.possession_started.connect(on_furniture_possessed)
 
 
 func _physics_process(delta):
