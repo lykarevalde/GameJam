@@ -32,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://chpdaiv4hlcci" path="res://scenes/furniture/mascot.tscn" id="14_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="16_ca42v"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_onqr8"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wljb1"]
 texture = ExtResource("3_kvuet")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -239,7 +239,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
-sources/1 = SubResource("TileSetAtlasSource_onqr8")
+sources/1 = SubResource("TileSetAtlasSource_wljb1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kvuet"]
 shader = ExtResource("4_dinhu")
