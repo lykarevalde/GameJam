@@ -16,6 +16,13 @@ enum PossessionMode { MOVE, SPOOK, FLOAT }
 @export var min_possession_time := 1.5
 @export var max_possession_time := 3.0
 @export var spook_duration := 3.0
+@export var can_move := true
+
+@export var allowed_npc_actions: Array[PossessionMode] = [
+	PossessionMode.MOVE,
+	PossessionMode.SPOOK,
+	PossessionMode.FLOAT
+]
 
 var npc_possessed := false
 var action_queue: Array = []
@@ -75,6 +82,10 @@ func _physics_process(delta):
 # PLAYER CONTROL
 # --------------------
 func player_control(delta):
+	if not can_move:
+		velocity = Vector2.ZERO
+		return
+
 	var dir = Input.get_axis("ui_left", "ui_right")
 	velocity.x = dir * player_move_speed
 	move_and_slide()
@@ -130,9 +141,9 @@ func on_possessed() -> bool:
 	anim_started = false
 	action_queue.clear()
 	direction = [-1, 1].pick_random()
-	var count := randi_range(1, 2)
+	var count := randi_range(1, min(2, allowed_npc_actions.size()))
 	while action_queue.size() < count:
-		var action = PossessionMode.values().pick_random()
+		var action = allowed_npc_actions.pick_random()
 		if action not in action_queue:
 			action_queue.append(action)
 	start_next_action()
