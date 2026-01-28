@@ -417,21 +417,33 @@ position = Vector2(328, 50)
 
 [node name="Drawing" parent="Furniture" groups=["furniture"] instance=ExtResource("9_1kice")]
 position = Vector2(353, 12)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Curtain" parent="Furniture" groups=["furniture"] instance=ExtResource("10_37s47")]
 position = Vector2(181, 125)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Faucet" parent="Furniture" groups=["furniture"] instance=ExtResource("10_ssvqc")]
 position = Vector2(94, 165)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Portrait" parent="Furniture" groups=["furniture"] instance=ExtResource("12_qouja")]
 position = Vector2(-88, 128)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Light" parent="Furniture" groups=["furniture"] instance=ExtResource("12_sgl2t")]
 position = Vector2(-124, 27)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Locker" parent="Furniture" groups=["furniture"] instance=ExtResource("12_sww3w")]
 position = Vector2(50, 56)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Mop" parent="Furniture" groups=["furniture"] instance=ExtResource("13_suyxu")]
 position = Vector2(-7, 56)
@@ -450,12 +462,18 @@ position = Vector2(355, 183)
 
 [node name="Board" parent="Furniture" groups=["furniture"] instance=ExtResource("13_e1j6l")]
 position = Vector2(381, 136)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Bookshelf" parent="Furniture" groups=["furniture"] instance=ExtResource("10_1kice")]
 position = Vector2(164, 40)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Mascot" parent="Furniture" groups=["furniture"] instance=ExtResource("14_bt5mj")]
 position = Vector2(237, 168)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Globe" parent="Furniture" groups=["furniture"] instance=ExtResource("6_kvuet")]
 position = Vector2(176, -28)
@@ -464,6 +482,8 @@ collision_mask = 8
 
 [node name="Mirror" parent="Furniture" groups=["furniture"] instance=ExtResource("10_rysoc")]
 position = Vector2(68, 140)
+can_move = false
+allowed_npc_actions = Array[int]([1])
 
 [node name="Toilet" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
 position = Vector2(2, 188)
