@@ -23,7 +23,8 @@ const FLASH_INTERVAL := 0.5  # flash every 0.5s
 # -----------------------------
 # HUD Energy Sprite
 # -----------------------------
-@export var energy_sprite: Sprite2D  
+# Using find_child so it locates the sprite in your UI/CanvasLayer automatically
+var energy_sprite: Sprite2D  
 
 # Map energy level to texture files
 var energy_textures: Dictionary = {
@@ -39,17 +40,15 @@ var energy_textures: Dictionary = {
 @onready var sprite: AnimatedSprite2D = $face
 
 func _ready():
+	# Look for the EnergySprite in the entire active scene tree
+	if not energy_sprite:
+		energy_sprite = get_tree().root.find_child("EnergySprite", true, false)
+		
 	if energy_sprite:
-		# Position the energy sprite at bottom-right
-		var viewport_size = get_viewport_rect().size
-		var margin = 10
-		energy_sprite.position = Vector2(
-			viewport_size.x - energy_sprite.texture.get_width() - margin,
-			viewport_size.y - energy_sprite.texture.get_height() - margin
-		)
+		# Manual position code removed! Use Anchors in your Energy Scene instead.
 		_update_energy_sprite()
 	else:
-		print("Warning: energy_sprite not assigned!")
+		print("Warning: Player couldn't find EnergySprite in the scene tree!")
 
 func _physics_process(delta: float) -> void:
 	# Gradual energy restore

@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@export var margin := Vector2(60, 40)
+@export var margin := Vector2(20, 40)
 
 func _process(_delta):
 	if not texture:
