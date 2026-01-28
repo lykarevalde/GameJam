@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://d0o8lmhmxg65u"]
+[gd_scene load_steps=59 format=3 uid="uid://d0o8lmhmxg65u"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_nypa6"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_daa8j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d1bcisqtrxduw" path="res://assets/Furniture/playroom/horse MOVE.png" id="3_daa8j"]
 [ext_resource type="Texture2D" uid="uid://dacf45j074oxs" path="res://assets/Furniture/playroom/horse SPOOK.png" id="4_5w0v7"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_m28qu"]
+[ext_resource type="AudioStream" uid="uid://bprdn5dsde1ql" path="res://assets/sounds/rocking-horse.ogg" id="7_daa8j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hy6gp"]
 shader = ExtResource("2_daa8j")
@@ -403,6 +404,10 @@ position = Vector2(-17, 24)
 position = Vector2(-8.375, 3.2499993)
 scale = Vector2(3.75, 2.5000002)
 polygon = PackedVector2Array(2.7666664, -1.3000002, 2.7666664, -2.5, 3.3000002, -6.499999, 3.5666666, -9.299999, 2.7666664, -8.099998, 1.4333334, -8.499999, 2.2333336, -13.299998, 3.8333333, -13.299998, 5.4333334, -12.099998, 5.966666, -8.099998, 10.233333, -8.099998, 11.033333, -7.299999, 11.299999, -4.0999994, 10.5, -4.0999994, 11.566666, -0.5, 9.353265, -0.8875599, 8.9, -4.0999994, 5.1666665, -4.0999994, 4.366667, -0.5)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_daa8j")
+volume_db = -10.0
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

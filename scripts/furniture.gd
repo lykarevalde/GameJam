@@ -1,29 +1,28 @@
-extends CharacterBody2D
+extends AnimatedSprite2D
 
-signal possession_finished(furniture)
+@export var move_distance := 50      # How far furniture moves left/right when possessed
+@export var move_speed := 50         # Pixels/sec movement speed
+@export var possession_time := 1.0   # Time furniture stays possessed
 
-# SIGNALS (NPC reaction system)
-signal spooked(position: Vector2)
-signal amused(position: Vector2)
 
-enum PossessorType { NONE, PLAYER, NPC }
-var possessor := PossessorType.NONE
+var possessed := false
+var is_being_possessed := false  # tracks if a ghost is using it
+var direction := 1                   # 1 = right, -1 = left
+var original_pos := Vector2.ZERO
+var possession_timer := 0.0
 
-# NPC possession
-enum PossessionMode { MOVE, SPOOK, FLOAT }
-@export var move_speed := 60.0
-@export var float_height := 60.0
-@export var min_possession_time := 1.5
-@export var max_possession_time := 3.0
-@export var spook_duration := 3.0
-@export var can_move := true
+@onready var sprite = self
 
-@export var allowed_npc_actions: Array[PossessionMode] = [
-	PossessionMode.MOVE,
-	PossessionMode.SPOOK,
-	PossessionMode.FLOAT
-]
 
+<<<<<<< Updated upstream
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	stop()
+	frame = 0
+	original_pos = global_position
+	material.set_shader_parameter("thickness", 0.0)
+	print("furniture ready")
+=======
 var npc_possessed := false
 var action_queue: Array = []
 var current_action := PossessionMode.MOVE
@@ -40,6 +39,7 @@ var current_player_possessor: Node = null # Reference to player to spend energy
 
 # Nodes
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var audio = $AudioStreamPlayer2D
 
 func _ready():
 	anim.material = anim.material.duplicate()
@@ -54,6 +54,8 @@ func _on_anim_finished():
 			current_player_possessor = null # Clear after use
 			
 	anim.play("idle")
+	audio.stop()
+
 
 # shader helper
 func show_can_possess():
@@ -66,30 +68,36 @@ func show_cannot_possess():
 
 func clear_outline():
 	anim.material.set_shader_parameter("thickness", 0.0)
+>>>>>>> Stashed changes
 	
-# --------------------
-# PHYSICS PROCESS
-# --------------------
-func _physics_process(delta):
-	if possessor == PossessorType.PLAYER:
-		player_control(delta)
-	elif possessor == PossessorType.NPC:
-		npc_control(delta)
-	else:
-		velocity = Vector2.ZERO
+	#pass # Replace with function body.
 
-# --------------------
-# PLAYER CONTROL
-# --------------------
-func player_control(delta):
-	if not can_move:
-		velocity = Vector2.ZERO
-		return
 
-	var dir = Input.get_axis("ui_left", "ui_right")
-	velocity.x = dir * player_move_speed
-	move_and_slide()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	# Haunted movement
+	if possessed:
+		# Move left/right
+		global_position.x += direction * move_speed * delta
+		
+		# Reverse at limits
+		if global_position.x > original_pos.x + move_distance:
+			direction = -1
+		elif global_position.x < original_pos.x - move_distance:
+			direction = 1
+		
+		# Countdown possession timer
+		possession_timer -= delta
+		if possession_timer <= 0:
+			on_possession_end()
 
+<<<<<<< Updated upstream
+func _on_area_2d_body_entered(body):
+	if body.name == "Player":
+		print(body.name, " entered")
+		sprite.material.set_shader_parameter("thickness", 1.0)
+	#pass # Replace with function body.
+=======
 func possess_by_player():
 	if possessor != PossessorType.NONE:
 		return
@@ -116,7 +124,9 @@ func amuse(player_ref: Node):
 	
 	# Play the amuse animation
 	anim.play("amuse")
+	audio.play()
 	emit_signal("amused", global_position)
+	
 
 # --------------------
 # NPC POSSESSION
@@ -193,6 +203,7 @@ func spook_possession():
 		anim.play("spook")
 		anim_started = true
 		emit_signal("spooked", global_position)
+		
 
 func end_npc_possession():
 	npc_possessed = false
@@ -213,8 +224,30 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		show_cannot_possess()
 	else:
 		show_can_possess()
+>>>>>>> Stashed changes
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body.name != "Player":
-		return
-	clear_outline()
+	if body.name == "Player":
+		print(body.name, " exited")
+		sprite.material.set_shader_parameter("thickness", 0.0)
+
+# Called by Ghost when possessing
+func on_possessed():
+	if is_being_possessed:
+		return  # already being possessed by another ghost
+		
+	possessed = true
+	is_being_possessed = true  # mark as being possessed
+	possession_timer = possession_time
+	direction = [-1, 1].pick_random()  # randomize initial move direction
+	play("shake")                        # optional shake animation
+	print(name, " is now possessed!")
+
+
+# Called automatically when possession ends
+func on_possession_end():
+	possessed = false
+	is_being_possessed = false  # free it for another ghost
+	global_position = original_pos       # snap back to original place
+	play("idle")                         # return to idle animation
+	print(name, " possession ended")

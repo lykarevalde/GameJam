@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bu1j44de7yybr"]
+[gd_scene load_steps=56 format=3 uid="uid://bu1j44de7yybr"]
 
 [ext_resource type="Texture2D" uid="uid://do34arsyr8i2x" path="res://assets/Furniture/playroom/bear AMUSE.png" id="1_8vbhc"]
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_cla41"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_t1sex"]
 [ext_resource type="Texture2D" uid="uid://cmm0exm1yl0in" path="res://assets/Furniture/playroom/bear SPOOK.png" id="3_4lvqd"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="4_4lvqd"]
+[ext_resource type="AudioStream" uid="uid://ct2so1227sv8o" path="res://assets/sounds/bear.ogg" id="7_etcga"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6spxc"]
 radius = 7.0
@@ -377,6 +378,13 @@ position = Vector2(-5, -6)
 position = Vector2(-0.5555563, -7.5244565)
 scale = Vector2(1.3888891, 1.3858696)
 polygon = PackedVector2Array(-1.0399992, 6.150979, -5.3599977, 13.366664, -1.0275421, 21.866972, -2.4799988, 28.519604, 0.40000057, 29.24117, 1.1200004, 31.405878, 3.9999998, 31.405878, 4.72, 29.96274, 9.039999, 29.96274, 10.479999, 31.405878, 13.359998, 31.405878, 11, 11, 6.879999, 7.594116)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_etcga")
+volume_db = -10.0
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_etcga")
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

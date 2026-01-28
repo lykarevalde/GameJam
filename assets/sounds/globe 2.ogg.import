@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://xwa0ltut0nnl"
+path="res://.godot/imported/globe 2.ogg-b4a0998e5119ce9561919d00c0ff9eed.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/globe 2.ogg"
+dest_files=["res://.godot/imported/globe 2.ogg-b4a0998e5119ce9561919d00c0ff9eed.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
