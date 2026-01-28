@@ -1,16 +1,15 @@
-<<<<<<< Updated upstream
 [gd_scene load_steps=54 format=3 uid="uid://caf4pect0ovka"]
-=======
-[gd_scene load_steps=50 format=3 uid="uid://bt3ftle284r2"]
->>>>>>> Stashed changes
 
+[ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://6ioljxwyvxol" path="res://scenes/kids.tscn" id="2_dinhu"]
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="3_kvuet"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="4_trtic"]
 [ext_resource type="PackedScene" uid="uid://cef30dmd4as47" path="res://scenes/furniture/toilet.tscn" id="5_ir15t"]
 [ext_resource type="PackedScene" uid="uid://bu1j44de7yybr" path="res://scenes/furniture/bear.tscn" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://c2sq216uoqc1h" path="res://scenes/furniture/globe.tscn" id="6_kvuet"]
+[ext_resource type="Script" uid="uid://cd0rhdruhnqo7" path="res://scripts/kid_spawner.gd" id="7_rysoc"]
 [ext_resource type="PackedScene" uid="uid://duohd8irgp0dq" path="res://scenes/furniture/computer.tscn" id="8_trtic"]
 [ext_resource type="PackedScene" uid="uid://bjgmck6k5rqur" path="res://scenes/furniture/drawing.tscn" id="9_1kice"]
 [ext_resource type="PackedScene" uid="uid://d0o8lmhmxg65u" path="res://scenes/furniture/horse.tscn" id="9_ir15t"]
@@ -247,6 +246,18 @@ shader = ExtResource("4_dinhu")
 shader_parameter/outline_color = Vector4(1, 1, 0, 1)
 shader_parameter/thickness = 0.0
 
+[sub_resource type="Curve2D" id="Curve2D_kk2rg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2, 73, 0, 0, 0, 0, 402, 75, 0, 0, 0, 0, -39, 74, 0, 0, 0, 0, 2, 73)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_utbpp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -27, 203, 0, 0, 0, 0, 401, 204, 0, 0, 0, 0, -38, 203, 0, 0, 0, 0, -27, 203)
+}
+point_count = 4
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqxxy"]
 atlas = ExtResource("9_ssvqc")
 region = Rect2(0, 0, 50, 56)
@@ -372,7 +383,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="game scene" type="Node2D"]
+[node name="game scene" type="Node2D" node_paths=PackedStringArray("floor1_path", "floor2_path")]
+script = ExtResource("1_kvpfn")
+npc_scene = ExtResource("2_dinhu")
+floor1_path = NodePath("Floor1Path")
+floor2_path = NodePath("Floor2Path")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-5, 22)
@@ -402,33 +417,21 @@ position = Vector2(328, 50)
 
 [node name="Drawing" parent="Furniture" groups=["furniture"] instance=ExtResource("9_1kice")]
 position = Vector2(353, 12)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Curtain" parent="Furniture" groups=["furniture"] instance=ExtResource("10_37s47")]
 position = Vector2(181, 125)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Faucet" parent="Furniture" groups=["furniture"] instance=ExtResource("10_ssvqc")]
 position = Vector2(94, 165)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Portrait" parent="Furniture" groups=["furniture"] instance=ExtResource("12_qouja")]
 position = Vector2(-88, 128)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Light" parent="Furniture" groups=["furniture"] instance=ExtResource("12_sgl2t")]
 position = Vector2(-124, 27)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Locker" parent="Furniture" groups=["furniture"] instance=ExtResource("12_sww3w")]
 position = Vector2(50, 56)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Mop" parent="Furniture" groups=["furniture"] instance=ExtResource("13_suyxu")]
 position = Vector2(-7, 56)
@@ -447,18 +450,12 @@ position = Vector2(355, 183)
 
 [node name="Board" parent="Furniture" groups=["furniture"] instance=ExtResource("13_e1j6l")]
 position = Vector2(381, 136)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Bookshelf" parent="Furniture" groups=["furniture"] instance=ExtResource("10_1kice")]
 position = Vector2(164, 40)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Mascot" parent="Furniture" groups=["furniture"] instance=ExtResource("14_bt5mj")]
 position = Vector2(237, 168)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Globe" parent="Furniture" groups=["furniture"] instance=ExtResource("6_kvuet")]
 position = Vector2(176, -28)
@@ -467,25 +464,38 @@ collision_mask = 8
 
 [node name="Mirror" parent="Furniture" groups=["furniture"] instance=ExtResource("10_rysoc")]
 position = Vector2(68, 140)
-can_move = false
-allowed_npc_actions = Array[int]([1])
 
 [node name="Toilet" parent="Furniture" groups=["furniture"] instance=ExtResource("5_ir15t")]
 position = Vector2(2, 188)
 collision_layer = 2
 collision_mask = 8
 
+[node name="Floor1Path" type="Path2D" parent="."]
+position = Vector2(1, -26)
+curve = SubResource("Curve2D_kk2rg")
+
+[node name="Floor2Path" type="Path2D" parent="."]
+position = Vector2(3, 1)
+curve = SubResource("Curve2D_utbpp")
+
+[node name="kidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("floor1_path", "floor2_path")]
+position = Vector2(7, 27)
+script = ExtResource("7_rysoc")
+npc_scene = ExtResource("2_dinhu")
+floor1_path = NodePath("../Floor1Path")
+floor2_path = NodePath("../Floor2Path")
+
 [node name="MotherFatherGhosts" type="Node2D" parent="."]
 position = Vector2(30, -4)
 
 [node name="mother" parent="MotherFatherGhosts" node_paths=PackedStringArray("human_npcs_root", "furniture_root") groups=["ghost"] instance=ExtResource("1_uwrxv")]
 position = Vector2(79, 0)
-human_npcs_root = NodePath("")
+human_npcs_root = NodePath("../../kidSpawner")
 furniture_root = NodePath("../../Furniture")
 
 [node name="father" parent="MotherFatherGhosts" node_paths=PackedStringArray("human_npcs_root", "furniture_root") groups=["ghost"] instance=ExtResource("1_uwrxv")]
 position = Vector2(246, 10)
-human_npcs_root = NodePath("")
+human_npcs_root = NodePath("../../kidSpawner")
 furniture_root = NodePath("../../Furniture")
 
 [node name="AnimatedSprite2D" parent="MotherFatherGhosts/father" index="0"]
