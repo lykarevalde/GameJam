@@ -385,9 +385,9 @@ animations = [{
 
 [sub_resource type="Curve2D" id="Curve2D_qouja"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 434.90784, 70.99999, 0, 0, 0, 0, 350, 72, 0, 0, 0, 0, 242.57771, 72.084564, 0, 0, 0, 0, 100.37619, 70.999985, 0, 0, 0, 0, -94, 70.999985, 0, 0, 0, 0, -94, 209.82481, 0, 0, 0, 0, 439, 209.82481)
+"points": PackedVector2Array(0, 0, 0, 0, 411, 86, 0, 0, 0, 0, -100, 86, 0, 0, 0, 0, -100, 215, 0, 0, 0, 0, 411, 215)
 }
-point_count = 7
+point_count = 4
 
 [node name="game scene" type="Node2D" node_paths=PackedStringArray("floor1_path", "floor2_path")]
 script = ExtResource("1_kvpfn")
@@ -515,39 +515,36 @@ zoom = Vector2(4, 4)
 [node name="EnergySystem" parent="." instance=ExtResource("29_suyxu")]
 
 [node name="Path2D" type="Path2D" parent="."]
-position = Vector2(-2.116318, 20.536201)
-scale = Vector2(0.97748595, 0.92202544)
 curve = SubResource("Curve2D_qouja")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(434.90784, 70.99999)
-rotation = -3.1268878
+position = Vector2(411, 86)
+rotation = 3.1415925
 rotates = false
 loop = false
 
-[node name="npc1" parent="Path2D/PathFollow2D" instance=ExtResource("16_ca42v")]
-position = Vector2(482.81915, -7.1003)
-rotation = 3.1415927
+[node name="NPC" parent="Path2D/PathFollow2D" instance=ExtResource("16_ca42v")]
+rotation = -3.1415927
 loiter_points_path = NodePath("../../../LoiterPoints")
 
 [node name="LoiterPoints" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="LoiterPoints"]
-position = Vector2(356, 87)
+position = Vector2(362, 86)
 
 [node name="Marker2D2" type="Marker2D" parent="LoiterPoints"]
-position = Vector2(209, 87)
+position = Vector2(209, 86)
 
 [node name="Marker2D3" type="Marker2D" parent="LoiterPoints"]
-position = Vector2(41, 86)
+position = Vector2(42, 86)
 
 [node name="Marker2D4" type="Marker2D" parent="LoiterPoints"]
-position = Vector2(39, 214)
+position = Vector2(37, 214)
 
 [node name="Marker2D5" type="Marker2D" parent="LoiterPoints"]
-position = Vector2(203, 215)
+position = Vector2(202, 214)
 
 [node name="Marker2D6" type="Marker2D" parent="LoiterPoints"]
-position = Vector2(376, 214)
+position = Vector2(375, 215)
 
 [editable path="MotherFatherGhosts/father"]
