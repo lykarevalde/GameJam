@@ -214,7 +214,9 @@ script = ExtResource("1_crxnp")
 position = Vector2(-1.1920929e-07, -16.302734)
 scale = Vector2(0.57894737, 0.5963309)
 sprite_frames = SubResource("SpriteFrames_qlg0r")
-animation = &"right"
+animation = &"face"
+frame = 7
+frame_progress = 0.6726321
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 3
