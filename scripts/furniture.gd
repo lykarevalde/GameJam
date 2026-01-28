@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal possession_finished(furniture)
 
-#ADDED SIGNALS (NPC reaction system)
+# SIGNALS (NPC reaction system)
 signal spooked(position: Vector2)
 signal amused(position: Vector2)
 
@@ -29,6 +29,7 @@ var float_base_y := 0.0
 # Player possession
 @export var player_move_speed := 100.0
 var player_possessed := false
+var current_player_possessor: Node = null # Reference to player to spend energy
 
 # Nodes
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -37,9 +38,14 @@ func _ready():
 	anim.material = anim.material.duplicate()
 	if anim:
 		anim.connect("animation_finished", Callable(self, "_on_anim_finished"))
-	
 
 func _on_anim_finished():
+	# If we just finished amusing, tell the player to spend energy
+	if anim.animation == "amuse":
+		if current_player_possessor and current_player_possessor.has_method("spend_energy"):
+			current_player_possessor.spend_energy()
+			current_player_possessor = null # Clear after use
+			
 	anim.play("idle")
 
 # shader helper
@@ -64,8 +70,6 @@ func _physics_process(delta):
 		npc_control(delta)
 	else:
 		velocity = Vector2.ZERO
-		
-
 
 # --------------------
 # PLAYER CONTROL
@@ -86,20 +90,22 @@ func possess_by_player():
 func unpossess_by_player():
 	player_possessed = false
 	possessor = PossessorType.NONE
+	current_player_possessor = null
 	clear_outline()
 	velocity = Vector2.ZERO
 	print("Player released furniture")
 
 # Called by the player to trigger the amuse animation
-func amuse():
+func amuse(player_ref: Node):
 	if possessor != PossessorType.PLAYER:
-		return  # Only player can amuse
+		return 
 
+	# Store player reference to charge them when animation finishes
+	current_player_possessor = player_ref
+	
 	# Play the amuse animation
 	anim.play("amuse")
-	emit_signal("amused", global_position)   # ADDED
-
-
+	emit_signal("amused", global_position)
 
 # --------------------
 # NPC POSSESSION
@@ -132,8 +138,6 @@ func on_possessed() -> bool:
 	start_next_action()
 	return true
 
-
-# --- NPC action methods ---
 func start_next_action():
 	if current_action == PossessionMode.FLOAT:
 		global_position.y = float_base_y
@@ -177,7 +181,7 @@ func spook_possession():
 	if not anim_started:
 		anim.play("spook")
 		anim_started = true
-		emit_signal("spooked", global_position)   # ADDED (fires once)
+		emit_signal("spooked", global_position)
 
 func end_npc_possession():
 	npc_possessed = false
@@ -188,27 +192,18 @@ func end_npc_possession():
 	anim.stop()
 	emit_signal("possession_finished", self)
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
+# --------------------
+# Area Detection
+# --------------------
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
-
 	if possessor != PossessorType.NONE:
-		show_cannot_possess()   # red glow
+		show_cannot_possess()
 	else:
-		show_can_possess()      # yellow glow
-
+		show_can_possess()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name != "Player":
 		return
-
 	clear_outline()
