@@ -45,13 +45,13 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Player":
-		print(body.name, " entered")
+		#print(body.name, " entered")
 		sprite.material.set_shader_parameter("thickness", 1.0)
 	#pass # Replace with function body.
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		print(body.name, " exited")
+		#print(body.name, " exited")
 		sprite.material.set_shader_parameter("thickness", 0.0)
 
 # Called by Ghost when possessing
@@ -64,7 +64,7 @@ func on_possessed():
 	possession_timer = possession_time
 	direction = [-1, 1].pick_random()  # randomize initial move direction
 	play("shake")                        # optional shake animation
-	print(name, " is now possessed!")
+	#print(name, " is now possessed!")
 
 
 # Called automatically when possession ends
@@ -73,7 +73,7 @@ func on_possession_end():
 	is_being_possessed = false  # free it for another ghost
 	global_position = original_pos       # snap back to original place
 	play("idle")                         # return to idle animation
-	print(name, " possession ended")
+	#print(name, " possession ended")
 
 
 func _on_body_entered(body: Node2D) -> void:

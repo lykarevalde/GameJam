@@ -15,6 +15,16 @@ run/main_scene="uid://m483go0o00hr"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://scripts/game_manager.gd"
+ScoreData="*res://scripts/score_data.gd"
+
+[display]
+
+window/size/viewport_width=1720
+window/size/viewport_height=1080
+
 [editor_plugins]
 
 enabled=PackedStringArray()
