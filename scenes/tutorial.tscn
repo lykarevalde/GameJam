@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://er4cr1nu4dri"]
+[gd_scene load_steps=14 format=3 uid="uid://er4cr1nu4dri"]
 
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_8ho6b"]
 [ext_resource type="Texture2D" uid="uid://dh7624vearbdr" path="res://assets/tileset/tileset.png" id="2_6yjpi"]
@@ -316,19 +316,36 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_4kmhl")
 sources/1 = SubResource("TileSetAtlasSource_gbqnl")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ckvwl"]
+normal = Vector2(-0.006535808, 0.99997866)
+distance = -51.005447
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6yjpi"]
+distance = 25.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gbqnl"]
+distance = 104.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nlqja"]
+
 [node name="Tutorial Map" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-17, 25)
 tile_set = SubResource("TileSet_cq4me")
 format = 2
-layer_0/tile_data = PackedInt32Array(720909, 458753, 6, 720910, 458753, 6, 720911, 458753, 6, 720912, 458753, 6, 720913, 458753, 6, 720914, 458753, 6, 655378, 458753, 5, 655377, 458753, 5, 655376, 589825, 6, 655375, 458753, 5, 655374, 458753, 5, 655373, 458753, 5, 589837, 589825, 5, 589836, 589825, 5, 655372, 458753, 5, 720908, 458753, 6, 524301, 589825, 4, 524300, 589825, 4, 524302, 589825, 4, 524303, 589825, 4, 524304, 589825, 4, 524305, 589825, 4, 589842, 589825, 5, 589841, 589825, 5, 589840, 589825, 5, 589839, 589825, 5, 589838, 589825, 5, 524306, 589825, 4, 786444, 786433, 3, 786445, 786433, 3, 786446, 786433, 3, 786447, 786433, 3, 786448, 786433, 3, 786449, 786433, 3, 786450, 786433, 3, 720907, 786433, 3, 655371, 786433, 3, 589835, 786433, 3, 524299, 786433, 3, 720915, 786433, 3, 655379, 786433, 3, 589843, 786433, 3, 524307, 786433, 3, 458764, 786433, 3, 458765, 786433, 3, 458766, 786433, 3, 458767, 786433, 3, 458768, 786433, 3, 458769, 786433, 3, 458770, 786433, 3, 458763, 786433, 3, 786451, 786433, 3, 458771, 786433, 3, 786443, 786433, 3, 458772, 786433, 3, 524308, 786433, 3, 589844, 786433, 3, 655380, 786433, 3, 851987, 786433, 3, 720916, 786433, 3, 786452, 786433, 3, 851988, 786433, 3, 851986, 786433, 3, 851985, 786433, 3, 851984, 786433, 3, 851983, 786433, 3, 851982, 786433, 3, 851981, 786433, 3, 851980, 786433, 3, 851979, 786433, 3, 851978, 786433, 3, 786442, 786433, 3, 720906, 786433, 3, 655370, 786433, 3, 589834, 786433, 3, 524298, 786433, 3, 458762, 786433, 3, 393226, 786433, 3, 393227, 786433, 3, 393228, 786433, 3, 393229, 786433, 3, 393230, 786433, 3, 393231, 786433, 3, 393232, 786433, 3, 393233, 786433, 3, 393234, 786433, 3, 393235, 786433, 3, 393236, 786433, 3)
+layer_0/tile_data = PackedInt32Array(720909, 458753, 6, 720910, 458753, 6, 720911, 458753, 6, 720912, 458753, 6, 720913, 458753, 6, 720914, 458753, 6, 655378, 458753, 5, 655377, 458753, 5, 655376, 458753, 5, 655375, 458753, 5, 655374, 458753, 5, 655373, 458753, 5, 589837, 589825, 5, 589836, 589825, 5, 655372, 458753, 5, 720908, 458753, 6, 524301, 589825, 4, 524300, 589825, 4, 524302, 589825, 4, 524303, 589825, 4, 524304, 589825, 4, 524305, 589825, 4, 589842, 589825, 5, 589841, 589825, 5, 589840, 589825, 5, 589839, 589825, 5, 589838, 589825, 5, 524306, 589825, 4, 786444, 786433, 3, 786445, 786433, 3, 786446, 786433, 3, 786447, 786433, 3, 786448, 786433, 3, 786449, 786433, 3, 786450, 786433, 3, 720907, 786433, 3, 655371, 786433, 3, 589835, 786433, 3, 524299, 786433, 3, 720915, 786433, 3, 655379, 786433, 3, 589843, 786433, 3, 524307, 786433, 3, 458764, 786433, 3, 458765, 786433, 3, 458766, 786433, 3, 458767, 786433, 3, 458768, 786433, 3, 458769, 786433, 3, 458770, 786433, 3, 458763, 786433, 3, 786451, 786433, 3, 458771, 786433, 3, 786443, 786433, 3, 458772, 786433, 3, 524308, 786433, 3, 589844, 786433, 3, 655380, 786433, 3, 851987, 786433, 3, 720916, 786433, 3, 786452, 786433, 3, 851988, 786433, 3, 851986, 786433, 3, 851985, 786433, 3, 851984, 786433, 3, 851983, 786433, 3, 851982, 786433, 3, 851981, 786433, 3, 851980, 786433, 3, 851979, 786433, 3, 851978, 786433, 3, 786442, 786433, 3, 720906, 786433, 3, 655370, 786433, 3, 589834, 786433, 3, 524298, 786433, 3, 458762, 786433, 3, 393226, 786433, 3, 393227, 786433, 3, 393228, 786433, 3, 393229, 786433, 3, 393230, 786433, 3, 393231, 786433, 3, 393232, 786433, 3, 393233, 786433, 3, 393234, 786433, 3, 393235, 786433, 3, 393236, 786433, 3)
 
 [node name="furniture" type="Node2D" parent="."]
 position = Vector2(459, 378)
 
 [node name="Horse" parent="furniture" instance=ExtResource("4_6yjpi")]
-position = Vector2(55, -33)
+position = Vector2(-41, -26)
+collision_mask = 17
+
+[node name="Camera2D" type="Camera2D" parent="furniture/Horse"]
+position = Vector2(-4, 19)
+zoom = Vector2(4, 4)
 
 [node name="tutorial furniture" parent="furniture" instance=ExtResource("3_4kmhl")]
 visible = false
@@ -337,10 +354,57 @@ collision_mask = 1
 
 [node name="Player" parent="." instance=ExtResource("3_cq4me")]
 position = Vector2(514, 345)
+collision_mask = 8
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+position = Vector2(0, -18)
+zoom = Vector2(4, 4)
 
 [node name="tutorial player" parent="." instance=ExtResource("3_ph3nu")]
 visible = false
 position = Vector2(514, 345)
+
+[node name="ghost world borders" type="StaticBody2D" parent="."]
+collision_layer = 8
+
+[node name="up border" type="CollisionShape2D" parent="ghost world borders"]
+position = Vector2(478, 309)
+shape = SubResource("WorldBoundaryShape2D_ckvwl")
+
+[node name="down border" type="CollisionShape2D" parent="ghost world borders"]
+position = Vector2(478, 367)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_ckvwl")
+
+[node name="left border" type="CollisionShape2D" parent="ghost world borders"]
+position = Vector2(323, 344)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_6yjpi")
+
+[node name="right border" type="CollisionShape2D" parent="ghost world borders"]
+position = Vector2(715, 348)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_gbqnl")
+
+[node name="furniture room borders" type="StaticBody2D" parent="."]
+position = Vector2(459, 378)
+collision_layer = 16
+
+[node name="right room border" type="CollisionShape2D" parent="furniture room borders"]
+position = Vector2(134, -32)
+rotation = -1.5707963
+shape = SubResource("WorldBoundaryShape2D_nlqja")
+
+[node name="up room border" type="CollisionShape2D" parent="furniture room borders"]
+position = Vector2(17, -99)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_nlqja")
+
+[node name="down room border" type="CollisionShape2D" parent="furniture room borders"]
+position = Vector2(20, 24)
+shape = SubResource("WorldBoundaryShape2D_nlqja")
+
+[node name="left room border" type="CollisionShape2D" parent="furniture room borders"]
+position = Vector2(-94, -38)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_nlqja")
