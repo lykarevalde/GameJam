@@ -1,10 +1,12 @@
-[gd_scene load_steps=72 format=3 uid="uid://btf4w0qn217h6"]
+[gd_scene load_steps=74 format=3 uid="uid://btf4w0qn217h6"]
 
 [ext_resource type="Script" uid="uid://dtt0q7qyhnrrs" path="res://scripts/npc.gd" id="1_4wlns"]
 [ext_resource type="Texture2D" uid="uid://coni23lkvd530" path="res://assets/npc sprites/amused/girl_amuse_1.png" id="1_7n8xq"]
 [ext_resource type="Texture2D" uid="uid://b5spvfcxardp7" path="res://assets/npc sprites/befriended/girl_befriended_1.png" id="2_4wlns"]
 [ext_resource type="Texture2D" uid="uid://c44aagmwnylcf" path="res://assets/npc sprites/default/girl_default_1.png" id="3_tl2vt"]
 [ext_resource type="Texture2D" uid="uid://cq5wvwoudpftg" path="res://assets/npc sprites/scared/girl_scared_1.png" id="4_hwkja"]
+[ext_resource type="Texture2D" uid="uid://yqnqc5j4hl53" path="res://assets/trust meter/trust_meter_overlay.png" id="6_hwkja"]
+[ext_resource type="Texture2D" uid="uid://bv5l1yjwdpdtv" path="res://assets/trust meter/trust_meter_progress.png" id="7_0tygy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tygy"]
 atlas = ExtResource("1_7n8xq")
@@ -529,3 +531,22 @@ offset = Vector2(0, -22)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -4.5)
 shape = SubResource("RectangleShape2D_4wlns")
+
+[node name="TrustBarContainer" type="Node2D" parent="."]
+position = Vector2(0, -48)
+
+[node name="TrustBar" type="TextureProgressBar" parent="TrustBarContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -4.0
+offset_right = 49.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4674761, 0.5145534)
+texture_over = ExtResource("6_hwkja")
+texture_progress = ExtResource("7_0tygy")

@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
+# --------------------------------------------------
+# SETTINGS
+# --------------------------------------------------
 @export var speed := 80.0
 @export var furniture_root: Node
 @export var reach_distance := 10.0
+# New: Drag your NPC container or Folder here in the Inspector
+@export var npc_root: Node 
 
 @onready var anim := $AnimatedSprite2D
 
@@ -47,37 +52,48 @@ func try_possess():
 		CONNECT_ONE_SHOT
 	)
 
-	# scare humans
-	#for pf in human_npcs_root.get_children():
-		#if pf.get_child_count() == 0:
-			#continue
-		#var kid = pf.get_child(0)
-		#if kid.global_position.distance_to(target_furniture.global_position) < 100:
-			#kid.on_scared()
-
 func _on_furniture_finished(furniture):
 	if furniture != target_furniture:
 		return
 
 	global_position = furniture.global_position
-	
 	last_furniture = furniture
 	target_furniture = null
 	anim.visible = true
 	state = "idle"
 
+# --------------------------------------------------
+# NEW SMART TARGETING LOGIC
+# --------------------------------------------------
 func pick_target():
-	var choices := []
+	var best_furniture = null
+	var max_npcs_nearby = -1 # Start at -1 so even 0 NPCs is a valid choice
 
+	# 1. Get a list of all current NPCs in the "npcs" group
+	var all_npcs = get_tree().get_nodes_in_group("npcs")
+
+	# 2. Loop through every piece of furniture
 	for f in furniture_root.get_children():
-		if not f.has_method("on_possessed"):
+		if not f.has_method("on_possessed") or f == last_furniture:
 			continue
-		if f == last_furniture:
-			continue
-		choices.append(f)
+		
+		# 3. Count how many NPCs are within range of THIS furniture
+		var npc_count = 0
+		for npc in all_npcs:
+			# Adjust '200' to change how far the ghost looks for NPCs
+			if f.global_position.distance_to(npc.global_position) < 200.0:
+				npc_count += 1
+		
+		# 4. If this furniture has more NPCs than our previous "best", save it
+		if npc_count > max_npcs_nearby:
+			max_npcs_nearby = npc_count
+			best_furniture = f
+		elif npc_count == max_npcs_nearby and best_furniture != null:
+			# If there's a tie, 50% chance to switch to keep it varied
+			if randf() > 0.5:
+				best_furniture = f
 
-	if choices.is_empty():
-		return
-
-	target_furniture = choices.pick_random()
-	state = "moving"
+	# 5. Set the winner as the target
+	if best_furniture:
+		target_furniture = best_furniture
+		state = "moving"
