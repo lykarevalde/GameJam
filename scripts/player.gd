@@ -94,16 +94,16 @@ func _physics_process(delta: float) -> void:
 # Energy Handling
 # -----------------------------
 func _handle_energy(delta: float) -> void:
-	# Only recharge if energy is EMPTY
-	if energy == 0:
+	# 1. Recharge if energy is less than MAX
+	if energy < MAX_ENERGY:
 		energy_timer += delta
 
 		if energy_timer >= ENERGY_RESTORE_TIME:
-			energy = 1
+			energy += 1  # Add one point instead of setting it to 1
 			energy_timer = 0.0
 			_update_energy_sprite()
 
-	# Flash HUD when empty
+	# 2. Flash HUD only when COMPLETELY empty
 	if energy == 0 and energy_sprite:
 		flash_timer += delta
 		if flash_timer >= FLASH_INTERVAL:
@@ -111,7 +111,6 @@ func _handle_energy(delta: float) -> void:
 			flash_timer = 0.0
 	elif energy_sprite:
 		energy_sprite.visible = true
-
 # -----------------------------
 # Input
 # -----------------------------

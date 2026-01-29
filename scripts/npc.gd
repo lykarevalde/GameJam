@@ -4,7 +4,7 @@ extends CharacterBody2D
 # SETTINGS
 # --------------------------------------------------
 @export var speed := 60.0
-@export var loiter_points_path: NodePath # Path to the container of Area2Ds
+@export var loiter_points_path: NodePath 
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var path_follow: PathFollow2D = get_parent()
@@ -18,6 +18,8 @@ var state := State.WALKING
 var walk_direction := 1.0
 var stair_cooldown := false
 var loiter_timer := 0.0
+var last_loiter_area: Area2D = null # Track where we last stopped
+var can_loiter := true
 
 # Reaction system
 var consecutive_spooks := 0
@@ -28,36 +30,28 @@ var is_befriended := false
 # READY
 # --------------------------------------------------
 func _ready():
-	# 1. Animation Setup
 	if anim:
 		if anim.material:
 			anim.material = anim.material.duplicate()
 		anim.animation_finished.connect(_on_anim_finished)
 
-	# 2. Furniture Reactions (Signal Safety Check)
-	# Connects to signals from furniture group nodes safely
 	for f in get_tree().get_nodes_in_group("furniture"):
 		if f.has_signal("spooked"):
 			f.spooked.connect(_on_spooked)
 		if f.has_signal("amused"):
 			f.amused.connect(_on_amused)
-		else:
-			push_warning("Node " + f.name + " is in 'furniture' group but lacks custom signals.")
 
-	# 3. Stair Areas
 	for stair in get_tree().get_nodes_in_group("stairs"):
 		if stair.has_signal("body_entered"):
 			stair.body_entered.connect(_on_stair_entered.bind(stair))
 		
-	# 4. Loiter Areas
 	if loiter_points_path:
 		var container = get_node_or_null(loiter_points_path)
 		if container:
 			for area in container.get_children():
 				if area is Area2D:
-					area.body_entered.connect(_on_loiter_entered)
-		else:
-			push_error("NPC Error: loiter_points_path assigned but container node not found.")
+					# FIXED: Bind the area to the signal so the function knows which one it is
+					area.body_entered.connect(_on_loiter_entered.bind(area))
 
 # --------------------------------------------------
 # PHYSICS
@@ -67,7 +61,6 @@ func _physics_process(delta):
 		State.WALKING:
 			var old_pos = path_follow.global_position
 			path_follow.progress += (speed * walk_direction) * delta
-			# Calculate velocity for animation flipping and logic
 			velocity = (path_follow.global_position - old_pos) / delta
 
 			if path_follow.progress_ratio >= 1.0:
@@ -87,18 +80,28 @@ func _physics_process(delta):
 	_update_animations()
 
 # --------------------------------------------------
-# LOITER LOGIC
+# LOITER LOGIC (FIXED)
 # --------------------------------------------------
-func _on_loiter_entered(body):
-	if body == self and state == State.WALKING:
-		if randf() < 0.4: # 40% chance to stop
+func _on_loiter_entered(body: Node2D, area: Area2D):
+	# Added "can_loiter" check
+	if body == self and state == State.WALKING and can_loiter and area != last_loiter_area:
+		if randf() < 0.4: 
+			last_loiter_area = area
 			_start_loiter()
 
 func _start_loiter():
 	state = State.IDLE
+	can_loiter = false # Disable loitering temporarily
 	loiter_timer = randf_range(3.0, 6.0)
-	if randf() > 0.5:
-		walk_direction *= -1
+	walk_direction *= -1
+	
+	# Wait for the idle time to finish
+	await get_tree().create_timer(loiter_timer).timeout
+	
+	# After idling, wait an extra 2 seconds of walking before allowing another stop
+	# This gives the NPC time to physically leave the Area2D
+	await get_tree().create_timer(2.0).timeout
+	can_loiter = true
 
 # --------------------------------------------------
 # STAIRS
@@ -128,10 +131,14 @@ func _use_stairs(stair):
 
 	if target_floor:
 		visible = false 
+		last_loiter_area = null # Clear loiter memory when changing floors
+		
 		if path_follow:
 			path_follow.get_parent().remove_child(path_follow)
 			target_floor.add_child(path_follow)
+			# This is where 0.1 or 0.9 goes depending on your stair setup
 			path_follow.progress_ratio = stair.target_progress_ratio
+			
 			if stair.flip_direction:
 				walk_direction *= -1
 		
@@ -172,7 +179,6 @@ func _trigger_reaction(anim_name: String):
 	if anim.sprite_frames.has_animation(anim_name):
 		anim.play(anim_name)
 	else:
-		# Fallback if specific animation is missing
 		anim.play("idle")
 	await get_tree().create_timer(2.0).timeout
 	state = State.WALKING
