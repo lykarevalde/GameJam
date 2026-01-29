@@ -37,8 +37,8 @@
 [ext_resource type="Texture2D" uid="uid://cab4thd7xhr70" path="res://assets/npc sprites/default/boy_default_1.png" id="34_twgab"]
 [ext_resource type="Texture2D" uid="uid://b47t77pj3guhy" path="res://assets/npc sprites/scared/boy_scared_1.png" id="35_02fa5"]
 [ext_resource type="PackedScene" uid="uid://dcskmhopii3hc" path="res://scenes/loiter_area.tscn" id="39_7025r"]
-[ext_resource type="Script" uid="uid://bi8c52d8vdk6k" path="res://scripts/stairup.gd" id="40_m4url"]
-[ext_resource type="Script" uid="uid://cc86b1txvbee6" path="res://scripts/stairdown.gd" id="41_8ool0"]
+[ext_resource type="Script" path="res://scripts/stairup.gd" id="40_m4url"]
+[ext_resource type="Script" path="res://scripts/stairdown.gd" id="41_8ool0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m4url"]
 texture = ExtResource("4_7025r")
@@ -1902,6 +1902,8 @@ npc_scene = ExtResource("2_dinhu")
 [node name="TileMapLayer2" parent="TileMap2" index="1"]
 tile_set = SubResource("TileSet_8ool0")
 
+[node name="TileMap" parent="TileMap2/TileMapLayer2" index="0" instance=ExtResource("4_twgab")]
+
 [node name="TileMapLayer" parent="TileMap2" index="2"]
 tile_set = SubResource("TileSet_05nbr")
 
@@ -2125,7 +2127,7 @@ curve = SubResource("Curve2D_nepv3")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Floor 2"]
 position = Vector2(1360, 635)
-rotation = 3.1415925
+rotation = 3.1415927
 
 [node name="LoiterPoints" type="Node2D" parent="."]
 
