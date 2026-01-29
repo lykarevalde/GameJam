@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://duohd8irgp0dq"]
+[gd_scene load_steps=61 format=3 uid="uid://duohd8irgp0dq"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_jygmd"]
 [ext_resource type="Texture2D" uid="uid://wacma7vgrpi2" path="res://assets/Furniture/library/pc AMUSE.png" id="2_62pyb"]
@@ -388,6 +388,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xq1dp"]
 size = Vector2(30, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3f6"]
+size = Vector2(30, 20)
+
 [node name="Computer" type="CharacterBody2D"]
 script = ExtResource("1_jygmd")
 
@@ -401,14 +404,12 @@ frame_progress = 1.0
 script = ExtResource("5_e13oi")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-collision_layer = 4
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 shape = SubResource("RectangleShape2D_xq1dp")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-15, -10, 15, -10, 15, 10, 2, 10, 2, 12, 5, 12, 5, 15, -5, 15, -5, 12, -2, 12, -2, 10, -15, 10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ur3f6")
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

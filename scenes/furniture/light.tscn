@@ -220,8 +220,6 @@ frame_progress = 1.0
 script = ExtResource("5_cv45j")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-collision_layer = 4
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 shape = SubResource("CapsuleShape2D_yf8l6")
