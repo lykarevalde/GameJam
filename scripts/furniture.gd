@@ -98,13 +98,10 @@ func _physics_process(delta):
 	# --- NPC POSSESSION (ALWAYS RUNS) ---
 	if possessor == PossessorType.NPC:
 		npc_control(delta)
-<<<<<<< Updated upstream
 	else:
 		velocity = Vector2.ZERO
 		
 
-=======
->>>>>>> Stashed changes
 
 # --------------------
 # PLAYER CONTROL

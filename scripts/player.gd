@@ -9,40 +9,7 @@ var nearby_furniture: Node = null
 var possessed_furniture: Node = null
 var last_direction := 1  # 1 = right, -1 = left
 
-<<<<<<< Updated upstream
-=======
 @onready var camera: Camera2D = $Camera2D
-
-# -----------------------------
-# Energy System
-# -----------------------------
-const MAX_ENERGY := 6
-var energy := MAX_ENERGY
-var energy_timer := 0.0
-const ENERGY_RESTORE_TIME := 10.0  # seconds per energy point
-
-# Flash effect for empty energy
-var flash_timer := 0.0
-const FLASH_INTERVAL := 0.5  # flash every 0.5s
-
-# -----------------------------
-# HUD Energy Sprite
-# -----------------------------
-# Using find_child so it locates the sprite in your UI/CanvasLayer automatically
-var energy_sprite: Sprite2D  
-
-# Map energy level to texture files
-var energy_textures: Dictionary = {
-	6: preload("res://assets/energy sprites/full.png"),
-	5: preload("res://assets/energy sprites/5.png"),
-	4: preload("res://assets/energy sprites/4.png"),
-	3: preload("res://assets/energy sprites/3.png"),
-	2: preload("res://assets/energy sprites/2.png"),
-	1: preload("res://assets/energy sprites/1.png"),
-	0: preload("res://assets/energy sprites/empty.png")
-}
-
->>>>>>> Stashed changes
 @onready var sprite: AnimatedSprite2D = $face
 
 func _physics_process(delta: float) -> void:
