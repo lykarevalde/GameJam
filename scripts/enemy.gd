@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed := 80.0
+@export var human_npcs_root: Node
 @export var furniture_root: Node
 @export var reach_distance := 10.0
 
@@ -48,12 +49,12 @@ func try_possess():
 	)
 
 	# scare humans
-	#for pf in human_npcs_root.get_children():
-		#if pf.get_child_count() == 0:
-			#continue
-		#var kid = pf.get_child(0)
-		#if kid.global_position.distance_to(target_furniture.global_position) < 100:
-			#kid.on_scared()
+	for pf in human_npcs_root.get_children():
+		if pf.get_child_count() == 0:
+			continue
+		var kid = pf.get_child(0)
+		if kid.global_position.distance_to(target_furniture.global_position) < 100:
+			kid.on_scared()
 
 func _on_furniture_finished(furniture):
 	if furniture != target_furniture:

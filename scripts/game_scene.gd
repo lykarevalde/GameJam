@@ -3,12 +3,9 @@ extends Node2D
 @export var npc_scene: PackedScene            # assign HumanNPC.tscn
 @export var npc_per_floor := 5               # how many NPCs per floor
 @export var floor1_path: Path2D              # assign Floor1Path
-@export var floor2_path: Path2D 
-@onready var bgm = $BGM
+@export var floor2_path: Path2D              # assign Floor2Path
 
 func _ready():
-	bgm.volume_db = -12
-	bgm.play()
 	# Debug checks
 	if npc_scene == null:
 		print("ERROR: npc_scene not assigned")
@@ -18,9 +15,6 @@ func _ready():
 	# Spawn NPCs on both floors
 	spawn_npcs_on_path(floor1_path, npc_per_floor)
 	spawn_npcs_on_path(floor2_path, npc_per_floor)
-	
-func _on_bgm_finished() -> void:
-	bgm.play()
 
 
 func spawn_npcs_on_path(path: Path2D, count: int):
@@ -36,3 +30,5 @@ func spawn_npcs_on_path(path: Path2D, count: int):
 		var npc = npc_scene.instantiate()
 		npc.position = Vector2.ZERO
 		follow.add_child(npc)
+
+		
