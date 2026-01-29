@@ -10,13 +10,7 @@ var possessed_furniture: Node = null
 var last_direction := 1  # 1 = right, -1 = left
 
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 =======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 @onready var camera: Camera2D = $Camera2D
 
 # -----------------------------

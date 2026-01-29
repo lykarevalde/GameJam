@@ -5,6 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tcjrq"]
 radius = 8.0
+height = 34.0
 
 [node name="Toilet" type="CharacterBody2D"]
 script = ExtResource("1_yyxms")
@@ -16,6 +17,3 @@ shape = SubResource("CapsuleShape2D_tcjrq")
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("2_5rkpo")]
 position = Vector2(-1, -6)
 animation = &"spook"
-autoplay = "idle"
-frame = 0
-frame_progress = 0.0
