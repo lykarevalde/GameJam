@@ -1096,7 +1096,7 @@ position = Vector2(1131, 413)
 [node name="Computer" parent="Furniture" groups=["furniture"] instance=ExtResource("8_trtic")]
 position = Vector2(768, 377)
 
-[node name="Horse" parent="Furniture" groups=["furniture"] instance=ExtResource("9_ir15t")]
+[node name="Horse" parent="Furniture" instance=ExtResource("9_ir15t")]
 position = Vector2(1003, 406)
 
 [node name="Drawing" parent="Furniture" groups=["furniture"] instance=ExtResource("9_1kice")]
