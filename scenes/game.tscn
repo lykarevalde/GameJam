@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dh7624vearbdr" path="res://assets/tileset/tileset.png" id="4_7025r"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://bd1x6q7kmsk15" path="res://scripts/furnitures.gd" id="4_trtic"]
-[ext_resource type="PackedScene" path="res://scenes/tile_map.tscn" id="4_twgab"]
+[ext_resource type="PackedScene" uid="uid://dqe6d28uefw1i" path="res://scenes/tile_map.tscn" id="4_twgab"]
 [ext_resource type="PackedScene" uid="uid://cef30dmd4as47" path="res://scenes/furniture/toilet.tscn" id="5_ir15t"]
 [ext_resource type="PackedScene" uid="uid://bu1j44de7yybr" path="res://scenes/furniture/bear.tscn" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://c2sq216uoqc1h" path="res://scenes/furniture/globe.tscn" id="6_kvuet"]
@@ -31,12 +31,12 @@
 [ext_resource type="PackedScene" uid="uid://bp5mp6odg3mb" path="res://scenes/furniture/desk.tscn" id="14_bhx41"]
 [ext_resource type="PackedScene" uid="uid://chpdaiv4hlcci" path="res://scenes/furniture/mascot.tscn" id="14_bt5mj"]
 [ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="16_ca42v"]
-[ext_resource type="PackedScene" path="res://scenes/energy scene.tscn" id="29_suyxu"]
+[ext_resource type="PackedScene" uid="uid://bfuejy3kyaonp" path="res://scenes/energy scene.tscn" id="29_suyxu"]
 [ext_resource type="Texture2D" uid="uid://d204qe7e47nye" path="res://assets/npc sprites/amused/boy_amuse_1.png" id="32_twgab"]
 [ext_resource type="Texture2D" uid="uid://d36c0i2n8y1d2" path="res://assets/npc sprites/befriended/boy_befriended_1.png" id="33_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://cab4thd7xhr70" path="res://assets/npc sprites/default/boy_default_1.png" id="34_twgab"]
 [ext_resource type="Texture2D" uid="uid://b47t77pj3guhy" path="res://assets/npc sprites/scared/boy_scared_1.png" id="35_02fa5"]
-[ext_resource type="PackedScene" path="res://scenes/loiter_area.tscn" id="39_7025r"]
+[ext_resource type="PackedScene" uid="uid://dcskmhopii3hc" path="res://scenes/loiter_area.tscn" id="39_7025r"]
 [ext_resource type="Script" uid="uid://bi8c52d8vdk6k" path="res://scripts/stairup.gd" id="40_m4url"]
 [ext_resource type="Script" uid="uid://cc86b1txvbee6" path="res://scripts/stairdown.gd" id="41_8ool0"]
 
@@ -2074,9 +2074,10 @@ furniture_root = NodePath("../../Furniture")
 sprite_frames = SubResource("SpriteFrames_6irsn")
 animation = &"left"
 
-[node name="Player" parent="." instance=ExtResource("11_1kice")]
+[node name="Player" parent="." node_paths=PackedStringArray("energy_sprite") instance=ExtResource("11_1kice")]
 position = Vector2(999, 401)
 collision_layer = 2
+energy_sprite = NodePath("../EnergySystem/UI/Control/EnergySprite")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -15)
@@ -2226,4 +2227,5 @@ position = Vector2(915, 443)
 
 [editable path="TileMap2"]
 [editable path="MotherFatherGhosts/father"]
+[editable path="EnergySystem"]
 [editable path="Floor 1/PathFollow2D2/npc2"]
