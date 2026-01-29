@@ -35,6 +35,7 @@ var player_possessed := false
 
 func _ready():
 	anim.material = anim.material.duplicate()
+	clear_outline()
 	if anim:
 		anim.connect("animation_finished", Callable(self, "_on_anim_finished"))
 	
@@ -198,6 +199,7 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("furniture entered by: ", body.name)
 	if body.name != "Player":
 		return
 

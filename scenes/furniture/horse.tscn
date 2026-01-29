@@ -378,7 +378,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Horse" type="CharacterBody2D"]
+[node name="Horse" type="CharacterBody2D" groups=["furniture"]]
 script = ExtResource("1_nypa6")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -396,7 +396,7 @@ frame = 19
 frame_progress = 1.0
 script = ExtResource("5_m28qu")
 
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" groups=["furniture"]]
 position = Vector2(-17, 24)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Area2D"]

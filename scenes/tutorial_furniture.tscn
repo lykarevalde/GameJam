@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://3x2ckyctx2ob" path="res://scripts/tutorial_furniture.gd" id="1_bpmki"]
 [ext_resource type="Texture2D" uid="uid://kuoy38u2a802" path="res://assets/Furniture/playroom/horse AMUSE.png" id="1_j25di"]
 [ext_resource type="Texture2D" uid="uid://d1bcisqtrxduw" path="res://assets/Furniture/playroom/horse MOVE.png" id="2_f4cg6"]
-[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture/furniture.gdshader" id="2_oj73s"]
+[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_oj73s"]
 [ext_resource type="Texture2D" uid="uid://dacf45j074oxs" path="res://assets/Furniture/playroom/horse SPOOK.png" id="3_bpmki"]
 [ext_resource type="Script" uid="uid://dvsegfs8qn5i8" path="res://scripts/collision_polygon_2d.gd" id="5_oj73s"]
 
@@ -392,8 +392,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Area2D"]
 polygon = PackedVector2Array(-16, -3, -8, -3, -4, 8, 13, 8, 22, 23, 11, 30, -11, 30, -22, 23)
