@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal possession_finished(furniture)
 signal spooked(position: Vector2)
 signal amused(position: Vector2)
+signal player_possessed_furniture
 
 enum PossessorType { NONE, PLAYER, NPC }
 var possessor := PossessorType.NONE
@@ -108,7 +109,8 @@ func possess_by_player():
 	possessor = PossessorType.PLAYER
 	player_possessed = true
 	anim.material.set_shader_parameter("thickness", 0)
-	print("Player possessed furniture")
+	emit_signal("player_possessed_furniture")
+	#print("Player possessed furniture")
 
 func unpossess_by_player():
 	player_possessed = false
@@ -116,7 +118,7 @@ func unpossess_by_player():
 	current_player_possessor = null
 	velocity = Vector2.ZERO
 	is_dropping = can_move
-	print("Player released furniture")
+	#print("Player released furniture")
 
 func amuse(player_ref: Node):
 	if possessor != PossessorType.PLAYER: return

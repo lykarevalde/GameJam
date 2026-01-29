@@ -19,6 +19,8 @@ var walk_direction := 1.0
 var stair_cooldown := false
 var loiter_timer := 0.0
 
+var _reaction_timer: SceneTreeTimer = null  # store the async timer
+
 # Reaction system
 var consecutive_spooks := 0
 var consecutive_amuses := 0
@@ -153,6 +155,9 @@ func _on_spooked(pos: Vector2):
 	if is_befriended or state == State.REACT or global_position.distance_to(pos) > 120.0: return
 	consecutive_amuses = 0
 	consecutive_spooks += 1
+	
+	get_node("/root/GameManager").add_score(-2)
+
 	var reaction = "scared" if consecutive_spooks < 3 else "spooked"
 	_trigger_reaction(reaction)
 
@@ -160,11 +165,15 @@ func _on_amused(pos: Vector2):
 	if is_befriended or state == State.REACT or global_position.distance_to(pos) > 120.0: return
 	consecutive_spooks = 0
 	consecutive_amuses += 1
+	
+	get_node("/root/GameManager").add_score(10)
+	
 	var reaction = "smiling"
 	if consecutive_amuses == 2: reaction = "amused"
 	elif consecutive_amuses >= 3:
 		reaction = "befriended"
 		is_befriended = true
+		get_node("/root/GameManager").kid_befriended()
 	_trigger_reaction(reaction)
 
 func _trigger_reaction(anim_name: String):
@@ -174,7 +183,12 @@ func _trigger_reaction(anim_name: String):
 	else:
 		# Fallback if specific animation is missing
 		anim.play("idle")
-	await get_tree().create_timer(2.0).timeout
+	
+	# Save the timer to cancel if needed
+	_reaction_timer = Engine.get_main_loop().create_timer(2.0)
+	await _reaction_timer
+	_reaction_timer = null
+
 	state = State.WALKING
 
 func _on_anim_finished():
@@ -194,3 +208,9 @@ func _update_animations():
 		
 	if velocity.x != 0: 
 		anim.flip_h = velocity.x < 0
+		
+		
+func _stop_reaction_timer():
+	# Just clear reference so NPC won't await it anymore
+	_reaction_timer = null
+	state = State.WALKING
