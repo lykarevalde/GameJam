@@ -6178,7 +6178,7 @@ rotation = 3.1415925
 rotates = false
 loop = false
 
-[node name="NPC" parent="Floor 1/PathFollow2D" instance=ExtResource("16_ca42v")]
+[node name="NPC" parent="Floor 1/PathFollow2D" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = 3.1415927
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6190,7 +6190,7 @@ progress = 535.7256
 rotates = false
 loop = false
 
-[node name="npc2" parent="Floor 1/PathFollow2D2" instance=ExtResource("16_ca42v")]
+[node name="npc2" parent="Floor 1/PathFollow2D2" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = 3.1415927
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6224,7 +6224,7 @@ progress = 1021.36554
 rotates = false
 loop = false
 
-[node name="npc4" parent="Floor 1/PathFollow2D4" instance=ExtResource("16_ca42v")]
+[node name="npc4" parent="Floor 1/PathFollow2D4" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6241,7 +6241,7 @@ progress = 895.12805
 rotates = false
 loop = false
 
-[node name="npc5" parent="Floor 1/PathFollow2D5" instance=ExtResource("16_ca42v")]
+[node name="npc5" parent="Floor 1/PathFollow2D5" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6266,7 +6266,7 @@ rotation = 3.1415925
 rotates = false
 loop = false
 
-[node name="npc6" parent="Floor 2/PathFollow2D2" instance=ExtResource("16_ca42v")]
+[node name="npc6" parent="Floor 2/PathFollow2D2" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6283,7 +6283,7 @@ progress = 527.6988
 rotates = false
 loop = false
 
-[node name="npc7" parent="Floor 2/PathFollow2D3" instance=ExtResource("16_ca42v")]
+[node name="npc7" parent="Floor 2/PathFollow2D3" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6300,7 +6300,7 @@ progress = 719.5743
 rotates = false
 loop = false
 
-[node name="npc8" parent="Floor 2/PathFollow2D4" instance=ExtResource("16_ca42v")]
+[node name="npc8" parent="Floor 2/PathFollow2D4" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6317,7 +6317,7 @@ progress = 1143.1827
 rotates = false
 loop = false
 
-[node name="npc9" parent="Floor 2/PathFollow2D5" instance=ExtResource("16_ca42v")]
+[node name="npc9" parent="Floor 2/PathFollow2D5" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")
@@ -6334,7 +6334,7 @@ progress = 1351.1989
 rotates = false
 loop = false
 
-[node name="npc10" parent="Floor 2/PathFollow2D6" instance=ExtResource("16_ca42v")]
+[node name="npc10" parent="Floor 2/PathFollow2D6" groups=["npcs"] instance=ExtResource("16_ca42v")]
 z_index = 4
 rotation = -3.1415925
 loiter_points_path = NodePath("../../../LoiterPoints")

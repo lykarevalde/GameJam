@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bclhp2qeralbl"]
+
+[ext_resource type="Script" uid="uid://o07felfiep8a" path="res://scripts/trust_ui.gd" id="1_euc6t"]
+[ext_resource type="Texture2D" uid="uid://yqnqc5j4hl53" path="res://assets/trust meter/trust_meter_overlay.png" id="2_cgf70"]
+[ext_resource type="Texture2D" uid="uid://bv5l1yjwdpdtv" path="res://assets/trust meter/trust_meter_progress.png" id="3_qr7me"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_euc6t")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_right = 64.0
+grow_vertical = 0
+scale = Vector2(6.8847547, -7.5762835)
+texture_over = ExtResource("2_cgf70")
+texture_progress = ExtResource("3_qr7me")
