@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal possession_finished(furniture)
 
-#ADDED SIGNALS (NPC reaction system)
+# SIGNALS (NPC reaction system)
 signal spooked(position: Vector2)
 signal amused(position: Vector2)
 
@@ -16,6 +16,13 @@ enum PossessionMode { MOVE, SPOOK, FLOAT }
 @export var min_possession_time := 1.5
 @export var max_possession_time := 3.0
 @export var spook_duration := 3.0
+@export var can_move := true
+
+@export var allowed_npc_actions: Array[PossessionMode] = [
+	PossessionMode.MOVE,
+	PossessionMode.SPOOK,
+	PossessionMode.FLOAT
+]
 
 var npc_possessed := false
 var action_queue: Array = []
@@ -29,6 +36,7 @@ var float_base_y := 0.0
 # Player possession
 @export var player_move_speed := 100.0
 var player_possessed := false
+var current_player_possessor: Node = null # Reference to player to spend energy
 
 # Nodes
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -37,9 +45,14 @@ func _ready():
 	anim.material = anim.material.duplicate()
 	if anim:
 		anim.connect("animation_finished", Callable(self, "_on_anim_finished"))
-	
 
 func _on_anim_finished():
+	# If we just finished amusing, tell the player to spend energy
+	if anim.animation == "amuse":
+		if current_player_possessor and current_player_possessor.has_method("spend_energy"):
+			current_player_possessor.spend_energy()
+			current_player_possessor = null # Clear after use
+			
 	anim.play("idle")
 
 # shader helper
@@ -64,13 +77,15 @@ func _physics_process(delta):
 		npc_control(delta)
 	else:
 		velocity = Vector2.ZERO
-		
-
 
 # --------------------
 # PLAYER CONTROL
 # --------------------
 func player_control(delta):
+	if not can_move:
+		velocity = Vector2.ZERO
+		return
+
 	var dir = Input.get_axis("ui_left", "ui_right")
 	velocity.x = dir * player_move_speed
 	move_and_slide()
@@ -86,20 +101,22 @@ func possess_by_player():
 func unpossess_by_player():
 	player_possessed = false
 	possessor = PossessorType.NONE
+	current_player_possessor = null
 	clear_outline()
 	velocity = Vector2.ZERO
 	print("Player released furniture")
 
 # Called by the player to trigger the amuse animation
-func amuse():
+func amuse(player_ref: Node):
 	if possessor != PossessorType.PLAYER:
-		return  # Only player can amuse
+		return 
 
+	# Store player reference to charge them when animation finishes
+	current_player_possessor = player_ref
+	
 	# Play the amuse animation
 	anim.play("amuse")
-	emit_signal("amused", global_position)   # ADDED
-
-
+	emit_signal("amused", global_position)
 
 # --------------------
 # NPC POSSESSION
@@ -124,16 +141,14 @@ func on_possessed() -> bool:
 	anim_started = false
 	action_queue.clear()
 	direction = [-1, 1].pick_random()
-	var count := randi_range(1, 2)
+	var count := randi_range(1, min(2, allowed_npc_actions.size()))
 	while action_queue.size() < count:
-		var action = PossessionMode.values().pick_random()
+		var action = allowed_npc_actions.pick_random()
 		if action not in action_queue:
 			action_queue.append(action)
 	start_next_action()
 	return true
 
-
-# --- NPC action methods ---
 func start_next_action():
 	if current_action == PossessionMode.FLOAT:
 		global_position.y = float_base_y
@@ -177,7 +192,7 @@ func spook_possession():
 	if not anim_started:
 		anim.play("spook")
 		anim_started = true
-		emit_signal("spooked", global_position)   # ADDED (fires once)
+		emit_signal("spooked", global_position)
 
 func end_npc_possession():
 	npc_possessed = false
@@ -188,27 +203,18 @@ func end_npc_possession():
 	anim.stop()
 	emit_signal("possession_finished", self)
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
+# --------------------
+# Area Detection
+# --------------------
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name != "Player":
 		return
-
 	if possessor != PossessorType.NONE:
-		show_cannot_possess()   # red glow
+		show_cannot_possess()
 	else:
-		show_can_possess()      # yellow glow
-
+		show_can_possess()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name != "Player":
 		return
-
 	clear_outline()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_jygmd"]
 [ext_resource type="Texture2D" uid="uid://wacma7vgrpi2" path="res://assets/Furniture/library/pc AMUSE.png" id="2_62pyb"]
-[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture/furniture.gdshader" id="2_ku581"]
+[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_ku581"]
 [ext_resource type="Texture2D" uid="uid://bcy432co6fxgv" path="res://assets/Furniture/library/pc MOVE.png" id="3_ku581"]
 [ext_resource type="Texture2D" uid="uid://dnjdr643gjrn5" path="res://assets/Furniture/library/pc SPOOK.png" id="4_i0iun"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_e13oi"]

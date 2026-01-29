@@ -1,162 +1,178 @@
 extends CharacterBody2D
 
-# --- SETTINGS ---
+# --------------------------------------------------
+# SETTINGS
+# --------------------------------------------------
 @export var speed := 60.0
-@export var ground_y := 195.0    # Bottom floor Y
-@export var upstairs_y := 115.0  # Top floor Y
-@export var stairs_x := 45.0     # X position of stairs
-
-# X positions for various rooms in the house
-var room_positions = [34.0, 194.0, 360.0] 
+@export var loiter_points_path: NodePath # Path to the container of Area2Ds
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var path_follow: PathFollow2D = get_parent()
 
-# --- STATE & COUNTERS ---
-enum State { IDLE, WALKING_TO_STAIRS, CLIMBING, WALKING_TO_ROOM, REACT }
-var state := State.IDLE
+# --------------------------------------------------
+# STATE
+# --------------------------------------------------
+enum State { WALKING, IDLE, USING_STAIRS, REACT }
+var state := State.WALKING
 
-var target_room_x: float
-var target_floor_y: float
-var current_floor_y: float
-var idle_timer := 0.0
+var walk_direction := 1.0
+var stair_cooldown := false
+var loiter_timer := 0.0
 
+# Reaction system
 var consecutive_spooks := 0
 var consecutive_amuses := 0
-var is_befriended := false # Tracks if the NPC has reached the final friendship level
+var is_befriended := false
 
 # --------------------------------------------------
-# CORE LOOPS
+# READY
 # --------------------------------------------------
-
 func _ready():
-	current_floor_y = global_position.y 
-	_pick_new_destination() 
-
-	# Connect to all furniture in the "furniture" group
+	# Furniture reactions
 	for f in get_tree().get_nodes_in_group("furniture"):
 		f.spooked.connect(_on_spooked)
 		f.amused.connect(_on_amused)
 
+	# Stair areas
+	for stair in get_tree().get_nodes_in_group("stairs"):
+		stair.body_entered.connect(_on_stair_entered.bind(stair))
+		
+	# Loiter areas
+	if loiter_points_path:
+		var container = get_node_or_null(loiter_points_path)
+		if container:
+			for area in container.get_children():
+				if area is Area2D:
+					area.body_entered.connect(_on_loiter_entered)
+
+# --------------------------------------------------
+# PHYSICS
+# --------------------------------------------------
 func _physics_process(delta):
 	match state:
-		State.IDLE:
-			idle_timer -= delta
-			if idle_timer <= 0: _pick_new_destination()
-		
-		State.WALKING_TO_STAIRS:
-			_move_towards(stairs_x, current_floor_y, State.CLIMBING)
-			
-		State.CLIMBING:
-			_move_towards(stairs_x, target_floor_y, State.WALKING_TO_ROOM)
-			
-		State.WALKING_TO_ROOM:
-			_move_towards(target_room_x, target_floor_y, State.IDLE)
+		State.WALKING:
+			var old_pos = path_follow.global_position
+			path_follow.progress += (speed * walk_direction) * delta
+			velocity = (path_follow.global_position - old_pos) / delta
 
-	move_and_slide()
+			if path_follow.progress_ratio >= 1.0:
+				walk_direction = -1
+			elif path_follow.progress_ratio <= 0.0:
+				walk_direction = 1
+
+		State.IDLE:
+			velocity = Vector2.ZERO
+			loiter_timer -= delta
+			if loiter_timer <= 0:
+				state = State.WALKING
+
+		State.USING_STAIRS, State.REACT:
+			velocity = Vector2.ZERO
+
 	_update_animations()
 
 # --------------------------------------------------
-# MOVEMENT LOGIC
+# LOITER LOGIC
 # --------------------------------------------------
+func _on_loiter_entered(body):
+	# If the NPC hits a normal loiter point while walking
+	if body == self and state == State.WALKING:
+		if randf() < 0.4: # 40% chance to stop and loiter
+			_start_loiter()
 
-func _pick_new_destination():
-	target_room_x = room_positions.pick_random()
-	target_floor_y = [ground_y, upstairs_y].pick_random()
+func _start_loiter():
+	state = State.IDLE
+	loiter_timer = randf_range(3.0, 6.0) # Stop for 3-6 seconds
 	
-	if target_floor_y != current_floor_y:
-		state = State.WALKING_TO_STAIRS
-	else:
-		state = State.WALKING_TO_ROOM
-
-func _move_towards(dest_x: float, dest_y: float, next_state: State):
-	var diff_x = dest_x - global_position.x
-	var diff_y = dest_y - global_position.y
-	
-	if abs(diff_x) > 2.0:
-		velocity.x = sign(diff_x) * speed
-		velocity.y = 0
-	elif abs(diff_y) > 2.0:
-		velocity.x = 0
-		velocity.y = sign(diff_y) * speed
-	else:
-		velocity = Vector2.ZERO
-		global_position = Vector2(dest_x, dest_y)
-		current_floor_y = dest_y
-		
-		if next_state == State.IDLE:
-			idle_timer = randf_range(2.0, 5.0)
-		state = next_state
+	# Small chance to turn around after stopping
+	if randf() > 0.5:
+		walk_direction *= -1
 
 # --------------------------------------------------
-# REACTION SYSTEM
+# STAIRS
 # --------------------------------------------------
-
-func _on_spooked(pos: Vector2):
-	# Don't react to spooks if already befriended
-	if is_befriended or state == State.REACT or global_position.distance_to(pos) > 120.0:
+func _on_stair_entered(body, stair):
+	if body != self or state != State.WALKING or stair_cooldown:
 		return
+
+	state = State.USING_STAIRS
+	stair_cooldown = true
+	_use_stairs(stair)
+
+func _use_stairs(stair):
+	# 1. Random Chance to use stairs
+	if randf() > 0.5: 
+		state = State.WALKING
+		await get_tree().create_timer(3.0).timeout
+		stair_cooldown = false
+		return
+
+	# 2. Pause and IDLE before teleport
+	anim.play("idle")
+	await get_tree().create_timer(1.0).timeout
+
+	# 3. Teleportation Process
+	var target_floor = get_node_or_null(stair.target_path)
+	if target_floor == null:
+		var search_name = "Floor 2" if "Up" in stair.name else "Floor 1"
+		target_floor = get_tree().current_scene.find_child(search_name, true, false)
+
+	if target_floor:
+		visible = false 
+		var my_pf = get_parent() 
+		if my_pf and my_pf is PathFollow2D:
+			my_pf.get_parent().remove_child(my_pf)
+			target_floor.add_child(my_pf)
+			my_pf.progress_ratio = stair.target_progress_ratio
+			if stair.flip_direction:
+				walk_direction *= -1
+		
+		await get_tree().create_timer(0.5).timeout
+		
+		# 4. Arrived - IDLE again before moving
+		visible = true
+		anim.play("idle")
+		await get_tree().create_timer(1.0).timeout
+		state = State.WALKING
+	else:
+		state = State.WALKING
 	
-	consecutive_amuses = 0 
+	await get_tree().create_timer(2.0).timeout
+	stair_cooldown = false
+
+# --------------------------------------------------
+# REACTION SYSTEM & ANIMATIONS (Remains same)
+# --------------------------------------------------
+func _on_spooked(pos: Vector2):
+	if is_befriended or state == State.REACT or global_position.distance_to(pos) > 120.0: return
+	consecutive_amuses = 0
 	consecutive_spooks += 1
-	
-	var reaction = "scared"
-	if consecutive_spooks >= 3:
-		reaction = "spooked"
-	
+	var reaction = "scared" if consecutive_spooks < 3 else "spooked"
 	_trigger_reaction(reaction)
 
 func _on_amused(pos: Vector2):
-	# Stop tracking amuses once friendship is permanent
-	if is_befriended or state == State.REACT or global_position.distance_to(pos) > 120.0:
-		return
-		
+	if is_befriended or state == State.REACT or global_position.distance_to(pos) > 120.0: return
 	consecutive_spooks = 0
 	consecutive_amuses += 1
-	
 	var reaction = "smiling"
-	if consecutive_amuses == 2:
-		reaction = "amused"
+	if consecutive_amuses == 2: reaction = "amused"
 	elif consecutive_amuses >= 3:
 		reaction = "befriended"
-		is_befriended = true # Permanent status change
-		
+		is_befriended = true
 	_trigger_reaction(reaction)
 
 func _trigger_reaction(anim_name: String):
 	state = State.REACT
-	velocity = Vector2.ZERO
-	
 	if anim.sprite_frames.has_animation(anim_name):
 		anim.play(anim_name)
-	
-	# After the reaction animation plays for 2 seconds, resume life
 	await get_tree().create_timer(2.0).timeout
-	_pick_new_destination()
-
-# --------------------------------------------------
-# ANIMATION MANAGEMENT
-# --------------------------------------------------
+	state = State.WALKING
 
 func _update_animations():
-	# While reacting to a furniture item, let that animation play
-	if state == State.REACT: 
-		return
-	
-	var is_moving = abs(velocity.x) > 0.1 or abs(velocity.y) > 0.1
-	
+	if state == State.REACT: return
+	var is_moving = velocity.length() > 5.0
 	if is_befriended:
-		# Use permanent befriended versions of walk/idle
-		if is_moving:
-			if anim.animation != "befriended walk": anim.play("befriended walk")
-		else:
-			if anim.animation != "befriended idle": anim.play("befriended idle")
+		anim.play("befriended walk" if is_moving else "befriended idle")
 	else:
-		# Use normal versions of walk/idle
-		if is_moving:
-			if anim.animation != "walk": anim.play("walk")
-		else:
-			if anim.animation != "idle": anim.play("idle")
-
-	# Flip sprite based on movement direction
-	if velocity.x != 0:
-		anim.flip_h = velocity.x < 0
+		anim.play("walk" if is_moving else "idle")
+	if velocity.x != 0: anim.flip_h = velocity.x < 0
