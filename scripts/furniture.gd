@@ -8,10 +8,11 @@ signal amused(position: Vector2)
 
 enum PossessorType { NONE, PLAYER, NPC }
 var possessor := PossessorType.NONE
+var move_direction := Vector2.ZERO
 
 # NPC possession
 enum PossessionMode { MOVE, SPOOK, FLOAT }
-@export var move_speed := 60.0
+@export var move_speed := 120.0
 @export var float_height := 60.0
 @export var min_possession_time := 1.5
 @export var max_possession_time := 3.0
@@ -24,6 +25,10 @@ enum PossessionMode { MOVE, SPOOK, FLOAT }
 	PossessionMode.FLOAT
 ]
 
+@export var gravity := 900.0
+
+
+var is_dropping := false
 var npc_possessed := false
 var action_queue: Array = []
 var current_action := PossessionMode.MOVE
@@ -65,25 +70,61 @@ func clear_outline():
 # PHYSICS PROCESS
 # --------------------
 func _physics_process(delta):
+	# --- NOT POSSESSED ---
+	if possessor == PossessorType.NONE:
+		if can_move:
+			if not is_on_floor():
+				velocity.y += gravity * delta
+				is_dropping = true
+			else:
+				if is_dropping:
+					velocity.y = 0
+					is_dropping = false
+					anim.play("idle")
+
+			move_and_slide()
+		else:
+			velocity = Vector2.ZERO
+		return
+
+	# --- PLAYER POSSESSION ---
 	if possessor == PossessorType.PLAYER:
-		player_control(delta)
-	elif possessor == PossessorType.NPC:
+		if can_move:
+			player_control(delta)
+		else:
+			velocity = Vector2.ZERO
+		return
+
+	# --- NPC POSSESSION (ALWAYS RUNS) ---
+	if possessor == PossessorType.NPC:
 		npc_control(delta)
+<<<<<<< Updated upstream
 	else:
 		velocity = Vector2.ZERO
 		
 
+=======
+>>>>>>> Stashed changes
 
 # --------------------
 # PLAYER CONTROL
 # --------------------
 func player_control(delta):
 	if not can_move:
-		velocity = Vector2.ZERO
+		velocity = velocity.move_toward(Vector2.ZERO, player_move_speed * 5 * delta)
+		move_and_slide()
 		return
+		
+	var input_vector := Vector2.ZERO
+	input_vector.x = Input.get_axis("ui_left", "ui_right")
+	input_vector.y = Input.get_axis("ui_up", "ui_down")
+	input_vector = input_vector.normalized() # prevent faster diagonal speed
+	
+	 # Smoothly accelerate/decelerate
+	var target_velocity = input_vector * player_move_speed
+	velocity.x = move_toward(velocity.x, target_velocity.x, player_move_speed * 5 * delta)
+	velocity.y = move_toward(velocity.y, target_velocity.y, player_move_speed * 5 * delta)
 
-	var dir = Input.get_axis("ui_left", "ui_right")
-	velocity.x = dir * player_move_speed
 	move_and_slide()
 
 func possess_by_player():
@@ -99,6 +140,7 @@ func unpossess_by_player():
 	possessor = PossessorType.NONE
 	clear_outline()
 	velocity = Vector2.ZERO
+	is_dropping = can_move
 	print("Player released furniture")
 
 # Called by the player to trigger the amuse animation
@@ -138,6 +180,8 @@ func on_possessed() -> bool:
 	var count := randi_range(1, min(2, allowed_npc_actions.size()))
 	while action_queue.size() < count:
 		var action = allowed_npc_actions.pick_random()
+		if not can_move and action == PossessionMode.MOVE:
+			continue
 		if action not in action_queue:
 			action_queue.append(action)
 	start_next_action()
@@ -163,12 +207,27 @@ func start_next_action():
 			timer = spook_duration
 		PossessionMode.MOVE:
 			timer = randf_range(min_possession_time,max_possession_time)
+			# Random direction for full 2D
+			move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
 
 func move_possession(delta):
-	velocity = Vector2(direction*move_speed,0)
+	if not can_move:
+		velocity = velocity.move_toward(Vector2.ZERO, move_speed * 5 * delta)
+		return
+		
+	 # Smoothly adjust velocity toward move_direction * move_speed
+	var target_velocity = move_direction * move_speed
+	velocity.x = move_toward(velocity.x, target_velocity.x, move_speed * 5 * delta)
+	velocity.y = move_toward(velocity.y, target_velocity.y, move_speed * 5 * delta)
 	move_and_slide()
+	
+	if is_on_wall():
+		move_direction = -move_direction # bounce
+	
+	# flip horizontal sprite if moving left
 	if abs(velocity.x) > 0:
 		anim.flip_h = velocity.x < 0
+
 	if not anim_started:
 		anim.play("move")
 		anim_started = true
@@ -194,6 +253,7 @@ func end_npc_possession():
 	npc_possessed = false
 	possessor = PossessorType.NONE
 	velocity = Vector2.ZERO
+	is_dropping = can_move
 	if current_action == PossessionMode.FLOAT:
 		global_position.y = float_base_y
 	anim.stop()

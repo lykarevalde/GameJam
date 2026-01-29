@@ -398,6 +398,8 @@ frame_progress = 0.18377854
 script = ExtResource("5_p4han")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(0.065801665, 0.8316342)
@@ -406,3 +408,8 @@ polygon = PackedVector2Array(-14.065802, -8.8316345, 10.934198, -11.8316345, 14.
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.065801665, 0.8316342)
 polygon = PackedVector2Array(-14.065802, -8.8316345, 10.934198, -11.8316345, 14.934198, 8.1683655, -11.065802, 12.1683655, -14.065802, -5.831634)
+
+[connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_body_exited"]
