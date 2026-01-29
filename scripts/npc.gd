@@ -30,21 +30,13 @@ var is_befriended := false
 func _ready():
 	# Furniture reactions
 	for f in get_tree().get_nodes_in_group("furniture"):
-		f.spooked.connect(_on_spooked)
-		f.amused.connect(_on_amused)
-
-	# Stair areas
-	for stair in get_tree().get_nodes_in_group("stairs"):
-		stair.body_entered.connect(_on_stair_entered.bind(stair))
-		
-	# Loiter areas
-	if loiter_points_path:
-		var container = get_node_or_null(loiter_points_path)
-		if container:
-			for area in container.get_children():
-				if area is Area2D:
-					area.body_entered.connect(_on_loiter_entered)
-
+		# Check if the node actually has the signals before connecting
+		if f.has_signal("spooked"):
+			f.spooked.connect(_on_spooked)
+		if f.has_signal("amused"):
+			f.amused.connect(_on_amused)
+		else:
+			push_warning("Node " + f.name + " is in furniture group but lacks signals!")
 # --------------------------------------------------
 # PHYSICS
 # --------------------------------------------------
