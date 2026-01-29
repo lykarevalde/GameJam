@@ -100,10 +100,13 @@ func _physics_process(delta):
 		npc_control(delta)
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	else:
 		velocity = Vector2.ZERO
 		
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
