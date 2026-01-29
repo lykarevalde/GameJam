@@ -10,7 +10,7 @@ signal game_lost
 # -----------------------------
 var score := 0
 var befriended_kids := 0
-const TOTAL_KIDS := 2  # total NPC kids to befriend
+const TOTAL_KIDS := 1  # total NPC kids to befriend
 
 # Path to your scoreboard scene
 @export var scoreboard_scene_path := "res://scenes/scoreboard.tscn"
@@ -18,17 +18,13 @@ const TOTAL_KIDS := 2  # total NPC kids to befriend
 func _ready():
 	# Connect furniture signals for scoring
 	for f in get_tree().get_nodes_in_group("furniture"):
-		if f.has_signal("player_possessed"):
-			f.player_possessed.connect(_on_player_possessed)
-		if f.has_signal("player_amused"):
-			f.player_amused.connect(_on_player_amused)
+		if f.has_signal("player_possessed_furniture"):
+			f.connect("player_possessed_furniture", Callable(self, "_on_player_possessed"))
 
-	# Connect kid signals for befriending
-	for kid in get_tree().get_nodes_in_group("kids"):
-		if kid.has_method("is_befriended"):
-			kid.connect("tree_exited", Callable(self, "_check_kid_befriended"))
+	# Connect kid signals for scoring
+	# Defer connecting NPC signals until the nodes are fully ready
+	call_deferred("_connect_npc_signals")
 
-	
 	connect("game_won", Callable(self, "_show_scoreboard"))
 	connect("game_lost", Callable(self, "_show_scoreboard"))
 
@@ -45,7 +41,10 @@ func _on_player_possessed() -> void:
 
 func _on_player_amused() -> void:
 	add_score(10)
-
+	
+func _on_player_spooked(penalty: int) -> void:
+	add_score(-penalty)
+	
 func kid_befriended():
 	befriended_kids += 1
 	add_score(100)
@@ -58,13 +57,13 @@ func kid_befriended():
 		ScoreData.final_score = score
 		
 		emit_signal("game_won")
-		end_game()
+		call_deferred("end_game")
 
 
 func _check_kid_befriended() -> void:
 	# This function checks if a kid is befriended (for signals)
 	var befriended_count = 0
-	for kid in get_tree().get_nodes_in_group("kids"):
+	for kid in get_tree().get_nodes_in_group("npcs"):
 		if kid.has_method("is_befriended") and kid.is_befriended:
 			befriended_count += 1
 	befriended_kids = befriended_count
@@ -73,21 +72,48 @@ func _check_kid_befriended() -> void:
 
 
 func end_game():
+	# Freeze all NPCs
+	for kid in get_tree().get_nodes_in_group("npcs"):
+		if kid.is_inside_tree():
+			# Stop their current actions
+			kid.state = kid.State.IDLE
+			# Disconnect their signals so nothing else fires
+			if kid.has_signal("befriended"):
+				kid.befriended.disconnect_all()
+			if kid.has_signal("amused"):
+				kid.amused.disconnect_all()
+			if kid.has_signal("spooked"):
+				kid.spooked.disconnect_all()
+
+	# Reset game state
 	reset_game_state()
-	reset_npcs()
+
+	# Change scene AFTER NPCs are stopped
+	_show_scoreboard()
+
+
 
 func reset_game_state():
 	score = 0
 	befriended_kids = 0
 
 func reset_npcs():
-	for kid in get_tree().get_nodes_in_group("kids"):
+	for kid in get_tree().get_nodes_in_group("npcs"):
 		if kid.is_inside_tree():
 			kid.state = kid.State.WALKING
 			kid.is_befriended = false
 			kid.consecutive_amuses = 0
 			kid.consecutive_spooks = 0
 
+func _connect_npc_signals():
+	for kid in get_tree().get_nodes_in_group("npcs"):
+		if kid.has_signal("befriended"):
+			kid.befriended.connect(kid_befriended)
+		if kid.has_signal("amused"):
+			kid.amused.connect(_on_player_amused)
+		if kid.has_signal("spooked"):
+			kid.spooked.connect(_on_player_spooked)
+			
 
 # -----------------------------
 # GAME OVER / SCOREBOARD

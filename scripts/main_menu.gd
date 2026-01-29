@@ -19,7 +19,7 @@ func _on_how_to_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 
 func _on_scoreboard_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	get_tree().change_scene_to_file("res://scenes/scoreboard.tscn")
 
 
 func _on_credits_pressed() -> void:

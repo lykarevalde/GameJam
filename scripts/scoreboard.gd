@@ -12,6 +12,7 @@ class_name Scoreboard
 # -------------------------
 # Constants
 # -------------------------
+@export var post_game_mode: bool = false  # true if coming from a finished game
 const HIGHSCORE_FILE := "user://highscores.json"
 const MAX_HIGHSCORES := 10
 const FONT_PATH := "res://assets/fonts/Pix32.ttf"  # replace with your font path
@@ -28,8 +29,14 @@ func _input(event: InputEvent) -> void:
 # READY
 # -------------------------
 func _ready() -> void:
-	# Display player's final score
-	score_label.text = "Your Score: %d" % ScoreData.final_score
+	# Hide input/save if we're just viewing from main menu
+	name_input.visible = post_game_mode
+	save_button.visible = post_game_mode
+	
+	# Only show player's score if post_game_mode
+	score_label.visible = post_game_mode
+	if post_game_mode:
+		score_label.text = "Your Score: %d" % ScoreData.final_score
 
 	# Load and display highscores
 	_load_highscores()
@@ -37,8 +44,9 @@ func _ready() -> void:
 	# Apply font to main score label
 	_apply_font(score_label)
 
-	# Connect save button
-	save_button.pressed.connect(_on_save_pressed)
+	# Connect save button only if in post-game mode
+	if post_game_mode:
+		save_button.pressed.connect(_on_save_pressed)
 
 # -------------------------
 # Save Button
@@ -55,7 +63,7 @@ func _on_save_pressed() -> void:
 	_load_highscores()
 
 	# Go back to main game scene
-	var err := get_tree().change_scene_to_file("res://scenes/game.tscn")
+	var err := get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if err != OK:
 		push_error("Failed to load game scene.")
 

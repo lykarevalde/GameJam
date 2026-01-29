@@ -192,6 +192,7 @@ func move_possession(delta):
 	if not anim_started:
 		anim.play("move")
 		anim_started = true
+		emit_signal("spooked", global_position)
 
 func float_possession(delta):
 	global_position.y = float_base_y - chosen_float_height
@@ -200,6 +201,7 @@ func float_possession(delta):
 	if not anim_started:
 		anim.play("move")
 		anim_started = true
+		emit_signal("spooked", global_position)
 
 func spook_possession():
 	velocity = Vector2.ZERO

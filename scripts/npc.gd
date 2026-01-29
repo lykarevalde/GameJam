@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+signal befriended
+signal amused
+signal spooked(penalty: int)
+
 # --------------------------------------------------
 # SETTINGS
 # --------------------------------------------------
@@ -82,6 +86,10 @@ func _on_spooked(ghost_pos: Vector2):
 	if is_befriended or state == State.REACT or state == State.PANIC: return
 	if global_position.distance_to(ghost_pos) > 120.0: return
 	
+	# NPC confirms spook and decides penalty amount
+	var penalty := 2 if state == State.PANIC else 5
+	emit_signal("spooked", penalty)
+	
 	consecutive_spooks += 1
 	# Small decrease: Now takes many more spooks to hit 0 if they had progress
 	trust_score = max(0, trust_score - 5.0) 
@@ -104,9 +112,11 @@ func _on_amused(pos: Vector2):
 
 	if trust_score >= max_trust:
 		is_befriended = true
-		_trigger_reaction("befriended")
+		emit_signal("befriended")
+		call_deferred("_trigger_reaction", "befriended")
 	else:
-		_trigger_reaction("smiling")
+		emit_signal("amused")
+		call_deferred("_trigger_reaction", "smiling")
 
 func _update_trust_ui():
 	# Using a Tween here would make the bar move smoothly
