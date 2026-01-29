@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://do34arsyr8i2x" path="res://assets/Furniture/playroom/bear AMUSE.png" id="1_8vbhc"]
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_cla41"]
 [ext_resource type="Texture2D" uid="uid://b8fgiw7vyso4" path="res://assets/Furniture/playroom/bear MOVE.png" id="1_kv645"]
-[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_t1sex"]
+[ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://scenes/furniture/furniture.gdshader" id="2_t1sex"]
 [ext_resource type="Texture2D" uid="uid://cmm0exm1yl0in" path="res://assets/Furniture/playroom/bear SPOOK.png" id="3_4lvqd"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="4_4lvqd"]
 
