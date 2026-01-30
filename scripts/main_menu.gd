@@ -12,6 +12,8 @@ func _process(delta: float) -> void:
 
 
 func _on_play_pressed() -> void:
+	# Pass a flag to tell the game scene that it should start immediately
+	ScoreData.start_game_from_main_menu = true
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 

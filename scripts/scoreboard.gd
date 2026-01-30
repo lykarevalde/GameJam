@@ -8,6 +8,7 @@ class_name Scoreboard
 @onready var name_input: LineEdit = $MainContainer/VBoxContainer2/NameInput
 @onready var save_button: Button = $MainContainer/VBoxContainer/SaveButton
 @onready var highscore_list: VBoxContainer = $MainContainer/VBoxContainer3/HighscoreList
+@onready var back_button: Button = $MainContainer/VBoxContainer5/BackButton
 
 # -------------------------
 # Constants
@@ -38,7 +39,11 @@ func _ready() -> void:
 	# Only show player's score if post_game_mode
 	score_label.visible = post_game_mode
 	if post_game_mode:
-		score_label.text = "Your Score: %d" % ScoreData.final_score
+		# Display win or lose along with score
+		if ScoreData.game_lost:
+			score_label.text = "You Lost!\nScore: %d" % ScoreData.final_score
+		else:
+			score_label.text = "You Won!\nScore: %d" % ScoreData.final_score
 
 	# Load and display highscores
 	_load_highscores()
@@ -49,6 +54,8 @@ func _ready() -> void:
 	# Connect save button only if in post-game mode
 	if post_game_mode:
 		save_button.pressed.connect(_on_save_pressed)
+		
+	back_button.pressed.connect(_on_back_pressed)
 
 # -------------------------
 # Save Button
@@ -68,6 +75,16 @@ func _on_save_pressed() -> void:
 	var err := get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if err != OK:
 		push_error("Failed to load game scene.")
+
+
+# -------------------------
+# Back Button
+# -------------------------
+func _on_back_pressed() -> void:
+	var err := get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	if err != OK:
+		push_error("Failed to load main menu scene.")
+
 
 # -------------------------
 # Highscore Saving
