@@ -1,4 +1,4 @@
-[gd_scene load_steps=686 format=4 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=689 format=4 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="1_uwrxv"]
@@ -6367,6 +6367,51 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxt1d"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 3
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2iuns"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="GDScript" id="GDScript_sxt1d"]
+script/source = "extends ProgressBar
+
+@export var game_manager_path: NodePath
+var game_manager: Node
+var game_timer: Timer
+
+func _ready():
+	game_manager = get_node(game_manager_path)
+	game_timer = game_manager.game_timer
+	
+	max_value = 100
+	value = 100
+	set_process(true)
+
+func _process(_delta):
+	if game_timer and game_timer.time_left > 0:
+		value = (game_timer.time_left / game_timer.wait_time) * 100
+	else:
+		value = 0
+"
+
 [node name="game scene" type="Node2D"]
 script = ExtResource("1_kvpfn")
 npc_scene = ExtResource("2_dinhu")
@@ -6870,8 +6915,12 @@ offset_top = 18.0
 offset_right = 152.0
 offset_bottom = 45.0
 grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sxt1d")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2iuns")
 value = 100.0
 show_percentage = false
+script = SubResource("GDScript_sxt1d")
+game_manager_path = NodePath("../../../GameManager")
 
 [editable path="TileMap2"]
 [editable path="MotherFatherGhosts/father"]
