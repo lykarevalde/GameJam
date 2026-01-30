@@ -116,7 +116,7 @@ anchor_bottom = 0.21900001
 offset_left = 0.4665451
 offset_top = -0.12512207
 offset_right = 2.7164307
-offset_bottom = -0.53752136
+offset_bottom = 62.46248
 
 [node name="ScoreLabel" type="Label" parent="MainContainer/VBoxContainer4"]
 z_index = 6
@@ -126,3 +126,18 @@ label_settings = SubResource("LabelSettings_ucmtr")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.16000001
+anchor_bottom = 0.162
+offset_left = 44.0
+offset_top = 44.0
+offset_right = -140.92505
+offset_bottom = -66.972946
+
+[node name="BackButton" type="Button" parent="MainContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "BACK"

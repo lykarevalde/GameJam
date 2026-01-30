@@ -74,27 +74,3 @@ func on_possession_end():
 	global_position = original_pos       # snap back to original place
 	play("idle")                         # return to idle animation
 	#print(name, " possession ended")
-
-
-func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
-
-
-func _on_area_2d_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.

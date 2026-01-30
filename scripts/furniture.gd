@@ -8,6 +8,7 @@ signal player_possessed_furniture
 enum PossessorType { NONE, PLAYER, NPC }
 var possessor := PossessorType.NONE
 var move_direction := Vector2.ZERO
+var anim_locked := false  # Prevents movement animation from overriding others
 
 # NPC Possession
 enum PossessionMode { MOVE, SPOOK, FLOAT }
@@ -53,6 +54,8 @@ func _on_anim_finished():
 			current_player_possessor.spend_energy()
 			current_player_possessor = null # Clear after use
 			
+	# Unlock animation and return to idle
+	anim_locked = false
 	anim.play("idle")
 
 # --------------------
@@ -100,6 +103,18 @@ func player_control(delta):
 
 	move_and_slide()
 	
+	# ----------------------------
+	# Handle animation if not locked
+	# ----------------------------
+	if not anim_locked:
+		if input_vector.length() > 0:
+			if anim.animation != "move":
+				anim.play("move")
+		else:
+			if anim.animation != "idle":
+				anim.play("idle")
+
+
 
 # --------------------
 # Possession Functions
@@ -122,6 +137,9 @@ func unpossess_by_player():
 
 func amuse(player_ref: Node):
 	if possessor != PossessorType.PLAYER: return
+	
+	# Lock animation so player_control() won't override
+	anim_locked = true
 	
 	# Store player reference to charge them when animation finishes
 	current_player_possessor = player_ref
