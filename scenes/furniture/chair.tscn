@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=49 format=3 uid="uid://b1guq66kuu3xo"]
+=======
+[gd_scene load_steps=50 format=3 uid="uid://b1guq66kuu3xo"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_hm0ya"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_ic553"]
@@ -6,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://bvkodmm55hxxi" path="res://assets/Furniture/classroom/chair MOVE.png" id="4_8sqtu"]
 [ext_resource type="Texture2D" uid="uid://dy1wvg02fhhgk" path="res://assets/Furniture/classroom/chair SPOOK.png" id="5_3fxfv"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="6_6wamv"]
+<<<<<<< HEAD
+=======
+[ext_resource type="AudioStream" uid="uid://qwj1owihevrb" path="res://assets/sounds/chair.ogg" id="7_oig2d"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dm6fm"]
 size = Vector2(14, 25)
@@ -328,13 +336,23 @@ frame_progress = 1.0
 script = ExtResource("6_6wamv")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+<<<<<<< HEAD
 collision_layer = 4
 collision_mask = 2
+=======
+>>>>>>> edbdc08 (bgm and sfx)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_dm6fm")
 
+<<<<<<< HEAD
+=======
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_oig2d")
+volume_db = -10.0
+
+>>>>>>> edbdc08 (bgm and sfx)
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_body_entered"]

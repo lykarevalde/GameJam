@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=62 format=3 uid="uid://bp5mp6odg3mb"]
+=======
+[gd_scene load_steps=63 format=3 uid="uid://bp5mp6odg3mb"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_8yju0"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_qmidk"]
@@ -6,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://dmaf4qn6vclr3" path="res://assets/Furniture/classroom/desk MOVE.png" id="4_ialm2"]
 [ext_resource type="Texture2D" uid="uid://dc6np2pjlruy8" path="res://assets/Furniture/classroom/desk SPOOK.png" id="5_71tqa"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="6_5ndd0"]
+<<<<<<< HEAD
+=======
+[ext_resource type="AudioStream" uid="uid://l3d3s1vju45s" path="res://assets/sounds/desk.ogg" id="7_qmidk"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bp0mf"]
 shader = ExtResource("2_qmidk")
@@ -415,8 +423,11 @@ frame_progress = 1.0
 script = ExtResource("6_5ndd0")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+<<<<<<< HEAD
 collision_layer = 4
 collision_mask = 2
+=======
+>>>>>>> edbdc08 (bgm and sfx)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(0, 18)
@@ -426,6 +437,13 @@ shape = SubResource("RectangleShape2D_ixcxi")
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_ixcxi")
 
+<<<<<<< HEAD
+=======
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_qmidk")
+volume_db = -10.0
+
+>>>>>>> edbdc08 (bgm and sfx)
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_body_entered"]
