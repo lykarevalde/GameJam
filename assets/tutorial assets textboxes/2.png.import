@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pwi2tjfv0u33"
-path="res://.godot/imported/4.png-9f166975ea8713b6296436290392f652.ctex"
+uid="uid://o5c2cg4bba8j"
+path="res://.godot/imported/2.png-d5fcff7b74a7a65f2e1052cfe8808952.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tutorial assets textboxes/4.png"
-dest_files=["res://.godot/imported/4.png-9f166975ea8713b6296436290392f652.ctex"]
+source_file="res://assets/tutorial assets textboxes/2.png"
+dest_files=["res://.godot/imported/2.png-d5fcff7b74a7a65f2e1052cfe8808952.ctex"]
 
 [params]
 

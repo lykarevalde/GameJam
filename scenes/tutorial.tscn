@@ -1,11 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://er4cr1nu4dri"]
+[gd_scene load_steps=17 format=3 uid="uid://er4cr1nu4dri"]
 
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_8ho6b"]
 [ext_resource type="Script" uid="uid://b6b8u4liwgwwh" path="res://scripts/tutorial.gd" id="1_gbqnl"]
 [ext_resource type="Texture2D" uid="uid://dh7624vearbdr" path="res://assets/tileset/tileset.png" id="2_6yjpi"]
-[ext_resource type="PackedScene" uid="uid://xkqwm1nbqflk" path="res://scenes/tutorial_furniture.tscn" id="3_4kmhl"]
 [ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/krysta_player.tscn" id="3_cq4me"]
-[ext_resource type="PackedScene" uid="uid://dc7mvbnj3itrt" path="res://scenes/tutorial_player.tscn" id="3_ph3nu"]
 [ext_resource type="PackedScene" uid="uid://d0o8lmhmxg65u" path="res://scenes/furniture/horse.tscn" id="4_6yjpi"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="8_ckvwl"]
 [ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="9_nlqja"]
@@ -342,6 +340,11 @@ point_count = 2
 position = Vector2(-476, -342)
 script = ExtResource("1_gbqnl")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InstructionPrompt" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(-476, -342)
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-17, 25)
 tile_set = SubResource("TileSet_cq4me")
@@ -355,11 +358,6 @@ position = Vector2(459, 378)
 position = Vector2(-41, -26)
 collision_mask = 17
 
-[node name="tutorial furniture" parent="furniture" instance=ExtResource("3_4kmhl")]
-visible = false
-collision_layer = 2
-collision_mask = 1
-
 [node name="Player" parent="." instance=ExtResource("3_cq4me")]
 position = Vector2(514, 345)
 collision_mask = 8
@@ -367,10 +365,6 @@ collision_mask = 8
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -18)
 zoom = Vector2(4, 4)
-
-[node name="tutorial player" parent="." instance=ExtResource("3_ph3nu")]
-visible = false
-position = Vector2(514, 345)
 
 [node name="ghost world borders" type="StaticBody2D" parent="."]
 collision_layer = 8
@@ -417,20 +411,6 @@ position = Vector2(-94, -38)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_nlqja")
 
-[node name="InstructionLabel" type="Label" parent="."]
-offset_left = 460.0
-offset_top = 284.0
-offset_right = 500.0
-offset_bottom = 307.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 7
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
-
 [node name="Enemy" parent="." node_paths=PackedStringArray("furniture_root") instance=ExtResource("8_ckvwl")]
 visible = false
 position = Vector2(390, 375)
@@ -445,7 +425,7 @@ rotation = 3.1369631
 rotates = false
 loop = false
 
-[node name="NPC" parent="Path2D/PathFollow2D" instance=ExtResource("9_nlqja")]
+[node name="NPC" parent="Path2D/PathFollow2D" groups=["npcs"] instance=ExtResource("9_nlqja")]
 rotation = 3.1415927
 
 [node name="Node2D" type="Node2D" parent="."]
