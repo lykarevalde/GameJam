@@ -9,7 +9,7 @@ signal spooked(penalty: int)
 # --------------------------------------------------
 @export var speed := 60.0
 @export var loiter_points_path: NodePath
-@export var max_trust := 100.0
+@export var max_trust := 25.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var path_follow: PathFollow2D = get_parent()
