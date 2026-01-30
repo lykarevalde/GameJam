@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=59 format=3 uid="uid://c2sq216uoqc1h"]
+=======
+[gd_scene load_steps=61 format=3 uid="uid://c2sq216uoqc1h"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [ext_resource type="Texture2D" uid="uid://bc3imfjnpxntp" path="res://assets/Furniture/library/globe AMUSE.png" id="1_38vsv"]
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_fr0q2"]
@@ -6,6 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://88k08w1xelpq" path="res://assets/Furniture/library/globe MOVE.png" id="2_bgc4m"]
 [ext_resource type="Texture2D" uid="uid://jyabw37cm5dg" path="res://assets/Furniture/library/globe SPOOK.png" id="3_fr0q2"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_ahub4"]
+<<<<<<< HEAD
+=======
+[ext_resource type="AudioStream" uid="uid://xwa0ltut0nnl" path="res://assets/sounds/globe 2.ogg" id="7_ibcir"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibcir"]
+radius = 13.0
+>>>>>>> edbdc08 (bgm and sfx)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibcir"]
 shader = ExtResource("2_ahub4")
@@ -384,6 +395,13 @@ radius = 13.0
 [node name="Globe" type="CharacterBody2D"]
 script = ExtResource("1_fr0q2")
 
+<<<<<<< HEAD
+=======
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_ibcir")
+
+>>>>>>> edbdc08 (bgm and sfx)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ibcir")
 position = Vector2(0, 6)
@@ -396,15 +414,23 @@ script = ExtResource("5_ahub4")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
 position = Vector2(1, 3)
+<<<<<<< HEAD
 collision_layer = 4
 collision_mask = 2
+=======
+>>>>>>> edbdc08 (bgm and sfx)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(-1, 11)
 shape = SubResource("CircleShape2D_y7hnh")
 
+<<<<<<< HEAD
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-13, 16, -7, 8, 4, 9, 11, 15, 11, 24, 8, 29, 9, 30, 2, 33, 2, 34, 5, 34, 5, 37, -5, 37, -5, 34, -2, 34, -2, 33, -12, 26)
+=======
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ibcir")
+>>>>>>> edbdc08 (bgm and sfx)
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

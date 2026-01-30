@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 [gd_scene load_steps=50 format=3 uid="uid://3ufjxkeuqhhu"]
+=======
+[gd_scene load_steps=51 format=3 uid="uid://3ufjxkeuqhhu"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_jxxox"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_hd8xs"]
 [ext_resource type="Texture2D" uid="uid://iflkdbd8k878" path="res://assets/Furniture/classroom/board AMUSE.png" id="3_xl5xt"]
 [ext_resource type="Texture2D" uid="uid://c466vh4uls5g0" path="res://assets/Furniture/classroom/board SPOOK.png" id="4_af2xn"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_hukhi"]
+<<<<<<< HEAD
+=======
+[ext_resource type="AudioStream" uid="uid://cx66i67v47iwa" path="res://assets/sounds/chalkboard.ogg" id="6_hd8xs"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o25p5"]
 shader = ExtResource("2_hd8xs")
@@ -330,8 +338,11 @@ autoplay = "idle"
 script = ExtResource("5_hukhi")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+<<<<<<< HEAD
 collision_layer = 4
 collision_mask = 2
+=======
+>>>>>>> edbdc08 (bgm and sfx)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 shape = SubResource("RectangleShape2D_7i5ou")
@@ -339,6 +350,13 @@ shape = SubResource("RectangleShape2D_7i5ou")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7i5ou")
 
+<<<<<<< HEAD
+=======
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_hd8xs")
+volume_db = -10.0
+
+>>>>>>> edbdc08 (bgm and sfx)
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_body_entered"]

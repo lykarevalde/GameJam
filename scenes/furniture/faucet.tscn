@@ -1,10 +1,18 @@
+<<<<<<< HEAD
 [gd_scene load_steps=36 format=3 uid="uid://mdtuh3u53lmx"]
+=======
+[gd_scene load_steps=37 format=3 uid="uid://mdtuh3u53lmx"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_28j7e"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_rhaq3"]
 [ext_resource type="Texture2D" uid="uid://u6gkonqulhxq" path="res://assets/Furniture/cr/faucet AMUSE.png" id="2_yct1y"]
 [ext_resource type="Texture2D" uid="uid://cteecg5cnordl" path="res://assets/Furniture/cr/faucet SPOOK.png" id="3_rhaq3"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="4_o7h8t"]
+<<<<<<< HEAD
+=======
+[ext_resource type="AudioStream" uid="uid://cjlqgim2shueq" path="res://assets/sounds/faucet.ogg" id="6_rhaq3"]
+>>>>>>> edbdc08 (bgm and sfx)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8b77w"]
 radius = 7.0
@@ -237,13 +245,23 @@ autoplay = "idle"
 script = ExtResource("4_o7h8t")
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+<<<<<<< HEAD
 collision_layer = 4
 collision_mask = 2
+=======
+>>>>>>> edbdc08 (bgm and sfx)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(-3, 21)
 shape = SubResource("CapsuleShape2D_8b77w")
 
+<<<<<<< HEAD
+=======
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rhaq3")
+volume_db = -10.0
+
+>>>>>>> edbdc08 (bgm and sfx)
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_body_entered"]
