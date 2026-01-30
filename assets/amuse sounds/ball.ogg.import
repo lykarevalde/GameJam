@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bdk68nikhgyx4"
+path="res://.godot/imported/ball.ogg-08570d46d6d6fbdd177dbc2dc6481408.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/amuse sounds/ball.ogg"
+dest_files=["res://.godot/imported/ball.ogg-08570d46d6d6fbdd177dbc2dc6481408.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

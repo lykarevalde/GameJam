@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsccbrixr6r71"
+path="res://.godot/imported/GLOBEEE.ogg-5c006242acd7ab290de3b7c2545e766f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/spook soundss/GLOBEEE.ogg"
+dest_files=["res://.godot/imported/GLOBEEE.ogg-5c006242acd7ab290de3b7c2545e766f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

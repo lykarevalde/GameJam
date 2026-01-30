@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cxw7u4lv5vr8a"
+path="res://.godot/imported/portrait.ogg-2350c9900f22b31d99f32b6ef206ea3b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/spook soundss/portrait.ogg"
+dest_files=["res://.godot/imported/portrait.ogg-2350c9900f22b31d99f32b6ef206ea3b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
