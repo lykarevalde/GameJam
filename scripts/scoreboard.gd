@@ -29,6 +29,8 @@ func _input(event: InputEvent) -> void:
 # READY
 # -------------------------
 func _ready() -> void:
+	post_game_mode = ScoreData.post_game_mode
+	
 	# Hide input/save if we're just viewing from main menu
 	name_input.visible = post_game_mode
 	save_button.visible = post_game_mode
