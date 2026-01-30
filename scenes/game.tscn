@@ -41,8 +41,8 @@
 [ext_resource type="PackedScene" uid="uid://dcskmhopii3hc" path="res://scenes/loiter_area.tscn" id="39_7025r"]
 [ext_resource type="Texture2D" uid="uid://5um7u84syw2o" path="res://assets/npc sprites/default/girl_default_2.png" id="39_oaba0"]
 [ext_resource type="Texture2D" uid="uid://ct5jgacbwpu3b" path="res://assets/npc sprites/scared/girl_scared_2.png" id="40_458eo"]
-[ext_resource type="Script" path="res://scripts/stairup.gd" id="40_m4url"]
-[ext_resource type="Script" path="res://scripts/stairdown.gd" id="41_8ool0"]
+[ext_resource type="Script" uid="uid://bi8c52d8vdk6k" path="res://scripts/stairup.gd" id="40_m4url"]
+[ext_resource type="Script" uid="uid://cc86b1txvbee6" path="res://scripts/stairdown.gd" id="41_8ool0"]
 [ext_resource type="Texture2D" uid="uid://yp7angjx5ivc" path="res://assets/npc sprites/amused/boy_amuse_2.png" id="41_h3rex"]
 [ext_resource type="Texture2D" uid="uid://bfqn5s31atmgr" path="res://assets/npc sprites/befriended/boy_befriended_2.png" id="42_fedci"]
 [ext_resource type="Texture2D" uid="uid://b5upqumjnd3dk" path="res://assets/npc sprites/default/boy_default_2.png" id="43_8qswn"]
@@ -71,7 +71,7 @@
 [ext_resource type="Texture2D" uid="uid://cvaycqc5ur1o1" path="res://assets/npc sprites/befriended/boy_befriended_5.png" id="66_sxt1d"]
 [ext_resource type="Texture2D" uid="uid://bbd4wr7mdmr5s" path="res://assets/npc sprites/default/boy_default_5.png" id="67_2iuns"]
 [ext_resource type="Texture2D" uid="uid://dfjd58s3cfhov" path="res://assets/npc sprites/scared/boy_scared_5.png" id="68_7gkqi"]
-[ext_resource type="Script" uid="uid://ci4pudxu3dql2" path="res://scripts/game_manager.gd" id="72_sxt1d"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="72_sxt1d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m4url"]
 texture = ExtResource("4_7025r")
@@ -6846,6 +6846,32 @@ position = Vector2(915, 443)
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("72_sxt1d")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="TimeProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(300, 20)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 18.0
+offset_right = 152.0
+offset_bottom = 45.0
+grow_horizontal = 2
+value = 100.0
+show_percentage = false
 
 [editable path="TileMap2"]
 [editable path="MotherFatherGhosts/father"]
