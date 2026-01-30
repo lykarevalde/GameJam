@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://er4cr1nu4dri"]
+[gd_scene load_steps=19 format=3 uid="uid://er4cr1nu4dri"]
 
 [ext_resource type="Texture2D" uid="uid://l5axf47yylfg" path="res://assets/interior_tileset_placeholder.png" id="1_8ho6b"]
 [ext_resource type="Script" uid="uid://b6b8u4liwgwwh" path="res://scripts/tutorial.gd" id="1_gbqnl"]
 [ext_resource type="Texture2D" uid="uid://dh7624vearbdr" path="res://assets/tileset/tileset.png" id="2_6yjpi"]
+[ext_resource type="FontFile" uid="uid://cde05rfkpag7i" path="res://assets/fonts/Minecraft.ttf" id="2_nlqja"]
 [ext_resource type="PackedScene" uid="uid://cxwfxl20tdd6" path="res://scenes/krysta_player.tscn" id="3_cq4me"]
 [ext_resource type="PackedScene" uid="uid://d0o8lmhmxg65u" path="res://scenes/furniture/horse.tscn" id="4_6yjpi"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="8_ckvwl"]
 [ext_resource type="PackedScene" uid="uid://btf4w0qn217h6" path="res://scenes/npc.tscn" id="9_nlqja"]
 [ext_resource type="PackedScene" uid="uid://dcskmhopii3hc" path="res://scenes/loiter_area.tscn" id="10_0epgs"]
+[ext_resource type="PackedScene" uid="uid://bfuejy3kyaonp" path="res://scenes/energy scene.tscn" id="10_g2equ"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4kmhl"]
 texture = ExtResource("1_8ho6b")
@@ -345,6 +347,21 @@ script = ExtResource("1_gbqnl")
 [node name="InstructionPrompt" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(-476, -342)
 
+[node name="PressF" type="Label" parent="CanvasLayer"]
+offset_left = -77.0
+offset_top = -50.0
+offset_right = -37.0
+offset_bottom = -27.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_nlqja")
+theme_override_font_sizes/font_size = 15
+
+[node name="skip" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_nlqja")
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-17, 25)
 tile_set = SubResource("TileSet_cq4me")
@@ -358,9 +375,10 @@ position = Vector2(459, 378)
 position = Vector2(-41, -26)
 collision_mask = 17
 
-[node name="Player" parent="." instance=ExtResource("3_cq4me")]
+[node name="Player" parent="." node_paths=PackedStringArray("energy_sprite") instance=ExtResource("3_cq4me")]
 position = Vector2(514, 345)
 collision_mask = 8
+energy_sprite = NodePath("../EnergySystem/UI/Control/EnergySprite")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -18)
@@ -435,3 +453,7 @@ position = Vector2(529, 392)
 
 [node name="LoiterArea2" parent="Node2D" instance=ExtResource("10_0epgs")]
 position = Vector2(440, 392)
+
+[node name="EnergySystem" parent="." instance=ExtResource("10_g2equ")]
+
+[editable path="EnergySystem"]
