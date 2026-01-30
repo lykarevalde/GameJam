@@ -6,7 +6,6 @@ extends Node2D
 @onready var skip = $CanvasLayer/skip
 @onready var enemy = $Enemy
 @onready var child = $NPC
-#@export var camera: Camera2D
 
 var prompt_textures := [
 	preload("res://assets/tutorial assets textboxes/1.png"), #0
@@ -109,7 +108,8 @@ func on_child_befriended():
 	fake_trust_done = true
 
 func end_tutorial():
-	prompt.visible = false
-	pressF.hide()
-	enemy.visible = false
-	enemy.set_physics_process(false)
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	#prompt.visible = false
+	#pressF.hide()
+	#enemy.visible = false
+	#enemy.set_physics_process(false)
