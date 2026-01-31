@@ -67,10 +67,14 @@ func _on_save_pressed() -> void:
 
 	_save_highscore(player_name, ScoreData.final_score)
 
+	ScoreData.post_game_mode = false
+	ScoreData.game_lost = false
+	
 	# Reset input and refresh highscores
 	name_input.text = ""
 	_load_highscores()
-
+	
+	
 	# Go back to main game scene
 	var err := get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	if err != OK:

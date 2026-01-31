@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmfgw4woan5or"]
+[gd_scene load_steps=11 format=3 uid="uid://cmfgw4woan5or"]
 
 [ext_resource type="Script" uid="uid://bkdd7lqbhf0sr" path="res://scripts/scoreboard.gd" id="1_ucmtr"]
+[ext_resource type="Texture2D" uid="uid://qj4bbnllw2qv" path="res://scoreboard assets/bg win.png" id="2_cxde7"]
 [ext_resource type="FontFile" uid="uid://3sxyggbrtefy" path="res://assets/fonts/pixel.ttf" id="2_w5fga"]
+[ext_resource type="Texture2D" uid="uid://cl62mbyjugybu" path="res://scoreboard assets/scoreboard.png" id="3_6lsbm"]
 [ext_resource type="FontFile" uid="uid://bw4nbdkcf0frg" path="res://assets/fonts/Pix32.ttf" id="3_g67ru"]
 
 [sub_resource type="Theme" id="Theme_ucmtr"]
@@ -49,34 +51,47 @@ offset_bottom = 0.079956055
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="MainContainer"]
+position = Vector2(858, 537.5)
+scale = Vector2(8.968751, 9.916668)
+texture = ExtResource("2_cxde7")
+
+[node name="Scoreboard" type="Sprite2D" parent="MainContainer"]
+position = Vector2(371.99994, 164.49997)
+scale = Vector2(2.5999994, 3.6624994)
+texture = ExtResource("3_6lsbm")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.76100004
-anchor_top = 0.80200005
-anchor_right = 0.93500006
-anchor_bottom = 0.90800005
-offset_left = 0.3876953
-offset_top = -0.22418213
-offset_right = 0.40673828
-offset_bottom = 0.28735352
+anchor_left = 0.31300002
+anchor_top = 0.89800006
+anchor_right = 0.37500003
+anchor_bottom = 0.95800006
+offset_left = -0.82214355
+offset_top = 0.088134766
+offset_right = -0.35559082
+offset_bottom = 0.2833252
 
 [node name="SaveButton" type="Button" parent="MainContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_w5fga")
+theme_override_font_sizes/font_size = 31
 text = "SAVE"
+flat = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.804
-anchor_right = 0.749
-anchor_bottom = 0.90800005
-offset_left = 0.72029114
-offset_top = -0.38427734
-offset_right = 0.007080078
-offset_bottom = 0.28735352
+anchor_left = 0.05
+anchor_top = 0.89800006
+anchor_right = 0.296
+anchor_bottom = 0.95800006
+offset_left = 0.08592224
+offset_top = 0.088134766
+offset_right = 0.38867188
+offset_bottom = 0.2833252
 
 [node name="NameInput" type="LineEdit" parent="MainContainer/VBoxContainer2"]
 layout_mode = 2
@@ -90,12 +105,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.069000006
 anchor_top = 0.27600002
-anchor_right = 0.929
-anchor_bottom = 0.78200006
+anchor_right = 0.35900003
+anchor_bottom = 0.79300004
 offset_left = -0.5614319
 offset_top = -0.1020813
-offset_right = 0.71643066
-offset_bottom = 0.37738037
+offset_right = 0.13690186
+offset_bottom = 0.496521
 
 [node name="HighscoreList" type="VBoxContainer" parent="MainContainer/VBoxContainer3"]
 layout_mode = 2
@@ -104,19 +119,21 @@ size_flags_vertical = 3
 [node name="Label" type="Label" parent="MainContainer/VBoxContainer3/HighscoreList"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_g67ru")
+theme_override_font_sizes/font_size = 31
 label_settings = SubResource("LabelSettings_w5fga")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.062000003
-anchor_top = 0.064
-anchor_right = 0.929
-anchor_bottom = 0.21900001
-offset_left = 0.4665451
-offset_top = -0.12512207
-offset_right = 2.7164307
-offset_bottom = 62.46248
+anchor_left = 0.44500002
+anchor_top = 0.20600002
+anchor_right = 0.92200005
+anchor_bottom = 0.5
+offset_left = -0.63531494
+offset_top = 0.5035095
+offset_right = 0.74438477
+offset_bottom = 0.960022
 
 [node name="ScoreLabel" type="Label" parent="MainContainer/VBoxContainer4"]
 z_index = 6
@@ -130,14 +147,18 @@ uppercase = true
 [node name="VBoxContainer5" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.16000001
-anchor_bottom = 0.162
-offset_left = 44.0
-offset_top = 44.0
-offset_right = -140.92505
-offset_bottom = -66.972946
+anchor_left = 0.85600007
+anchor_top = 0.034
+anchor_right = 0.97200006
+anchor_bottom = 0.133
+offset_left = -0.8491211
+offset_top = 0.2772789
+offset_right = 0.83032227
+offset_bottom = 0.34936523
 
 [node name="BackButton" type="Button" parent="MainContainer/VBoxContainer5"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_w5fga")
+theme_override_font_sizes/font_size = 48
 text = "BACK"

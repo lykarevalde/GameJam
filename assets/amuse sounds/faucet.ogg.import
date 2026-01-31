@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c027bv23o822k"
+path="res://.godot/imported/faucet.ogg-281a6e3835c814eb7bca2608e8b0049e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/amuse sounds/faucet.ogg"
+dest_files=["res://.godot/imported/faucet.ogg-281a6e3835c814eb7bca2608e8b0049e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

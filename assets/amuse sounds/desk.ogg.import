@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://tff3l4o3v1v"
+path="res://.godot/imported/desk.ogg-2f527bb39533a5a19e2bea4e5790313d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/amuse sounds/desk.ogg"
+dest_files=["res://.godot/imported/desk.ogg-2f527bb39533a5a19e2bea4e5790313d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

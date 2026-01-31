@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://gkhcgo2gtgjf"
+path="res://.godot/imported/teddy-bear.ogg-0d69c66298d9083c53cee15d30d35172.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/amuse sounds/teddy-bear.ogg"
+dest_files=["res://.godot/imported/teddy-bear.ogg-0d69c66298d9083c53cee15d30d35172.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dqhblikxdjsdf"
+path="res://.godot/imported/shelf.ogg-855ba709d73a0bc20d9f025c6ca6f133.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/spook soundss/shelf.ogg"
+dest_files=["res://.godot/imported/shelf.ogg-855ba709d73a0bc20d9f025c6ca6f133.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

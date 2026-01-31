@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://xxgtdc5tiks5"
+path="res://.godot/imported/faucet.ogg-be5df8187a8947fb9b0816afa9366517.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/spook soundss/faucet.ogg"
+dest_files=["res://.godot/imported/faucet.ogg-be5df8187a8947fb9b0816afa9366517.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://fsottn4761a3"
+path="res://.godot/imported/bgm.ogg-ffc6a38b6721c206a566cec216f1b190.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/amuse sounds/bgm.ogg"
+dest_files=["res://.godot/imported/bgm.ogg-ffc6a38b6721c206a566cec216f1b190.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
