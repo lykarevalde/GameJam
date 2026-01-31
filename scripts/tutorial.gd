@@ -108,7 +108,6 @@ func on_child_befriended():
 	fake_trust_done = true
 
 func end_tutorial():
-	ScoreData.start_game_from_main_menu = true
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 	#prompt.visible = false
 	#pressF.hide()

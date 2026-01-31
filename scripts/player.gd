@@ -19,7 +19,7 @@ var last_direction: int = 1  # 1 = right, -1 = left
 # Energy System
 # -----------------------------
 const MAX_ENERGY: int = 6
-const ENERGY_RESTORE_TIME: float = 3.0
+const ENERGY_RESTORE_TIME: float = 10.0
 const FLASH_INTERVAL: float = 0.5
 
 var energy: int = MAX_ENERGY
