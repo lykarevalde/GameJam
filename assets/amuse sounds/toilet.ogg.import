@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dpkeanj4t2xjx"
+path="res://.godot/imported/toilet.ogg-600ddc1b97d8e39ba49d83c830f5c413.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/amuse sounds/toilet.ogg"
+dest_files=["res://.godot/imported/toilet.ogg-600ddc1b97d8e39ba49d83c830f5c413.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
