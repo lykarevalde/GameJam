@@ -437,8 +437,8 @@ texture_pressed = ExtResource("7_5dd4i")
 texture_hover = ExtResource("11_7b55j")
 
 [node name="title placeholder" type="Sprite2D" parent="."]
-position = Vector2(194.00002, 155.00002)
-scale = Vector2(1.631111, 1.9823009)
+position = Vector2(196, 166.00002)
+scale = Vector2(4.115, 5)
 texture = ExtResource("8_tbmy8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
