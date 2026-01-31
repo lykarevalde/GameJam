@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal befriended
+signal befriended(npc)
 signal amused
 signal spooked(penalty: int)
 
@@ -125,9 +125,11 @@ func _on_amused(pos: Vector2):
 	trust_score = min(max_trust, trust_score + 5)
 	_update_trust()
 
-	if trust_score >= max_trust:
+	if trust_score >= max_trust and not is_befriended:
 		is_befriended = true
-		emit_signal("befriended")
+		# Directly call GameManager counter instead of emitting signal
+		var gm = get_tree().get_nodes_in_group("game_manager")[0]
+		gm.kid_befriended(self)
 		_trigger_reaction("befriended")
 	else:
 		emit_signal("amused")
