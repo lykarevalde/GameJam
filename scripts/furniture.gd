@@ -41,6 +41,9 @@ var player_possessed := false
 var current_player_possessor: Node = null # Reference to player to spend energy
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var amuse_sfx = $AudioStreamPlayer2D
+@onready var spook_sfx = $AudioStreamPlayer2D2
+@onready var visibility = $VisibleOnScreenNotifier2D
 
 func _ready():
 	anim.material = anim.material.duplicate()
@@ -57,6 +60,7 @@ func _on_anim_finished():
 	# Unlock animation and return to idle
 	anim_locked = false
 	anim.play("idle")
+	amuse_sfx.stop()
 
 # --------------------
 # Physics
@@ -144,6 +148,7 @@ func amuse(player_ref: Node):
 	# Store player reference to charge them when animation finishes
 	current_player_possessor = player_ref
 	anim.play("amuse")
+	amuse_sfx.play()
 	emit_signal("amused", global_position)
 
 # --------------------
@@ -227,6 +232,10 @@ func spook_possession():
 		anim.play("spook")
 		anim_started = true
 		emit_signal("spooked", global_position)
+		
+		if visibility and visibility.is_on_screen():
+			if not spook_sfx.playing:
+				spook_sfx.play()
 
 func end_npc_possession():
 	npc_possessed = false

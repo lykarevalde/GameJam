@@ -5,12 +5,17 @@ extends Node2D
 @export var floor1_path: Path2D              # assign Floor1Path
 @export var floor2_path: Path2D              # assign Floor2Path
 
+@onready var bgm = $BGM
+
 func _ready():
 	# Debug checks
+	bgm.play
 	if npc_scene == null:
 		print("ERROR: npc_scene not assigned")
 	if floor1_path == null or floor2_path == null:
 		print("ERROR: floor paths not assigned")
+		
+	
 
 	# Spawn NPCs on both floors
 #	spawn_npcs_on_path(floor1_path, npc_per_floor)
@@ -32,3 +37,7 @@ func _ready():
 #		follow.add_child(npc)
 
 		
+
+
+func _on_bgm_finished() -> void:
+	bgm.play()

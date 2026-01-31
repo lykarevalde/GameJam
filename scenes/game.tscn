@@ -1,4 +1,4 @@
-[gd_scene load_steps=689 format=4 uid="uid://caf4pect0ovka"]
+[gd_scene load_steps=690 format=4 uid="uid://caf4pect0ovka"]
 
 [ext_resource type="Script" uid="uid://1707w1wd8vfv" path="res://scripts/game_scene.gd" id="1_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://cv3bjv8xhr455" path="res://scenes/enemy.tscn" id="1_uwrxv"]
@@ -72,6 +72,7 @@
 [ext_resource type="Texture2D" uid="uid://bbd4wr7mdmr5s" path="res://assets/npc sprites/default/boy_default_5.png" id="67_2iuns"]
 [ext_resource type="Texture2D" uid="uid://dfjd58s3cfhov" path="res://assets/npc sprites/scared/boy_scared_5.png" id="68_7gkqi"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="72_sxt1d"]
+[ext_resource type="AudioStream" uid="uid://cl2h2fjuc3lay" path="res://assets/amuse sounds/bgm.ogg" id="73_2iuns"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m4url"]
 texture = ExtResource("4_7025r")
@@ -6921,6 +6922,11 @@ value = 100.0
 show_percentage = false
 script = SubResource("GDScript_sxt1d")
 game_manager_path = NodePath("../../../GameManager")
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("73_2iuns")
+
+[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]
 
 [editable path="TileMap2"]
 [editable path="MotherFatherGhosts/father"]
