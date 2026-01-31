@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b1guq66kuu3xo"]
+[gd_scene load_steps=51 format=3 uid="uid://b1guq66kuu3xo"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_hm0ya"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_ic553"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bvkodmm55hxxi" path="res://assets/Furniture/classroom/chair MOVE.png" id="4_8sqtu"]
 [ext_resource type="Texture2D" uid="uid://dy1wvg02fhhgk" path="res://assets/Furniture/classroom/chair SPOOK.png" id="5_3fxfv"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="6_6wamv"]
+[ext_resource type="AudioStream" uid="uid://cjfd12fs0tfus" path="res://assets/amuse sounds/chair.ogg" id="7_e7krt"]
+[ext_resource type="AudioStream" uid="uid://kbgj8brkie0y" path="res://assets/spook soundss/chair.ogg" id="8_cjji8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dm6fm"]
 size = Vector2(14, 25)
@@ -334,6 +336,16 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
 position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_dm6fm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_e7krt")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_cjji8")
+volume_db = -10.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

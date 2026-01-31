@@ -1,10 +1,12 @@
-[gd_scene load_steps=56 format=3 uid="uid://chpdaiv4hlcci"]
+[gd_scene load_steps=58 format=3 uid="uid://chpdaiv4hlcci"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_3bwcq"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_1xw8x"]
 [ext_resource type="Texture2D" uid="uid://dwg5761q3j7qv" path="res://assets/Furniture/gym/mascot AMUSE.png" id="3_jd0jv"]
 [ext_resource type="Texture2D" uid="uid://b6i4jbm7s4w26" path="res://assets/Furniture/gym/mascot SPOOK.png" id="4_oeqrj"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_21sqa"]
+[ext_resource type="AudioStream" uid="uid://b2lh5122108hv" path="res://assets/amuse sounds/mascot.ogg" id="6_jd0jv"]
+[ext_resource type="AudioStream" uid="uid://ddlc2rlxxxlwa" path="res://assets/spook soundss/mascottt.ogg" id="7_oeqrj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_38udi"]
 shader = ExtResource("2_1xw8x")
@@ -385,6 +387,16 @@ shape = SubResource("CapsuleShape2D_ml563")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_ml563")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jd0jv")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_oeqrj")
+volume_db = -10.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

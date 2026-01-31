@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cef30dmd4as47"]
+[gd_scene load_steps=6 format=3 uid="uid://cef30dmd4as47"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_yyxms"]
 [ext_resource type="PackedScene" uid="uid://dsr4nt81mbrbd" path="res://scenes/furniture/ttoilet.tscn" id="2_5rkpo"]
+[ext_resource type="AudioStream" uid="uid://b2rty1mmvfueg" path="res://assets/amuse sounds/toilet.ogg" id="3_jq3oh"]
+[ext_resource type="AudioStream" uid="uid://bce3uh2wjpaxj" path="res://assets/spook soundss/toilettttt.ogg" id="4_ostow"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tcjrq"]
 radius = 8.0
@@ -16,6 +18,13 @@ shape = SubResource("CapsuleShape2D_tcjrq")
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("2_5rkpo")]
 position = Vector2(-1, -6)
 animation = &"spook"
-autoplay = "idle"
-frame = 0
-frame_progress = 0.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jq3oh")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ostow")
+volume_db = -10.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

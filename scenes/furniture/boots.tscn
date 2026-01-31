@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://3jxm41qcllrk"]
+[gd_scene load_steps=51 format=3 uid="uid://3jxm41qcllrk"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_wiiro"]
 [ext_resource type="Shader" uid="uid://dromq4pf7p2g8" path="res://assets/furniture.gdshader" id="2_tu51b"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bppp5yoaxbr4" path="res://assets/Furniture/janitor/boots SPOOK.png" id="4_6unxj"]
 [ext_resource type="Texture2D" uid="uid://bshu4ccaww2cj" path="res://assets/Furniture/janitor/boots MOVE.png" id="5_0ybsh"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="6_aghjb"]
+[ext_resource type="AudioStream" uid="uid://bgtctexnfr4ja" path="res://assets/amuse sounds/boots.ogg" id="7_hs1y5"]
+[ext_resource type="AudioStream" uid="uid://dij22brnxrcie" path="res://assets/spook soundss/boots.ogg" id="8_6unxj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uvc85"]
 shader = ExtResource("2_tu51b")
@@ -337,6 +339,14 @@ polygon = PackedVector2Array(-13.887561, 6.653603, -13.887561, 4.653603, -9.8875
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(2, 8)
 polygon = PackedVector2Array(-13.887561, 6.653603, -13.887561, 4.653603, -9.887561, -0.34639692, -9.887561, -8.346397, 10.112439, -8.346397, 10.112439, 0.6536031, 14.112439, 5.653603, 14.112439, 7.653603, -12.887561, 7.653603)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_hs1y5")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6unxj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

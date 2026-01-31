@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://duohd8irgp0dq"]
+[gd_scene load_steps=62 format=3 uid="uid://duohd8irgp0dq"]
 
 [ext_resource type="Script" uid="uid://d3djgkunretfo" path="res://scripts/furniture.gd" id="1_jygmd"]
 [ext_resource type="Texture2D" uid="uid://wacma7vgrpi2" path="res://assets/Furniture/library/pc AMUSE.png" id="2_62pyb"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bcy432co6fxgv" path="res://assets/Furniture/library/pc MOVE.png" id="3_ku581"]
 [ext_resource type="Texture2D" uid="uid://dnjdr643gjrn5" path="res://assets/Furniture/library/pc SPOOK.png" id="4_i0iun"]
 [ext_resource type="Script" uid="uid://dn1bn31prmmml" path="res://scripts/area_furniture.gd" id="5_e13oi"]
+[ext_resource type="AudioStream" uid="uid://cek75my7ed4g3" path="res://assets/amuse sounds/computer.ogg" id="7_i0iun"]
+[ext_resource type="AudioStream" uid="uid://cgm2fynvyuohw" path="res://assets/spook soundss/computer.ogg" id="8_e13oi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_62pyb"]
 shader = ExtResource("2_ku581")
@@ -409,6 +411,16 @@ shape = SubResource("RectangleShape2D_xq1dp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-15, -10, 15, -10, 15, 10, 2, 10, 2, 12, 5, 12, 5, 15, -5, 15, -5, 12, -2, 12, -2, 10, -15, 10)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_i0iun")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_e13oi")
+volume_db = -10.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_area_2d_area_exited"]

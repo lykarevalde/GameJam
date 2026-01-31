@@ -9,7 +9,7 @@ extends Node2D
 
 func _ready():
 	# Debug checks
-	bgm.play
+	bgm.play()
 	if npc_scene == null:
 		print("ERROR: npc_scene not assigned")
 	if floor1_path == null or floor2_path == null:

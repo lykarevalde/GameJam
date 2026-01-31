@@ -71,8 +71,8 @@
 [ext_resource type="Texture2D" uid="uid://cvaycqc5ur1o1" path="res://assets/npc sprites/befriended/boy_befriended_5.png" id="66_sxt1d"]
 [ext_resource type="Texture2D" uid="uid://bbd4wr7mdmr5s" path="res://assets/npc sprites/default/boy_default_5.png" id="67_2iuns"]
 [ext_resource type="Texture2D" uid="uid://dfjd58s3cfhov" path="res://assets/npc sprites/scared/boy_scared_5.png" id="68_7gkqi"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="72_sxt1d"]
-[ext_resource type="AudioStream" uid="uid://cl2h2fjuc3lay" path="res://assets/amuse sounds/bgm.ogg" id="73_2iuns"]
+[ext_resource type="Script" uid="uid://ci4pudxu3dql2" path="res://scripts/game_manager.gd" id="72_sxt1d"]
+[ext_resource type="AudioStream" uid="uid://dkajkqorbqmf8" path="res://assets/amuse sounds/bgm.ogg" id="73_2iuns"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m4url"]
 texture = ExtResource("4_7025r")
@@ -6925,8 +6925,7 @@ game_manager_path = NodePath("../../../GameManager")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("73_2iuns")
-
-[connection signal="finished" from="BGM" to="." method="_on_bgm_finished"]
+volume_db = -5.0
 
 [editable path="TileMap2"]
 [editable path="MotherFatherGhosts/father"]
