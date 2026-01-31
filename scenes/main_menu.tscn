@@ -441,6 +441,10 @@ position = Vector2(194.00002, 155.00002)
 scale = Vector2(1.631111, 1.9823009)
 texture = ExtResource("8_tbmy8")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 341)
+zoom = Vector2(1.5, 1.6)
+
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/how to play" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/scoreboard" to="." method="_on_scoreboard_pressed"]
