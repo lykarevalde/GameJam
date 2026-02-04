@@ -1,0 +1,143 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmfgw4woan5or"]
+
+[ext_resource type="Script" uid="uid://bkdd7lqbhf0sr" path="res://scripts/scoreboard.gd" id="1_ucmtr"]
+[ext_resource type="FontFile" uid="uid://3sxyggbrtefy" path="res://assets/fonts/pixel.ttf" id="2_w5fga"]
+[ext_resource type="FontFile" uid="uid://bw4nbdkcf0frg" path="res://assets/fonts/Pix32.ttf" id="3_g67ru"]
+
+[sub_resource type="Theme" id="Theme_ucmtr"]
+
+[sub_resource type="Gradient" id="Gradient_w5fga"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g67ru"]
+gradient = SubResource("Gradient_w5fga")
+fill_from = Vector2(1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w5fga"]
+font = ExtResource("3_g67ru")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_ucmtr"]
+font = ExtResource("2_w5fga")
+font_size = 35
+
+[node name="Scoreboard" type="Control"]
+layout_mode = 3
+anchor_right = 0.9990001
+anchor_bottom = 1.0
+offset_right = 0.15185547
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ucmtr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ucmtr")
+texture = SubResource("GradientTexture2D_g67ru")
+
+[node name="MainContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -0.1505127
+offset_bottom = 0.079956055
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.76100004
+anchor_top = 0.80200005
+anchor_right = 0.93500006
+anchor_bottom = 0.90800005
+offset_left = 0.3876953
+offset_top = -0.22418213
+offset_right = 0.40673828
+offset_bottom = 0.28735352
+
+[node name="SaveButton" type="Button" parent="MainContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SAVE"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.804
+anchor_right = 0.749
+anchor_bottom = 0.90800005
+offset_left = 0.72029114
+offset_top = -0.38427734
+offset_right = 0.007080078
+offset_bottom = 0.28735352
+
+[node name="NameInput" type="LineEdit" parent="MainContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.77
+placeholder_text = "Type your name..."
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.069000006
+anchor_top = 0.27600002
+anchor_right = 0.929
+anchor_bottom = 0.78200006
+offset_left = -0.5614319
+offset_top = -0.1020813
+offset_right = 0.71643066
+offset_bottom = 0.37738037
+
+[node name="HighscoreList" type="VBoxContainer" parent="MainContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainContainer/VBoxContainer3/HighscoreList"]
+layout_mode = 2
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_w5fga")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.062000003
+anchor_top = 0.064
+anchor_right = 0.929
+anchor_bottom = 0.21900001
+offset_left = 0.4665451
+offset_top = -0.12512207
+offset_right = 2.7164307
+offset_bottom = 62.46248
+
+[node name="ScoreLabel" type="Label" parent="MainContainer/VBoxContainer4"]
+z_index = 6
+layout_mode = 2
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_ucmtr")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.16000001
+anchor_bottom = 0.162
+offset_left = 44.0
+offset_top = 44.0
+offset_right = -140.92505
+offset_bottom = -66.972946
+
+[node name="BackButton" type="Button" parent="MainContainer/VBoxContainer5"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "BACK"
